@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="bg-light p-4 rounded shadow-sm">
+                <h1 class="text-center mb-4">Kup10 Gayrimenkul'e Hoş Geldiniz</h1>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'properties:land_list' %}" class="card text-center h-100 text-decoration-none property-card">
+                            <div class="card-body">
+                                <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Arsalar</h5>
+                                <p class="card-text">Yatırımlık ve imarlı arsalarımızı inceleyin</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'properties:residential_list' %}" class="card text-center h-100 text-decoration-none property-card">
+                            <div class="card-body">
+                                <i class="fas fa-home fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Konutlar</h5>
+                                <p class="card-text">Satılık ve kiralık konutlarımızı keşfedin</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'properties:commercial_list' %}" class="card text-center h-100 text-decoration-none property-card">
+                            <div class="card-body">
+                                <i class="fas fa-store fa-3x text-warning mb-3"></i>
+                                <h5 class="card-title">İşyerleri</h5>
+                                <p class="card-text">İşyeri ve dükkanlarımızı görüntüleyin</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'properties:field_list' %}" class="card text-center h-100 text-decoration-none property-card">
+                            <div class="card-body">
+                                <i class="fas fa-tree fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Tarlalar</h5>
+                                <p class="card-text">Verimli tarlalarımızı inceleyin</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mb-4">Son Eklenen İlanlar</h2>
+    <div class="row">
+        {% for property in properties %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 property-card">
+                {% if property.images.exists %}
+                <img src="{{ property.images.first.image.url }}" class="card-img-top" alt="{{ property.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <i class="fas fa-home fa-3x text-secondary"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.title }}</h5>
+                    <p class="card-text text-muted">
+                        <small>
+                            <i class="fas fa-map-marker-alt"></i> {{ property.get_property_type_display }}
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag"></i> {{ property.get_listing_type_display }}
+                        </small>
+                    </p>
+                    <p class="card-text">{{ property.description|truncatewords:20 }}</p>
+                    <h6 class="card-subtitle mb-2 text-primary">{{ property.price|floatformat:0 }} TL</h6>
+                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary stretched-link">Detayları Gör</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>{{ property.created_at|timesince }} önce eklendi</small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                Henüz ilan bulunmamaktadır.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label">İlan Tipi</label>
+                            <select name="listing_type" class="form-select">
+                                <option value="">Tümü</option>
+                                <option value="SATILIK" {% if listing_type == 'SATILIK' %}selected{% endif %}>Satılık</option>
+                                <option value="KIRALIK" {% if listing_type == 'KIRALIK' %}selected{% endif %}>Kiralık</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Min. Fiyat</label>
+                            <input type="number" name="min_price" class="form-control" value="{{ min_price|default:'' }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">Max. Fiyat</label>
+                            <input type="number" name="max_price" class="form-control" value="{{ max_price|default:'' }}">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">&nbsp;</label>
+                            <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for property in properties %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 property-card">
+                {% if property.images.exists %}
+                <img src="{{ property.images.first.image.url }}" class="card-img-top" alt="{{ property.title }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <i class="fas fa-home fa-3x text-secondary"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ property.title }}</h5>
+                    <p class="card-text text-muted">
+                        <small>
+                            <i class="fas fa-map-marker-alt"></i> {{ property.get_property_type_display }}
+                            <span class="mx-2">|</span>
+                            <i class="fas fa-tag"></i> {{ property.get_listing_type_display }}
+                        </small>
+                    </p>
+                    <p class="card-text">{{ property.description|truncatewords:20 }}</p>
+                    <h6 class="card-subtitle mb-2 text-primary">{{ property.price|floatformat:0 }} TL</h6>
+
+                    {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-ruler-combined"></i> {{ property.square_meters }} m²
+                            <br>
+                            <i class="fas fa-file-contract"></i> {{ property.zoning_status }}
+                        </small>
+                    </p>
+                    {% elif property.property_type == 'KONUT' %}
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-ruler-combined"></i> {{ property.gross_square_meters }} m² (Brüt)
+                            <br>
+                            <i class="fas fa-door-open"></i> {{ property.room_count }} Oda
+                        </small>
+                    </p>
+                    {% elif property.property_type == 'ISYERI' %}
+                    <p class="card-text">
+                        <small class="text-muted">
+                            <i class="fas fa-ruler-combined"></i> {{ property.square_meters }} m²
+                            <br>
+                            <i class="fas fa-building"></i> {{ property.floor_location }}. Kat
+                        </small>
+                    </p>
+                    {% endif %}
+
+                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary stretched-link">Detayları Gör</a>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>{{ property.created_at|timesince }} önce eklendi</small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                Aradığınız kriterlere uygun ilan bulunamadı.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

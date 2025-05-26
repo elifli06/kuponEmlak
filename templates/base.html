@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Kup10 Gayrimenkul{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .navbar {
+            background-color: #2c3e50;
+            padding: 0.5rem 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            color: #ecf0f1 !important;
+            display: flex;
+            align-items: center;
+            padding: 0;
+        }
+        .navbar-brand span {
+            font-size: 1.4rem;
+            margin-left: 10px;
+        }
+        .navbar-brand img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            margin-right: 5px;
+            transition: transform 0.3s ease;
+        }
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: #ecf0f1 !important;
+            padding: 1rem !important;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #3498db !important;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .search-form {
+            width: 100%;
+            max-width: 300px;
+        }
+        .property-card {
+            transition: transform 0.3s;
+        }
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+        .footer {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .agent-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .social-icons a {
+            color: #ecf0f1;
+            margin: 0 10px;
+            font-size: 1.5rem;
+        }
+        .social-icons a:hover {
+            color: #3498db;
+        }
+        .developer-credit {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        .developer-credit:hover {
+            opacity: 1;
+        }
+        .developer-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .developer-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #ecf0f1;
+            transition: width 0.3s ease;
+        }
+        .developer-link:hover::after {
+            width: 100%;
+        }
+        .developer-link i {
+            margin-left: 5px;
+            font-size: 1.1em;
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'properties:home' %}">
+                <img src="{% static 'images/logo/logo.JPG' %}" alt="Kup10 Gayrimenkul Logo">
+                <span>Kup10 Gayrimenkul</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:home' %}">Anasayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:land_list' %}">Arsa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:residential_list' %}">Konut</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:commercial_list' %}">İşyeri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:field_list' %}">Tarla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'properties:contact' %}">İletişim</a>
+                    </li>
+                </ul>
+                <form class="d-flex search-form" action="{% url 'properties:property_list' %}" method="get">
+                    <input type="hidden" name="type" value="">
+                    <input class="form-control me-2" type="search" placeholder="Ara..." name="q">
+                    <button class="btn btn-outline-light" type="submit">Ara</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>İletişim</h5>
+                    <p><i class="fas fa-phone"></i> 0538 402 32 80</p>
+                    <p><i class="fas fa-envelope"></i> kuponemlaknigde@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="https://wa.me/905384023280" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:kuponemlaknigde@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5>Emlak Danışmanı</h5>
+                    <p>Zekiye GÖKTÜRK</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Hızlı Bağlantılar</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'properties:home' %}" class="text-light">Anasayfa</a></li>
+                        <li><a href="{% url 'properties:land_list' %}" class="text-light">Arsa</a></li>
+                        <li><a href="{% url 'properties:residential_list' %}" class="text-light">Konut</a></li>
+                        <li><a href="{% url 'properties:commercial_list' %}" class="text-light">İşyeri</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col text-center">
+                    <p>&copy; {% now "Y" %} Kup10 Gayrimenkul. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <p class="developer-credit mb-0">
+                        <small>
+                            <i class="fas fa-code"></i> Yazılımcı: 
+                            <a href="https://www.linkedin.com/in/elif-cerav/" 
+                               target="_blank" 
+                               class="text-light text-decoration-none developer-link">
+                                Elif CERAV
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body text-center">
+                    <img src="/static/images/agent.jpg" alt="Zekiye GÖKTÜRK" class="agent-image mb-4">
+                    <h2 class="mb-4">Emlak Danışmanı</h2>
+                    <h3 class="text-primary mb-4">{{ agent_name }}</h3>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-phone fa-3x text-primary mb-3"></i>
+                                    <h4>Telefon</h4>
+                                    <p class="mb-0">
+                                        <a href="tel:{{ phone }}" class="text-decoration-none">{{ phone }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                    <h4>E-posta</h4>
+                                    <p class="mb-0">
+                                        <a href="mailto:{{ email }}" class="text-decoration-none">{{ email }}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
+                                    <h4>Ofis Konumu</h4>
+                                    <p class="mb-3">Kale Mahallesi Kavak Sokak Ata Plaza Kat:10 No:114, Niğde</p>
+                                    <div class="ratio ratio-16x9">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200!2d34.683056!3d37.970278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU4JzEzIk4gMzTCsDQwJzU5IkU!5e0!3m2!1str!2str!4v1709914500000!5m2!1str!2str"
+                                                width="600" height="450" 
+                                                style="border:0;" 
+                                                allowfullscreen="" 
+                                                loading="lazy" 
+                                                referrerpolicy="no-referrer-when-downgrade">
+                                        </iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <a href="https://wa.me/905384023280" class="btn btn-success btn-lg w-100" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> WhatsApp ile İletişime Geç
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=37.970278,34.683056" class="btn btn-primary btn-lg w-100" target="_blank">
+                                    <i class="fas fa-directions"></i> Yol Tarifi Al
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
