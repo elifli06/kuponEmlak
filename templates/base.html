@@ -278,6 +278,18 @@
             white-space: nowrap;
         }
 
+        .navbar-brand img[style*="display: none"] {
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            gap: 0;
+        }
+
+        .navbar-brand:has(img[style*="display: none"]) {
+            gap: 0;
+        }
+
         .navbar-brand:hover {
             color: #60a5fa !important;
             transform: translateY(-1px);
@@ -286,10 +298,17 @@
         .navbar-brand img {
             height: 44px;
             width: auto;
+            max-width: 120px;
             object-fit: contain;
             border-radius: 0.5rem;
             transition: transform 0.3s ease;
             flex-shrink: 0;
+            display: block;
+        }
+
+        .navbar-brand img:not([src]),
+        .navbar-brand img[src=""] {
+            display: none;
         }
 
         .navbar-brand:hover img {
@@ -666,7 +685,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{% url 'properties:home' %}">
-                <img src="{% static 'images/logo/logo.JPG' %}" alt="Kup10 Gayrimenkul Logo">
+                <img src="{% static 'images/logo/logo.JPG' %}" alt="Kup10 Gayrimenkul Logo"
+                    onerror="this.style.display='none'; this.parentElement.style.gap='0';">
                 <span>Kup10 Gayrimenkul</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -714,7 +734,7 @@
 
     <!-- Main Content -->
     <div style="padding-top: 76px;">
-        <main class="container-fluid px-3 px-md-4 py-4">
+        <main class="container-fluid px-3 px-md-4 py-4" style="max-width: 100%; overflow-x: hidden;">
             {% block content %}{% endblock %}
         </main>
     </div>

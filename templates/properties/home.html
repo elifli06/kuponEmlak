@@ -6,7 +6,7 @@
     /* ============================================
        HERO SECTION - Modern Real Estate Design
        ============================================ */
-    
+
     .hero-section {
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         padding: 6rem 0 5rem;
@@ -27,7 +27,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: 
+        background:
             radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
             radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
         pointer-events: none;
@@ -182,7 +182,7 @@
     /* ============================================
        CATEGORY GRID - Enhanced Cards
        ============================================ */
-    
+
     .category-section {
         margin-bottom: 5rem;
     }
@@ -287,7 +287,7 @@
     /* ============================================
        SECTION HEADER
        ============================================ */
-    
+
     .section-header {
         text-align: center;
         margin-bottom: 4rem;
@@ -325,7 +325,7 @@
     /* ============================================
        PROPERTY CARDS - Premium Design
        ============================================ */
-    
+
     .property-card-modern {
         border: 1px solid #e2e8f0;
         border-radius: 1.25rem;
@@ -336,6 +336,17 @@
         display: flex;
         flex-direction: column;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .row .col-lg-4,
+    .row .col-md-6,
+    .row .col-sm-12 {
+        box-sizing: border-box;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
 
     .property-card-modern:hover {
@@ -485,7 +496,7 @@
     /* ============================================
        EMPTY STATE
        ============================================ */
-    
+
     .empty-state {
         text-align: center;
         padding: 6rem 2rem;
@@ -520,7 +531,7 @@
     /* ============================================
        RESPONSIVE
        ============================================ */
-    
+
     @media (max-width: 992px) {
         .hero-search-form {
             grid-template-columns: 1fr;
@@ -566,7 +577,8 @@
         <div class="hero-content">
             <h1 class="hero-title fade-in">Hayalinizdeki Emlağı Bulun</h1>
             <p class="hero-subtitle fade-in">
-                Geniş emlak portföyümüzde arsa, konut, işyeri ve tarla seçeneklerini keşfedin.<br class="d-none d-md-block">
+                Geniş emlak portföyümüzde arsa, konut, işyeri ve tarla seçeneklerini keşfedin.<br
+                    class="d-none d-md-block">
                 Profesyonel danışmanlık hizmeti ile hayalinizdeki gayrimenkulü bulun.
             </p>
 
@@ -575,7 +587,8 @@
                 <form method="get" action="{% url 'properties:property_list' %}" class="hero-search-form">
                     <div class="search-input-group">
                         <label for="search_location"><i class="fas fa-map-marker-alt me-1"></i>Lokasyon</label>
-                        <input type="text" id="search_location" name="q" class="search-input" placeholder="Şehir, İlçe veya Mahalle">
+                        <input type="text" id="search_location" name="q" class="search-input"
+                            placeholder="Şehir, İlçe veya Mahalle">
                     </div>
                     <div class="search-input-group">
                         <label for="search_type"><i class="fas fa-tag me-1"></i>Tip</label>
@@ -621,7 +634,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" style="max-width: 1320px;">
     <!-- Category Section -->
     <div class="category-section fade-in">
         <div class="section-header">
@@ -669,21 +682,20 @@
         <p class="section-subtitle">Yeni emlak fırsatlarını kaçırmayın</p>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4 justify-content-center">
         {% for property in properties %}
-        <div class="col-lg-4 col-md-6 fade-in">
+        <div class="col-lg-4 col-md-6 col-sm-12 fade-in">
             <div class="property-card-modern">
                 <div class="property-image-wrapper">
                     {% if property.images.exists %}
-                        <img src="{{ property.images.first.image.url }}" 
-                             alt="{{ property.title }}" 
-                             loading="lazy">
+                    <img src="{{ property.images.first.image.url }}" alt="{{ property.title }}" loading="lazy">
                     {% else %}
-                        <div class="d-flex align-items-center justify-content-center h-100">
-                            <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
-                        </div>
+                    <div class="d-flex align-items-center justify-content-center h-100">
+                        <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
+                    </div>
                     {% endif %}
-                    <div class="property-badge {% if property.listing_type == 'SATILIK' %}satilik{% else %}kiralik{% endif %}">
+                    <div
+                        class="property-badge {% if property.listing_type == 'SATILIK' %}satilik{% else %}kiralik{% endif %}">
                         {{ property.get_listing_type_display }}
                     </div>
                 </div>
@@ -730,13 +742,13 @@
 {% block extra_js %}
 <script>
     // Intersection Observer for fade-in animations
-    (function() {
+    (function () {
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
