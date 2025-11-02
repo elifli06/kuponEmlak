@@ -3,13 +3,17 @@
 
 {% block extra_css %}
 <style>
+    /* ============================================
+       CONTACT HERO SECTION
+       ============================================ */
+
     .contact-hero {
-        background: linear-gradient(135deg, rgba(26, 86, 219, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
-        padding: 4rem 0;
-        margin: -2rem -1rem 4rem;
-        border-radius: 0 0 24px 24px;
+        background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
+        padding: var(--space-20) 0 var(--space-16);
+        margin: calc(-2rem - 76px) -1rem var(--space-16);
+        border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
         text-align: center;
-        color: #fff;
+        color: var(--color-background);
         position: relative;
         overflow: hidden;
     }
@@ -17,11 +21,10 @@
     .contact-hero::before {
         content: '';
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+        inset: 0;
+        background:
+            radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
         pointer-events: none;
     }
 
@@ -31,26 +34,35 @@
     }
 
     .contact-hero-title {
-        font-size: 3rem;
+        font-family: var(--font-primary);
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
         font-weight: 800;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        margin-bottom: var(--space-4);
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        line-height: 1.2;
     }
 
     .contact-hero-subtitle {
-        font-size: 1.25rem;
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
         opacity: 0.95;
         font-weight: 400;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
     }
 
+    /* ============================================
+       AGENT PROFILE CARD
+       ============================================ */
+
     .agent-profile-card {
-        background: #fff;
-        border-radius: 24px;
-        padding: 3rem;
-        box-shadow: var(--shadow-xl);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-2xl);
+        padding: var(--space-12) var(--space-8);
+        box-shadow: var(--shadow-lg);
         text-align: center;
-        margin-bottom: 3rem;
-        border: 1px solid var(--border-color);
+        margin-bottom: var(--space-12);
         position: relative;
         overflow: hidden;
     }
@@ -61,68 +73,82 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, var(--primary-color), var(--primary-light), var(--secondary-color));
+        height: 4px;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), var(--color-success));
     }
 
     .agent-image-wrapper {
         position: relative;
         display: inline-block;
-        margin-bottom: 2rem;
+        margin-bottom: var(--space-8);
     }
 
     .agent-image-wrapper::after {
         content: '';
         position: absolute;
-        top: -4px;
-        left: -4px;
-        right: -4px;
-        bottom: -4px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        border-radius: 50%;
+        inset: -4px;
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+        border-radius: var(--radius-full);
         z-index: -1;
-        animation: rotate 3s linear infinite;
+        opacity: 0.2;
     }
 
-    @keyframes rotate {
-        from {
-            transform: rotate(0deg);
-        }
+    .agent-image {
+        width: 160px;
+        height: 160px;
+        border-radius: var(--radius-full);
+        object-fit: cover;
+        border: 4px solid var(--color-background);
+        box-shadow: var(--shadow-xl);
+        transition: transform var(--transition-base);
+    }
 
-        to {
-            transform: rotate(360deg);
-        }
+    .agent-image-wrapper:hover .agent-image {
+        transform: scale(1.05);
     }
 
     .agent-profile-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-3xl);
+        font-weight: 800;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-2);
     }
 
     .agent-profile-role {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
+        font-size: var(--text-lg);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-8);
         font-weight: 500;
     }
+
+    .agent-profile-bio {
+        color: var(--color-text-secondary);
+        font-size: var(--text-base);
+        line-height: 1.8;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* ============================================
+       CONTACT METHODS GRID
+       ============================================ */
 
     .contact-methods {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-bottom: 3rem;
+        gap: var(--space-6);
+        margin-bottom: var(--space-12);
     }
 
     .contact-method-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 2.5rem 2rem;
-        box-shadow: var(--shadow-lg);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8) var(--space-6);
+        box-shadow: var(--shadow-sm);
         text-align: center;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 2px solid transparent;
+        transition: all var(--transition-base);
         position: relative;
         overflow: hidden;
     }
@@ -134,8 +160,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.05), transparent);
-        transition: left 0.6s ease;
+        background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+        transition: left var(--transition-slow);
     }
 
     .contact-method-card:hover::before {
@@ -143,23 +169,23 @@
     }
 
     .contact-method-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--primary-light);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-primary);
     }
 
     .contact-method-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        border-radius: 20px;
+        width: 72px;
+        height: 72px;
+        margin: 0 auto var(--space-6);
+        background: var(--color-primary);
+        border-radius: var(--radius-xl);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        font-size: 2rem;
-        transition: all 0.3s ease;
+        color: var(--color-background);
+        font-size: var(--text-2xl);
+        transition: all var(--transition-base);
         box-shadow: var(--shadow-md);
     }
 
@@ -169,180 +195,196 @@
     }
 
     .contact-method-icon.whatsapp {
-        background: linear-gradient(135deg, #25d366, #128c7e);
+        background: var(--color-success);
     }
 
     .contact-method-title {
-        font-size: 1.5rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-xl);
         font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-3);
     }
 
     .contact-method-value {
-        font-size: 1.25rem;
-        color: var(--text-secondary);
-        margin-bottom: 1.5rem;
+        font-size: var(--text-base);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-6);
         font-weight: 500;
     }
 
     .contact-method-btn {
         width: 100%;
-        border-radius: 12px;
-        padding: 1rem;
+        border-radius: var(--radius-lg);
+        padding: var(--space-3) var(--space-6);
         font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        font-size: var(--text-sm);
+        transition: all var(--transition-base);
         border: none;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
+        gap: var(--space-2);
         text-decoration: none;
     }
 
     .contact-method-btn-primary {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        color: #fff;
-        box-shadow: var(--shadow-md);
+        background: var(--color-primary);
+        color: var(--color-background);
+        box-shadow: var(--shadow-sm);
     }
 
     .contact-method-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        color: #fff;
+        box-shadow: var(--shadow-md);
+        color: var(--color-background);
+        background: var(--color-primary-dark);
     }
 
     .contact-method-btn-success {
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        color: #fff;
-        box-shadow: var(--shadow-md);
+        background: var(--color-success);
+        color: var(--color-background);
+        box-shadow: var(--shadow-sm);
     }
 
     .contact-method-btn-success:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        color: #fff;
+        box-shadow: var(--shadow-md);
+        color: var(--color-background);
+        background: var(--color-success-dark);
     }
 
+    /* ============================================
+       LOCATION CARD
+       ============================================ */
+
     .location-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: var(--shadow-lg);
-        margin-bottom: 3rem;
-        border: 1px solid var(--border-color);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: var(--space-12);
     }
 
     .location-header {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 2px solid var(--border-color);
+        gap: var(--space-4);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+        border-bottom: 2px solid var(--color-border);
     }
 
     .location-icon {
-        width: 60px;
-        height: 60px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        border-radius: 15px;
+        width: 56px;
+        height: 56px;
+        background: var(--color-primary);
+        border-radius: var(--radius-lg);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        font-size: 1.5rem;
+        color: var(--color-background);
+        font-size: var(--text-xl);
         flex-shrink: 0;
     }
 
     .location-title {
-        font-size: 1.75rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
         font-weight: 700;
-        color: var(--text-primary);
+        color: var(--color-text-primary);
         margin: 0;
     }
 
     .location-address {
-        font-size: 1.1rem;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
+        font-size: var(--text-base);
+        color: var(--color-text-secondary);
+        margin-bottom: var(--space-8);
         display: flex;
-        align-items: center;
-        gap: 0.75rem;
+        align-items: flex-start;
+        gap: var(--space-3);
+        line-height: 1.6;
     }
 
     .location-address i {
-        color: var(--primary-color);
-        font-size: 1.25rem;
+        color: var(--color-primary);
+        font-size: var(--text-lg);
+        margin-top: 2px;
+        flex-shrink: 0;
     }
 
     .map-container {
-        border-radius: 16px;
+        border-radius: var(--radius-lg);
         overflow: hidden;
         box-shadow: var(--shadow-md);
-        margin-bottom: 2rem;
-        height: 400px;
+        margin-bottom: var(--space-8);
+        height: 450px;
+        border: 1px solid var(--color-border);
     }
 
     .map-container iframe {
         width: 100%;
         height: 100%;
         border: none;
+        display: block;
     }
 
     .action-buttons {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
+        gap: var(--space-4);
     }
 
     .action-btn {
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-6);
         font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        font-size: var(--text-base);
+        transition: all var(--transition-base);
         text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
-        border: 2px solid transparent;
+        gap: var(--space-2);
+        border: 1px solid transparent;
     }
 
     .action-btn-primary {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        color: #fff;
-        box-shadow: var(--shadow-md);
+        background: var(--color-primary);
+        color: var(--color-background);
+        box-shadow: var(--shadow-sm);
     }
 
     .action-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        color: #fff;
+        box-shadow: var(--shadow-md);
+        color: var(--color-background);
+        background: var(--color-primary-dark);
     }
 
     .action-btn-outline {
-        background: #fff;
-        color: var(--primary-color);
-        border-color: var(--primary-color);
+        background: var(--color-background);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
     }
 
     .action-btn-outline:hover {
-        background: var(--primary-color);
-        color: #fff;
+        background: var(--color-primary);
+        color: var(--color-background);
         transform: translateY(-2px);
+        border-color: var(--color-primary);
     }
 
-    @media (max-width: 768px) {
-        .contact-hero-title {
-            font-size: 2.25rem;
-        }
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
 
-        .contact-hero-subtitle {
-            font-size: 1.1rem;
+    @media (max-width: 768px) {
+        .contact-hero {
+            padding: var(--space-16) 0 var(--space-12);
+            margin: calc(-2rem - 76px) -0.75rem var(--space-12);
         }
 
         .contact-methods {
@@ -350,15 +392,15 @@
         }
 
         .agent-profile-card {
-            padding: 2rem 1.5rem;
+            padding: var(--space-8) var(--space-6);
         }
 
         .location-card {
-            padding: 1.5rem;
+            padding: var(--space-6);
         }
 
         .map-container {
-            height: 300px;
+            height: 350px;
         }
 
         .action-buttons {
@@ -369,6 +411,7 @@
 {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
 <div class="contact-hero">
     <div class="container">
         <div class="contact-hero-content">
@@ -379,19 +422,20 @@
 </div>
 
 <div class="container">
+    <!-- Agent Profile -->
     <div class="agent-profile-card fade-in">
         <div class="agent-image-wrapper">
             <img src="{% static 'images/agent.jpg' %}" alt="{{ agent_name }}" class="agent-image">
         </div>
         <h2 class="agent-profile-title">{{ agent_name }}</h2>
         <p class="agent-profile-role">Emlak Danışmanı</p>
-        <p
-            style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; max-width: 600px; margin: 0 auto;">
+        <p class="agent-profile-bio">
             Size en uygun emlak çözümünü bulmanız için profesyonel danışmanlık hizmeti sunuyorum.
             Sorularınız ve görüşmek için aşağıdaki iletişim kanallarını kullanabilirsiniz.
         </p>
     </div>
 
+    <!-- Contact Methods -->
     <div class="contact-methods">
         <div class="contact-method-card fade-in">
             <div class="contact-method-icon">
@@ -411,7 +455,8 @@
             </div>
             <h3 class="contact-method-title">WhatsApp</h3>
             <p class="contact-method-value">Mesaj Gönder</p>
-            <a href="https://wa.me/905384023280" target="_blank" class="contact-method-btn contact-method-btn-success">
+            <a href="https://wa.me/905384023280" target="_blank" rel="noopener noreferrer"
+                class="contact-method-btn contact-method-btn-success">
                 <i class="fab fa-whatsapp"></i>
                 WhatsApp ile Mesajla
             </a>
@@ -430,6 +475,7 @@
         </div>
     </div>
 
+    <!-- Location Card -->
     <div class="location-card fade-in">
         <div class="location-header">
             <div class="location-icon">
@@ -440,20 +486,20 @@
 
         <p class="location-address">
             <i class="fas fa-building"></i>
-            Kale Mahallesi Kavak Sokak Ata Plaza Kat:10 No:114, Niğde
+            <span>Kale Mahallesi Kavak Sokak Ata Plaza Kat:10 No:114, Niğde</span>
         </p>
 
         <div class="map-container">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200!2d34.683056!3d37.970278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU4JzEzIk4gMzTCsDQwJzU5IkU!5e0!3m2!1str!2str!4v1709914500000!5m2!1str!2str"
-                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade">
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="Ofis Konumu">
             </iframe>
         </div>
 
         <div class="action-buttons">
             <a href="https://www.google.com/maps/dir/?api=1&destination=37.970278,34.683056" target="_blank"
-                class="action-btn action-btn-primary">
+                rel="noopener noreferrer" class="action-btn action-btn-primary">
                 <i class="fas fa-directions"></i>
                 Yol Tarifi Al
             </a>
@@ -468,26 +514,28 @@
 
 {% block extra_js %}
 <script>
-    // Fade in animation on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Intersection Observer for fade-in animations
+    (function () {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-    });
+    })();
 </script>
 {% endblock %}

@@ -1,27 +1,34 @@
 {% extends 'base.html' %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/css/lightbox.min.css"
+    integrity="sha512-0+dpj2+VXzJx3IQeQm4kiWQZsWLkxiwT8H8e1jGcqUGLz/2jI9RWYfNZRMh6Xkg+ReC5qJzIiKJYpf+PpzZ5+g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
 <style>
-    .property-detail-hero {
-        margin-bottom: 3rem;
+    /* ============================================
+       PROPERTY GALLERY - Professional Design
+       ============================================ */
+
+    .property-gallery {
+        margin-bottom: var(--space-12);
     }
 
     .main-image-container {
         position: relative;
-        border-radius: 20px;
+        border-radius: var(--radius-xl);
         overflow: hidden;
         box-shadow: var(--shadow-xl);
-        margin-bottom: 1.5rem;
-        background: #000;
+        margin-bottom: var(--space-6);
+        background: var(--color-neutral-900);
+        cursor: pointer;
     }
 
     .main-image-container img {
         width: 100%;
-        height: 500px;
+        height: 560px;
         object-fit: cover;
-        cursor: pointer;
-        transition: transform 0.3s ease;
+        transition: transform var(--transition-slow);
+        display: block;
     }
 
     .main-image-container:hover img {
@@ -30,43 +37,47 @@
 
     .image-counter {
         position: absolute;
-        bottom: 1.5rem;
-        right: 1.5rem;
-        background: rgba(0, 0, 0, 0.7);
+        bottom: var(--space-6);
+        right: var(--space-6);
+        background: rgba(0, 0, 0, 0.75);
         backdrop-filter: blur(10px);
-        color: #fff;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.9rem;
+        color: var(--color-background);
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-full);
+        font-size: var(--text-sm);
         font-weight: 600;
         z-index: 10;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
     }
 
     .thumbnail-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 1rem;
+        gap: var(--space-3);
     }
 
     .thumbnail-item {
         position: relative;
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         overflow: hidden;
         cursor: pointer;
         aspect-ratio: 1;
-        transition: all 0.3s ease;
+        transition: all var(--transition-base);
         border: 3px solid transparent;
         box-shadow: var(--shadow-sm);
+        background: var(--color-neutral-200);
     }
 
     .thumbnail-item:hover {
         transform: translateY(-4px);
         box-shadow: var(--shadow-md);
-        border-color: var(--primary-color);
+        border-color: var(--color-primary);
     }
 
     .thumbnail-item.active {
-        border-color: var(--primary-color);
+        border-color: var(--color-primary);
         box-shadow: var(--shadow-lg);
     }
 
@@ -74,20 +85,18 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        display: block;
     }
 
     .thumbnail-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.3);
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
         display: flex;
         align-items: center;
         justify-content: center;
         opacity: 0;
-        transition: opacity 0.3s ease;
+        transition: opacity var(--transition-base);
     }
 
     .thumbnail-item:hover .thumbnail-overlay {
@@ -95,123 +104,147 @@
     }
 
     .thumbnail-overlay i {
-        color: #fff;
-        font-size: 1.5rem;
+        color: var(--color-background);
+        font-size: var(--text-xl);
     }
 
+    /* ============================================
+       PROPERTY INFO CARD
+       ============================================ */
+
     .property-info-card {
-        background: #fff;
-        border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: var(--shadow-lg);
-        margin-bottom: 2rem;
-        border: 1px solid var(--border-color);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: var(--space-8);
     }
 
     .property-header {
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-        border-bottom: 2px solid var(--border-color);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-8);
+        border-bottom: 2px solid var(--color-border);
     }
 
     .property-title {
-        font-size: 2.25rem;
+        font-family: var(--font-primary);
+        font-size: clamp(1.75rem, 4vw, 2.5rem);
         font-weight: 800;
-        color: var(--text-primary);
-        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-4);
         line-height: 1.2;
     }
 
     .property-price-large {
-        font-size: 2.75rem;
+        font-family: var(--font-primary);
+        font-size: clamp(2rem, 4vw, 3rem);
         font-weight: 800;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: 1rem;
+        color: var(--color-primary);
+        margin-bottom: var(--space-4);
         display: flex;
         align-items: baseline;
-        gap: 0.5rem;
+        gap: var(--space-2);
     }
 
     .property-price-large span {
-        font-size: 1.5rem;
+        font-size: var(--text-xl);
         font-weight: 500;
-        color: var(--text-secondary);
+        color: var(--color-text-tertiary);
     }
 
     .property-badges {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 1.5rem;
+        gap: var(--space-3);
+        margin-bottom: var(--space-6);
     }
 
     .property-badge-detail {
-        padding: 0.625rem 1.25rem;
-        border-radius: 25px;
-        font-size: 0.9rem;
-        font-weight: 600;
+        padding: var(--space-2) var(--space-5);
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
         display: inline-flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: var(--space-2);
     }
 
     .property-badge-detail.satilik {
-        background: linear-gradient(135deg, var(--success-color), #059669);
-        color: #fff;
+        background: var(--color-success);
+        color: var(--color-background);
     }
 
     .property-badge-detail.kiralik {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        color: #fff;
+        background: var(--color-primary);
+        color: var(--color-background);
     }
 
     .property-badge-detail.type {
-        background: var(--text-secondary);
-        color: #fff;
+        background: var(--color-neutral-700);
+        color: var(--color-background);
     }
 
+    /* ============================================
+       FEATURES GRID - Professional Layout
+       ============================================ */
+
     .property-features {
-        margin: 2rem 0;
+        margin: var(--space-8) 0;
+    }
+
+    .features-title {
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-8);
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .features-title i {
+        color: var(--color-primary);
+        font-size: var(--text-xl);
     }
 
     .features-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: var(--space-4);
     }
 
     .feature-item {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        padding: 1.25rem;
-        background: #f9fafb;
-        border-radius: 12px;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
+        gap: var(--space-4);
+        padding: var(--space-5);
+        background: var(--color-background-alt);
+        border-radius: var(--radius-lg);
+        transition: all var(--transition-base);
+        border: 1px solid transparent;
     }
 
     .feature-item:hover {
-        background: #fff;
-        border-color: var(--primary-light);
+        background: var(--color-background);
+        border-color: var(--color-border);
         transform: translateX(4px);
         box-shadow: var(--shadow-sm);
     }
 
     .feature-icon {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        border-radius: 12px;
+        width: 48px;
+        height: 48px;
+        background: var(--color-primary);
+        border-radius: var(--radius-lg);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        font-size: 1.25rem;
+        color: var(--color-background);
+        font-size: var(--text-lg);
         flex-shrink: 0;
     }
 
@@ -220,155 +253,177 @@
     }
 
     .feature-label {
-        font-size: 0.85rem;
-        color: var(--text-secondary);
-        margin-bottom: 0.25rem;
+        font-size: var(--text-xs);
+        color: var(--color-text-tertiary);
+        margin-bottom: var(--space-1);
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .feature-value {
-        font-size: 1.1rem;
+        font-size: var(--text-base);
         font-weight: 700;
-        color: var(--text-primary);
+        color: var(--color-text-primary);
+        font-family: var(--font-primary);
     }
+
+    /* ============================================
+       CONTACT PANEL - Sticky Professional Panel
+       ============================================ */
 
     .contact-panel {
         position: sticky;
         top: 100px;
-        background: #fff;
-        border-radius: 20px;
-        padding: 2rem;
-        box-shadow: var(--shadow-xl);
-        border: 1px solid var(--border-color);
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-lg);
     }
 
     .contact-panel-header {
         text-align: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-        border-bottom: 2px solid var(--border-color);
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+        border-bottom: 2px solid var(--color-border);
     }
 
     .contact-panel-title {
-        font-size: 1.5rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-xl);
         font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 0.75rem;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-2);
     }
 
     .contact-panel-subtitle {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
+        color: var(--color-text-secondary);
+        font-size: var(--text-sm);
     }
 
     .contact-buttons {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
-        margin-bottom: 2rem;
+        gap: var(--space-3);
+        margin-bottom: var(--space-8);
     }
 
     .contact-btn {
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
+        border-radius: var(--radius-lg);
+        padding: var(--space-4) var(--space-6);
         font-weight: 600;
-        font-size: 1rem;
-        transition: all 0.3s ease;
+        font-size: var(--text-base);
+        transition: all var(--transition-base);
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
+        gap: var(--space-3);
         text-decoration: none;
         border: none;
         cursor: pointer;
+        width: 100%;
     }
 
     .contact-btn-whatsapp {
-        background: linear-gradient(135deg, #25d366, #128c7e);
-        color: #fff;
-        box-shadow: var(--shadow-md);
+        background: var(--color-success);
+        color: var(--color-background);
+        box-shadow: var(--shadow-sm);
     }
 
     .contact-btn-whatsapp:hover {
+        background: var(--color-success-dark);
+        color: var(--color-background);
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        color: #fff;
-    }
-
-    .contact-btn-phone {
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        color: #fff;
         box-shadow: var(--shadow-md);
     }
 
+    .contact-btn-phone {
+        background: var(--color-primary);
+        color: var(--color-background);
+        box-shadow: var(--shadow-sm);
+    }
+
     .contact-btn-phone:hover {
+        background: var(--color-primary-dark);
+        color: var(--color-background);
         transform: translateY(-2px);
-        box-shadow: var(--shadow-lg);
-        color: #fff;
+        box-shadow: var(--shadow-md);
     }
 
     .contact-info {
-        background: #f9fafb;
-        border-radius: 12px;
-        padding: 1.5rem;
-        margin-top: 1.5rem;
+        background: var(--color-background-alt);
+        border-radius: var(--radius-lg);
+        padding: var(--space-6);
     }
 
     .contact-info-item {
         display: flex;
-        align-items: center;
-        gap: 1rem;
-        padding: 0.75rem 0;
-        color: var(--text-secondary);
-        font-size: 0.95rem;
+        align-items: flex-start;
+        gap: var(--space-4);
+        padding: var(--space-3) 0;
+        color: var(--color-text-secondary);
+        font-size: var(--text-sm);
     }
 
     .contact-info-item:not(:last-child) {
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--color-border);
     }
 
     .contact-info-item i {
-        color: var(--primary-color);
+        color: var(--color-primary);
         width: 24px;
         text-align: center;
+        flex-shrink: 0;
+        margin-top: 2px;
     }
 
+    /* ============================================
+       DESCRIPTION SECTION
+       ============================================ */
+
     .description-section {
-        background: #fff;
-        border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: var(--shadow-lg);
-        border: 1px solid var(--border-color);
-        margin-top: 2rem;
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8);
+        box-shadow: var(--shadow-sm);
+        margin-top: var(--space-8);
     }
 
     .description-title {
-        font-size: 1.75rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
         font-weight: 700;
-        color: var(--text-primary);
-        margin-bottom: 1.5rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--border-color);
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-6);
+        padding-bottom: var(--space-4);
+        border-bottom: 2px solid var(--color-border);
         display: flex;
         align-items: center;
-        gap: 0.75rem;
+        gap: var(--space-3);
     }
 
     .description-title i {
-        color: var(--primary-color);
+        color: var(--color-primary);
+        font-size: var(--text-xl);
     }
 
     .description-text {
-        color: var(--text-primary);
-        font-size: 1.05rem;
+        color: var(--color-text-secondary);
+        font-size: var(--text-base);
         line-height: 1.8;
         white-space: pre-line;
     }
 
+    /* ============================================
+       RESPONSIVE DESIGN
+       ============================================ */
+
     @media (max-width: 992px) {
         .contact-panel {
             position: static;
-            margin-top: 2rem;
+            margin-top: var(--space-8);
         }
 
         .main-image-container img {
@@ -376,11 +431,11 @@
         }
 
         .property-title {
-            font-size: 1.75rem;
+            font-size: var(--text-2xl);
         }
 
         .property-price-large {
-            font-size: 2.25rem;
+            font-size: var(--text-2xl);
         }
     }
 
@@ -392,11 +447,15 @@
         .property-info-card,
         .contact-panel,
         .description-section {
-            padding: 1.5rem;
+            padding: var(--space-6);
         }
 
         .features-grid {
             grid-template-columns: 1fr;
+        }
+
+        .main-image-container img {
+            height: 300px;
         }
     }
 </style>
@@ -404,7 +463,8 @@
 
 {% block content %}
 <div class="container">
-    <div class="property-detail-hero">
+    <!-- Gallery Section -->
+    <div class="property-gallery">
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="main-image-container">
@@ -412,12 +472,12 @@
                     <img id="mainImage" src="{{ property.images.first.image.url }}" alt="{{ property.title }}"
                         data-lightbox="property-gallery" data-title="{{ property.title }}">
                     <div class="image-counter">
-                        <i class="fas fa-images me-2"></i>
+                        <i class="fas fa-images"></i>
                         <span id="currentImage">1</span> / <span id="totalImages">{{ property.images.count }}</span>
                     </div>
                     {% else %}
-                    <div class="d-flex align-items-center justify-content-center bg-light" style="height: 500px;">
-                        <i class="fas fa-home fa-5x text-secondary opacity-50"></i>
+                    <div class="d-flex align-items-center justify-content-center bg-dark" style="height: 560px;">
+                        <i class="fas fa-home fa-5x" style="color: var(--color-neutral-400); opacity: 0.3;"></i>
                     </div>
                     {% endif %}
                 </div>
@@ -426,8 +486,10 @@
                 <div class="thumbnail-grid">
                     {% for image in property.images.all %}
                     <div class="thumbnail-item {% if forloop.first %}active{% endif %}"
-                        onclick="changeMainImage('{{ image.image.url }}', {{ forloop.counter }}, {{ property.images.count }})">
-                        <img src="{{ image.image.url }}" alt="{{ property.title }}" loading="lazy">
+                        onclick="changeMainImage('{{ image.image.url }}', {{ forloop.counter }}, {{ property.images.count }})"
+                        role="button" tabindex="0" aria-label="Resim {{ forloop.counter }}'i görüntüle">
+                        <img src="{{ image.image.url }}" alt="{{ property.title }} - Resim {{ forloop.counter }}"
+                            loading="lazy">
                         <div class="thumbnail-overlay">
                             <i class="fas fa-expand"></i>
                         </div>
@@ -437,6 +499,7 @@
                 {% endif %}
             </div>
 
+            <!-- Contact Panel -->
             <div class="col-lg-4">
                 <div class="contact-panel">
                     <div class="contact-panel-header">
@@ -446,7 +509,7 @@
 
                     <div class="contact-buttons">
                         <a href="https://wa.me/905384023280?text=Merhaba, {{ property.title }} ilanı hakkında bilgi almak istiyorum."
-                            class="contact-btn contact-btn-whatsapp" target="_blank">
+                            class="contact-btn contact-btn-whatsapp" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-whatsapp"></i>
                             WhatsApp ile Mesaj
                         </a>
@@ -459,15 +522,24 @@
                     <div class="contact-info">
                         <div class="contact-info-item">
                             <i class="fas fa-user-tie"></i>
-                            <span><strong>Emlak Danışmanı:</strong> Zekiye GÖKTÜRK</span>
+                            <div>
+                                <strong>Emlak Danışmanı</strong><br>
+                                <span>Zekiye GÖKTÜRK</span>
+                            </div>
                         </div>
                         <div class="contact-info-item">
                             <i class="fas fa-phone"></i>
-                            <span>0538 402 32 80</span>
+                            <div>
+                                <strong>Telefon</strong><br>
+                                <a href="tel:05384023280">0538 402 32 80</a>
+                            </div>
                         </div>
                         <div class="contact-info-item">
                             <i class="fas fa-envelope"></i>
-                            <span>kuponemlaknigde@gmail.com</span>
+                            <div>
+                                <strong>E-posta</strong><br>
+                                <a href="mailto:kuponemlaknigde@gmail.com">kuponemlaknigde@gmail.com</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -475,6 +547,7 @@
         </div>
     </div>
 
+    <!-- Property Info -->
     <div class="row">
         <div class="col-lg-8">
             <div class="property-info-card">
@@ -496,9 +569,11 @@
                     </div>
                 </div>
 
+                <!-- Features -->
                 <div class="property-features">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-primary);">
-                        <i class="fas fa-info-circle me-2" style="color: var(--primary-color);"></i>Özellikler
+                    <h3 class="features-title">
+                        <i class="fas fa-info-circle"></i>
+                        Özellikler
                     </h3>
                     <div class="features-grid">
                         {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
@@ -725,6 +800,7 @@
                 </div>
             </div>
 
+            <!-- Description Section -->
             <div class="description-section">
                 <h2 class="description-title">
                     <i class="fas fa-align-left"></i>
@@ -738,36 +814,46 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.4/dist/js/lightbox.min.js"
+    integrity="sha512-k5X7gBd3u9pz0S8kJf5F5jN9X0x2o3bFJL7GwZu5ZhxR5B+M3+3OCyA0jPNIBqk2Zv5uE8A+RKEEqPQn8pzWfw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true,
-        'fadeDuration': 300,
-        'imageFadeDuration': 300
-    });
-
-    function changeMainImage(src, current, total) {
-        document.getElementById('mainImage').src = src;
-        document.getElementById('mainImage').dataset.src = src;
-        document.getElementById('currentImage').textContent = current;
-
-        // Update active thumbnail
-        document.querySelectorAll('.thumbnail-item').forEach(item => {
-            item.classList.remove('active');
+    // Lightbox configuration
+    if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'fadeDuration': 300,
+            'imageFadeDuration': 300,
+            'showImageNumberLabel': true,
+            'alwaysShowNavOnTouchDevices': false
         });
-        event.currentTarget.classList.add('active');
     }
 
-    // Add lightbox to all images
+    // Change main image function
+    function changeMainImage(src, current, total) {
+        const mainImg = document.getElementById('mainImage');
+        if (mainImg) {
+            mainImg.src = src;
+            mainImg.setAttribute('src', src);
+            document.getElementById('currentImage').textContent = current;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    }
+
+    // Keyboard navigation for thumbnails
     document.addEventListener('DOMContentLoaded', function () {
-        const images = document.querySelectorAll('.thumbnail-item img');
-        images.forEach((img, index) => {
-            const parent = img.closest('.thumbnail-item');
-            parent.addEventListener('click', function () {
-                const mainImg = document.getElementById('mainImage');
-                if (mainImg) {
-                    mainImg.click();
+        const thumbnails = document.querySelectorAll('.thumbnail-item');
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    thumbnail.click();
                 }
             });
         });

@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block extra_css %}
 <style>
+    /* ============================================
+       HERO SECTION - Professional Landing
+       ============================================ */
+
     .hero-section {
-        background: linear-gradient(135deg, rgba(26, 86, 219, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%),
-            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path fill="%23ffffff" fill-opacity="0.05" d="M0,0 C150,200 350,0 500,100 C650,200 850,0 1000,100 L1200,0 L1200,600 L0,600 Z"/></svg>');
-        background-size: cover;
-        background-position: center;
-        padding: 6rem 0 4rem;
-        margin: -2rem -1rem 4rem;
-        border-radius: 0 0 24px 24px;
+        background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
+        padding: var(--space-20) 0 var(--space-16);
+        margin: calc(-2rem - 76px) -1rem var(--space-16);
+        border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
         position: relative;
         overflow: hidden;
     }
@@ -21,51 +23,65 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.2) 0%, transparent 50%);
+        background:
+            radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
         pointer-events: none;
     }
 
     .hero-content {
         position: relative;
         z-index: 1;
-        color: #fff;
+        color: var(--color-background);
+        text-align: center;
     }
 
     .hero-title {
-        font-size: 3.5rem;
+        font-family: var(--font-primary);
+        font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 800;
-        margin-bottom: 1.5rem;
-        line-height: 1.2;
-        letter-spacing: -1px;
-        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        line-height: 1.1;
+        margin-bottom: var(--space-6);
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     }
 
     .hero-subtitle {
-        font-size: 1.35rem;
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
         font-weight: 400;
-        margin-bottom: 2.5rem;
-        opacity: 0.95;
         line-height: 1.6;
+        margin-bottom: var(--space-10);
+        opacity: 0.95;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ============================================
+       CATEGORY GRID - Professional Cards
+       ============================================ */
+
+    .category-section {
+        margin-bottom: var(--space-16);
     }
 
     .category-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        margin-bottom: 4rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--space-6);
+        margin-top: var(--space-8);
     }
 
     .category-card {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        padding: 2.5rem 2rem;
+        background: var(--color-background);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
+        padding: var(--space-8) var(--space-6);
         text-align: center;
         text-decoration: none;
-        color: var(--text-primary);
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: var(--shadow-lg);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--color-text-primary);
+        transition: all var(--transition-base);
+        box-shadow: var(--shadow-sm);
         position: relative;
         overflow: hidden;
     }
@@ -77,8 +93,8 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-        transition: left 0.6s ease;
+        background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+        transition: left var(--transition-slow);
     }
 
     .category-card:hover::before {
@@ -86,112 +102,132 @@
     }
 
     .category-card:hover {
-        transform: translateY(-12px) scale(1.02);
-        box-shadow: var(--shadow-xl);
-        border-color: var(--primary-light);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-primary);
     }
 
-    .category-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-        border-radius: 20px;
+    .category-icon-wrapper {
+        width: 72px;
+        height: 72px;
+        margin: 0 auto var(--space-6);
+        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+        border-radius: var(--radius-xl);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #fff;
-        font-size: 2.5rem;
-        transition: all 0.3s ease;
+        color: var(--color-background);
+        font-size: var(--text-2xl);
+        transition: all var(--transition-base);
         box-shadow: var(--shadow-md);
     }
 
-    .category-card:hover .category-icon {
-        transform: rotate(5deg) scale(1.1);
+    .category-card:hover .category-icon-wrapper {
+        transform: scale(1.1) rotate(5deg);
         box-shadow: var(--shadow-lg);
     }
 
     .category-title {
-        font-size: 1.5rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-xl);
         font-weight: 700;
-        margin-bottom: 0.75rem;
-        color: var(--text-primary);
+        margin-bottom: var(--space-2);
+        color: var(--color-text-primary);
     }
 
     .category-description {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
-        line-height: 1.5;
+        font-size: var(--text-sm);
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+    }
+
+    /* ============================================
+       SECTION HEADER
+       ============================================ */
+
+    .section-header {
+        text-align: center;
+        margin-bottom: var(--space-12);
     }
 
     .section-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 3rem;
-        color: var(--text-primary);
-        text-align: center;
+        font-family: var(--font-primary);
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 800;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-4);
         position: relative;
-        padding-bottom: 1rem;
+        display: inline-block;
     }
 
     .section-title::after {
         content: '';
         position: absolute;
-        bottom: 0;
+        bottom: -12px;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px;
+        width: 60px;
         height: 4px;
-        background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-        border-radius: 2px;
+        background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light));
+        border-radius: var(--radius-full);
     }
 
+    .section-subtitle {
+        font-size: var(--text-lg);
+        color: var(--color-text-secondary);
+        margin-top: var(--space-8);
+    }
+
+    /* ============================================
+       PROPERTY CARDS - Professional Design
+       ============================================ */
+
     .property-card-modern {
-        border: none;
-        border-radius: 20px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-xl);
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: var(--shadow-md);
-        background: #fff;
+        transition: all var(--transition-base);
+        background: var(--color-background);
         height: 100%;
         display: flex;
         flex-direction: column;
-        position: relative;
+        box-shadow: var(--shadow-sm);
     }
 
     .property-card-modern:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-xl);
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--color-border-dark);
     }
 
     .property-image-wrapper {
         position: relative;
         overflow: hidden;
-        height: 240px;
-        background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+        height: 260px;
+        background: linear-gradient(135deg, var(--color-neutral-100), var(--color-neutral-200));
     }
 
     .property-image-wrapper img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform var(--transition-slow);
     }
 
     .property-card-modern:hover .property-image-wrapper img {
-        transform: scale(1.12);
+        transform: scale(1.1);
     }
 
     .property-badge {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: var(--space-4);
+        right: var(--space-4);
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.75rem;
-        font-weight: 600;
+        padding: var(--space-2) var(--space-4);
+        border-radius: var(--radius-full);
+        font-size: var(--text-xs);
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         box-shadow: var(--shadow-md);
@@ -199,25 +235,26 @@
     }
 
     .property-badge.satilik {
-        color: var(--success-color);
+        color: var(--color-success-dark);
     }
 
     .property-badge.kiralik {
-        color: var(--primary-color);
+        color: var(--color-primary-dark);
     }
 
     .property-card-body {
-        padding: 1.75rem;
+        padding: var(--space-6);
         flex-grow: 1;
         display: flex;
         flex-direction: column;
     }
 
     .property-card-title {
-        font-size: 1.35rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-xl);
         font-weight: 700;
-        margin-bottom: 0.75rem;
-        color: var(--text-primary);
+        margin-bottom: var(--space-3);
+        color: var(--color-text-primary);
         line-height: 1.3;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -228,24 +265,24 @@
     .property-card-meta {
         display: flex;
         align-items: center;
-        gap: 1rem;
-        margin-bottom: 1rem;
-        font-size: 0.875rem;
-        color: var(--text-secondary);
+        gap: var(--space-4);
+        margin-bottom: var(--space-4);
+        font-size: var(--text-sm);
+        color: var(--color-text-tertiary);
         flex-wrap: wrap;
     }
 
     .property-card-meta i {
-        color: var(--primary-color);
-        width: 16px;
+        color: var(--color-primary);
+        width: 18px;
         text-align: center;
     }
 
     .property-card-description {
-        color: var(--text-secondary);
-        font-size: 0.95rem;
+        color: var(--color-text-secondary);
+        font-size: var(--text-sm);
         line-height: 1.6;
-        margin-bottom: 1.25rem;
+        margin-bottom: var(--space-5);
         flex-grow: 1;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -254,109 +291,115 @@
     }
 
     .property-card-price {
-        font-size: 1.75rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
         font-weight: 800;
-        color: var(--primary-color);
-        margin-bottom: 1.25rem;
+        color: var(--color-primary);
+        margin-bottom: var(--space-5);
         display: flex;
         align-items: baseline;
-        gap: 0.25rem;
+        gap: var(--space-1);
     }
 
     .property-card-price span {
-        font-size: 1rem;
+        font-size: var(--text-base);
         font-weight: 500;
-        color: var(--text-secondary);
-        margin-left: 0.25rem;
+        color: var(--color-text-tertiary);
     }
 
     .property-card-footer {
-        padding: 1rem 1.75rem;
-        background: #f9fafb;
-        border-top: 1px solid var(--border-color);
+        padding: var(--space-4) var(--space-6);
+        background: var(--color-background-alt);
+        border-top: 1px solid var(--color-border);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        gap: var(--space-4);
     }
 
     .property-card-footer .btn {
-        border-radius: 10px;
-        padding: 0.625rem 1.5rem;
-        font-weight: 600;
-        font-size: 0.9rem;
+        font-size: var(--text-sm);
+        padding: var(--space-2) var(--space-5);
     }
 
     .property-time {
-        font-size: 0.8rem;
-        color: var(--text-secondary);
+        font-size: var(--text-xs);
+        color: var(--color-text-tertiary);
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: var(--space-2);
     }
 
     .property-time i {
-        color: var(--text-secondary);
+        color: var(--color-text-tertiary);
+        font-size: var(--text-sm);
     }
+
+    /* ============================================
+       EMPTY STATE
+       ============================================ */
 
     .empty-state {
         text-align: center;
-        padding: 4rem 2rem;
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: var(--shadow-md);
+        padding: var(--space-20) var(--space-6);
+        background: var(--color-background);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-sm);
     }
 
     .empty-state-icon {
         font-size: 4rem;
-        color: var(--text-secondary);
-        margin-bottom: 1.5rem;
+        color: var(--color-neutral-400);
+        margin-bottom: var(--space-6);
         opacity: 0.5;
     }
 
     .empty-state-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--text-primary);
-        margin-bottom: 0.75rem;
+        font-family: var(--font-primary);
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: var(--space-3);
     }
 
     .empty-state-text {
-        color: var(--text-secondary);
-        font-size: 1rem;
+        color: var(--color-text-secondary);
+        font-size: var(--text-base);
+        max-width: 500px;
+        margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
-        .hero-title {
-            font-size: 2.5rem;
-        }
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
 
-        .hero-subtitle {
-            font-size: 1.15rem;
+    @media (max-width: 768px) {
+        .hero-section {
+            padding: var(--space-16) 0 var(--space-12);
+            margin: calc(-2rem - 76px) -0.75rem var(--space-12);
         }
 
         .category-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
+            gap: var(--space-4);
         }
 
         .property-image-wrapper {
-            height: 200px;
+            height: 220px;
         }
     }
 </style>
 {% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
 <div class="hero-section">
     <div class="container">
-        <div class="hero-content text-center">
+        <div class="hero-content">
             <h1 class="hero-title fade-in">Hayalinizdeki Emlağı Bulun</h1>
             <p class="hero-subtitle fade-in">
-                Geniş emlak portföyümüzde arsa, konut, işyeri ve tarla seçeneklerini keşfedin.<br>
+                Geniş emlak portföyümüzde arsa, konut, işyeri ve tarla seçeneklerini keşfedin.<br
+                    class="d-none d-md-block">
                 Profesyonel danışmanlık hizmeti ile hayalinizdeki gayrimenkulü bulun.
             </p>
         </div>
@@ -364,41 +407,52 @@
 </div>
 
 <div class="container">
-    <div class="category-grid">
-        <a href="{% url 'properties:land_list' %}" class="category-card fade-in">
-            <div class="category-icon">
-                <i class="fas fa-map-marked-alt"></i>
-            </div>
-            <h3 class="category-title">Arsalar</h3>
-            <p class="category-description">İmarlı ve yatırımlık arsa seçeneklerimizi inceleyin</p>
-        </a>
+    <!-- Category Section -->
+    <div class="category-section fade-in">
+        <div class="section-header">
+            <h2 class="section-title">Emlak Kategorileri</h2>
+            <p class="section-subtitle">İhtiyacınıza uygun kategoriyi seçin</p>
+        </div>
+        <div class="category-grid">
+            <a href="{% url 'properties:land_list' %}" class="category-card">
+                <div class="category-icon-wrapper">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3 class="category-title">Arsalar</h3>
+                <p class="category-description">İmarlı ve yatırımlık arsa seçeneklerimizi inceleyin</p>
+            </a>
 
-        <a href="{% url 'properties:residential_list' %}" class="category-card fade-in">
-            <div class="category-icon">
-                <i class="fas fa-home"></i>
-            </div>
-            <h3 class="category-title">Konutlar</h3>
-            <p class="category-description">Satılık ve kiralık konut fırsatlarını keşfedin</p>
-        </a>
+            <a href="{% url 'properties:residential_list' %}" class="category-card">
+                <div class="category-icon-wrapper">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="category-title">Konutlar</h3>
+                <p class="category-description">Satılık ve kiralık konut fırsatlarını keşfedin</p>
+            </a>
 
-        <a href="{% url 'properties:commercial_list' %}" class="category-card fade-in">
-            <div class="category-icon">
-                <i class="fas fa-store"></i>
-            </div>
-            <h3 class="category-title">İşyerleri</h3>
-            <p class="category-description">İşyeri ve dükkan seçeneklerini görüntüleyin</p>
-        </a>
+            <a href="{% url 'properties:commercial_list' %}" class="category-card">
+                <div class="category-icon-wrapper">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3 class="category-title">İşyerleri</h3>
+                <p class="category-description">İşyeri ve dükkan seçeneklerini görüntüleyin</p>
+            </a>
 
-        <a href="{% url 'properties:field_list' %}" class="category-card fade-in">
-            <div class="category-icon">
-                <i class="fas fa-tree"></i>
-            </div>
-            <h3 class="category-title">Tarlalar</h3>
-            <p class="category-description">Verimli tarla ve arazi fırsatlarını inceleyin</p>
-        </a>
+            <a href="{% url 'properties:field_list' %}" class="category-card">
+                <div class="category-icon-wrapper">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3 class="category-title">Tarlalar</h3>
+                <p class="category-description">Verimli tarla ve arazi fırsatlarını inceleyin</p>
+            </a>
+        </div>
     </div>
 
-    <h2 class="section-title fade-in">Son Eklenen İlanlar</h2>
+    <!-- Latest Properties Section -->
+    <div class="section-header fade-in">
+        <h2 class="section-title">Son Eklenen İlanlar</h2>
+        <p class="section-subtitle">Yeni emlak fırsatlarını kaçırmayın</p>
+    </div>
 
     <div class="row g-4">
         {% for property in properties %}
@@ -408,8 +462,8 @@
                     {% if property.images.exists %}
                     <img src="{{ property.images.first.image.url }}" alt="{{ property.title }}" loading="lazy">
                     {% else %}
-                    <div class="d-flex align-items-center justify-content-center h-100 bg-light">
-                        <i class="fas fa-home fa-4x text-secondary opacity-50"></i>
+                    <div class="d-flex align-items-center justify-content-center h-100">
+                        <i class="fas fa-home fa-4x" style="color: var(--color-neutral-400); opacity: 0.3;"></i>
                     </div>
                     {% endif %}
                     <div
@@ -420,7 +474,10 @@
                 <div class="property-card-body">
                     <h3 class="property-card-title">{{ property.title }}</h3>
                     <div class="property-card-meta">
-                        <span><i class="fas fa-tag"></i>{{ property.get_property_type_display }}</span>
+                        <span>
+                            <i class="fas fa-tag"></i>
+                            {{ property.get_property_type_display }}
+                        </span>
                     </div>
                     <p class="property-card-description">{{ property.description|truncatewords:25 }}</p>
                     <div class="property-card-price">
@@ -429,7 +486,8 @@
                 </div>
                 <div class="property-card-footer">
                     <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-primary">
-                        Detayları Gör <i class="fas fa-arrow-right ms-2"></i>
+                        Detayları Gör
+                        <i class="fas fa-arrow-right ms-2"></i>
                     </a>
                     <div class="property-time">
                         <i class="far fa-clock"></i>
@@ -455,26 +513,28 @@
 
 {% block extra_js %}
 <script>
-    // Fade in animation on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Intersection Observer for fade-in animations
+    (function () {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    const observer = new IntersectionObserver(function (entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el);
         });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(el);
-    });
+    })();
 </script>
 {% endblock %}
