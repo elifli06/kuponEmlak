@@ -219,37 +219,67 @@
            ============================================ */
 
         .navbar {
-            background: var(--color-background-dark);
-            padding: var(--space-4) 0;
-            box-shadow: var(--shadow-sm);
+            background: #0f172a;
+            padding: 1rem 0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
-            z-index: var(--z-sticky);
-            transition: all var(--transition-base);
+            z-index: 1020;
+            transition: all 0.3s ease;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
         .navbar.scrolled {
-            padding: var(--space-3) 0;
-            box-shadow: var(--shadow-md);
+            padding: 0.75rem 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-collapse {
+            display: flex !important;
+            flex-basis: auto !important;
+            flex-grow: 1 !important;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .navbar-nav .nav-item {
+            display: flex;
+            align-items: center;
         }
 
         .navbar-brand {
             display: flex;
             align-items: center;
-            gap: var(--space-3);
-            font-family: var(--font-primary);
+            gap: 0.75rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: var(--text-xl);
-            color: var(--color-background) !important;
+            font-size: 1.25rem;
+            color: #ffffff !important;
             text-decoration: none;
-            transition: all var(--transition-base);
+            transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .navbar-brand:hover {
-            color: var(--color-primary-light) !important;
+            color: #60a5fa !important;
             transform: translateY(-1px);
         }
 
@@ -257,40 +287,48 @@
             height: 44px;
             width: auto;
             object-fit: contain;
-            border-radius: var(--radius-md);
-            transition: transform var(--transition-base);
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .navbar-brand:hover img {
             transform: scale(1.05);
         }
 
+        .navbar-brand span {
+            white-space: nowrap;
+        }
+
         .nav-link {
             font-weight: 500;
-            font-size: var(--text-sm);
+            font-size: 0.875rem;
             color: rgba(255, 255, 255, 0.9) !important;
-            padding: var(--space-2) var(--space-4) !important;
-            margin: 0 var(--space-1);
-            border-radius: var(--radius-md);
-            transition: all var(--transition-base);
+            padding: 0.5rem 1rem !important;
+            margin: 0 0.25rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
             position: relative;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
-            bottom: 8px;
+            bottom: 6px;
             left: 50%;
             transform: translateX(-50%) scaleX(0);
             width: calc(100% - 24px);
             height: 2px;
-            background: var(--color-primary-light);
-            transition: transform var(--transition-base);
+            background: #60a5fa;
+            transition: transform 0.3s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: var(--color-background) !important;
+            color: #ffffff !important;
             background: rgba(255, 255, 255, 0.1);
         }
 
@@ -299,19 +337,34 @@
             transform: translateX(-50%) scaleX(1);
         }
 
+        .navbar-toggler {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.5rem 0.75rem;
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
         .search-form {
             max-width: 320px;
             width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
         }
 
         .search-form .form-control {
             border: 1px solid rgba(255, 255, 255, 0.2);
             background: rgba(255, 255, 255, 0.1);
-            color: var(--color-background);
-            border-radius: var(--radius-lg);
-            padding: var(--space-2) var(--space-4);
-            font-size: var(--text-sm);
-            transition: all var(--transition-base);
+            color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+            flex: 1;
         }
 
         .search-form .form-control::placeholder {
@@ -319,25 +372,28 @@
         }
 
         .search-form .form-control:focus {
-            border-color: var(--color-primary-light);
+            border-color: #60a5fa;
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
             outline: none;
+            color: #ffffff;
         }
 
         .search-form .btn {
             border: 1px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.1);
-            color: var(--color-background);
-            border-radius: var(--radius-lg);
-            padding: var(--space-2) var(--space-4);
-            transition: all var(--transition-base);
+            color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .search-form .btn:hover {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-1px);
+            color: #ffffff;
         }
 
         /* ============================================
@@ -530,25 +586,47 @@
            RESPONSIVE DESIGN
            ============================================ */
 
-        @media (max-width: 992px) {
-            .navbar-brand span {
-                font-size: var(--text-lg);
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                flex-direction: column;
+                align-items: stretch !important;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            .navbar-nav .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 0.75rem 1rem !important;
+                margin: 0.25rem 0;
+                width: 100%;
             }
 
             .search-form {
-                margin-top: var(--space-4);
+                margin-top: 0;
                 max-width: 100%;
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .navbar-brand span {
+                font-size: 1.125rem;
             }
         }
 
         @media (max-width: 768px) {
             main {
-                padding-top: var(--space-6);
-                padding-bottom: var(--space-12);
-            }
-
-            .nav-link {
-                padding: var(--space-3) var(--space-4) !important;
+                padding-top: 1.5rem;
+                padding-bottom: 3rem;
             }
         }
 
