@@ -8,14 +8,20 @@
        ============================================ */
 
     .contact-hero {
-        background: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 50%, var(--color-primary-light) 100%);
-        padding: var(--space-20) 0 var(--space-16);
-        margin: calc(-2rem - 76px) -1rem var(--space-16);
-        border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+        background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+        padding: 5rem 0 4rem;
+        margin: calc(-2rem - 76px) -1rem 4rem -1rem;
+        border-radius: 0 0 2rem 2rem;
         text-align: center;
-        color: var(--color-background);
+        color: #ffffff;
         position: relative;
         overflow: hidden;
+    }
+
+    @media (min-width: 768px) {
+        .contact-hero {
+            margin: calc(-2rem - 76px) -2rem 4rem -2rem;
+        }
     }
 
     .contact-hero::before {
@@ -34,21 +40,23 @@
     }
 
     .contact-hero-title {
-        font-family: var(--font-primary);
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: clamp(2rem, 5vw, 3rem);
         font-weight: 800;
-        margin-bottom: var(--space-4);
+        margin-bottom: 1rem;
         text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
         line-height: 1.2;
+        color: #ffffff;
     }
 
     .contact-hero-subtitle {
-        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        font-size: clamp(1rem, 2vw, 1.25rem);
         opacity: 0.95;
         font-weight: 400;
         max-width: 700px;
         margin: 0 auto;
         line-height: 1.6;
+        color: rgba(255, 255, 255, 0.95);
     }
 
     /* ============================================
@@ -56,13 +64,13 @@
        ============================================ */
 
     .agent-profile-card {
-        background: var(--color-background);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-2xl);
-        padding: var(--space-12) var(--space-8);
-        box-shadow: var(--shadow-lg);
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 2rem;
+        padding: 3rem 2rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         text-align: center;
-        margin-bottom: var(--space-12);
+        margin-bottom: 3rem;
         position: relative;
         overflow: hidden;
     }
@@ -74,21 +82,21 @@
         left: 0;
         right: 0;
         height: 4px;
-        background: linear-gradient(90deg, var(--color-primary), var(--color-primary-light), var(--color-success));
+        background: linear-gradient(90deg, #2563eb, #3b82f6, #10b981);
     }
 
     .agent-image-wrapper {
         position: relative;
         display: inline-block;
-        margin-bottom: var(--space-8);
+        margin-bottom: 2rem;
     }
 
     .agent-image-wrapper::after {
         content: '';
         position: absolute;
         inset: -4px;
-        background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-        border-radius: var(--radius-full);
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-radius: 9999px;
         z-index: -1;
         opacity: 0.2;
     }
@@ -96,11 +104,11 @@
     .agent-image {
         width: 160px;
         height: 160px;
-        border-radius: var(--radius-full);
+        border-radius: 9999px;
         object-fit: cover;
-        border: 4px solid var(--color-background);
-        box-shadow: var(--shadow-xl);
-        transition: transform var(--transition-base);
+        border: 4px solid #ffffff;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
     }
 
     .agent-image-wrapper:hover .agent-image {
@@ -108,23 +116,23 @@
     }
 
     .agent-profile-title {
-        font-family: var(--font-primary);
-        font-size: var(--text-3xl);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2rem;
         font-weight: 800;
-        color: var(--color-text-primary);
-        margin-bottom: var(--space-2);
+        color: #0f172a;
+        margin-bottom: 0.5rem;
     }
 
     .agent-profile-role {
-        font-size: var(--text-lg);
-        color: var(--color-text-secondary);
-        margin-bottom: var(--space-8);
+        font-size: 1.125rem;
+        color: #475569;
+        margin-bottom: 2rem;
         font-weight: 500;
     }
 
     .agent-profile-bio {
-        color: var(--color-text-secondary);
-        font-size: var(--text-base);
+        color: #475569;
+        font-size: 1rem;
         line-height: 1.8;
         max-width: 700px;
         margin: 0 auto;
@@ -137,18 +145,18 @@
     .contact-methods {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-6);
-        margin-bottom: var(--space-12);
+        gap: 1.5rem;
+        margin-bottom: 3rem;
     }
 
     .contact-method-card {
-        background: var(--color-background);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-xl);
-        padding: var(--space-8) var(--space-6);
-        box-shadow: var(--shadow-sm);
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 2rem 1.5rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
         text-align: center;
-        transition: all var(--transition-base);
+        transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
     }
@@ -161,7 +169,7 @@
         width: 100%;
         height: 100%;
         background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
-        transition: left var(--transition-slow);
+        transition: left 0.5s ease;
     }
 
     .contact-method-card:hover::before {
@@ -169,90 +177,90 @@
     }
 
     .contact-method-card:hover {
-        transform: translateY(-6px);
-        box-shadow: var(--shadow-lg);
-        border-color: var(--color-primary);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-color: #2563eb;
     }
 
     .contact-method-icon {
         width: 72px;
         height: 72px;
-        margin: 0 auto var(--space-6);
-        background: var(--color-primary);
-        border-radius: var(--radius-xl);
+        margin: 0 auto 1.5rem;
+        background: #2563eb;
+        border-radius: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-background);
-        font-size: var(--text-2xl);
-        transition: all var(--transition-base);
-        box-shadow: var(--shadow-md);
+        color: #ffffff;
+        font-size: 1.75rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
     .contact-method-card:hover .contact-method-icon {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: var(--shadow-lg);
+        transform: scale(1.08);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
     }
 
     .contact-method-icon.whatsapp {
-        background: var(--color-success);
+        background: #10b981;
     }
 
     .contact-method-title {
-        font-family: var(--font-primary);
-        font-size: var(--text-xl);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.25rem;
         font-weight: 700;
-        color: var(--color-text-primary);
-        margin-bottom: var(--space-3);
+        color: #0f172a;
+        margin-bottom: 0.75rem;
     }
 
     .contact-method-value {
-        font-size: var(--text-base);
-        color: var(--color-text-secondary);
-        margin-bottom: var(--space-6);
+        font-size: 1rem;
+        color: #475569;
+        margin-bottom: 1.5rem;
         font-weight: 500;
     }
 
     .contact-method-btn {
         width: 100%;
-        border-radius: var(--radius-lg);
-        padding: var(--space-3) var(--space-6);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
         font-weight: 600;
-        font-size: var(--text-sm);
-        transition: all var(--transition-base);
+        font-size: 0.875rem;
+        transition: all 0.3s ease;
         border: none;
         cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--space-2);
+        gap: 0.5rem;
         text-decoration: none;
     }
 
     .contact-method-btn-primary {
-        background: var(--color-primary);
-        color: var(--color-background);
-        box-shadow: var(--shadow-sm);
+        background: #2563eb;
+        color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     }
 
     .contact-method-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        color: var(--color-background);
-        background: var(--color-primary-dark);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        background: #1e40af;
     }
 
     .contact-method-btn-success {
-        background: var(--color-success);
-        color: var(--color-background);
-        box-shadow: var(--shadow-sm);
+        background: #10b981;
+        color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     }
 
     .contact-method-btn-success:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        color: var(--color-background);
-        background: var(--color-success-dark);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        background: #059669;
     }
 
     /* ============================================
@@ -260,68 +268,68 @@
        ============================================ */
 
     .location-card {
-        background: var(--color-background);
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius-xl);
-        padding: var(--space-8);
-        box-shadow: var(--shadow-sm);
-        margin-bottom: var(--space-12);
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
     }
 
     .location-header {
         display: flex;
         align-items: center;
-        gap: var(--space-4);
-        margin-bottom: var(--space-8);
-        padding-bottom: var(--space-6);
-        border-bottom: 2px solid var(--color-border);
+        gap: 1rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #e2e8f0;
     }
 
     .location-icon {
         width: 56px;
         height: 56px;
-        background: var(--color-primary);
-        border-radius: var(--radius-lg);
+        background: #2563eb;
+        border-radius: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--color-background);
-        font-size: var(--text-xl);
+        color: #ffffff;
+        font-size: 1.25rem;
         flex-shrink: 0;
     }
 
     .location-title {
-        font-family: var(--font-primary);
-        font-size: var(--text-2xl);
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.5rem;
         font-weight: 700;
-        color: var(--color-text-primary);
+        color: #0f172a;
         margin: 0;
     }
 
     .location-address {
-        font-size: var(--text-base);
-        color: var(--color-text-secondary);
-        margin-bottom: var(--space-8);
+        font-size: 1rem;
+        color: #475569;
+        margin-bottom: 2rem;
         display: flex;
         align-items: flex-start;
-        gap: var(--space-3);
+        gap: 0.75rem;
         line-height: 1.6;
     }
 
     .location-address i {
-        color: var(--color-primary);
-        font-size: var(--text-lg);
+        color: #2563eb;
+        font-size: 1.125rem;
         margin-top: 2px;
         flex-shrink: 0;
     }
 
     .map-container {
-        border-radius: var(--radius-lg);
+        border-radius: 0.5rem;
         overflow: hidden;
-        box-shadow: var(--shadow-md);
-        margin-bottom: var(--space-8);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
         height: 450px;
-        border: 1px solid var(--color-border);
+        border: 1px solid #e2e8f0;
     }
 
     .map-container iframe {
@@ -334,47 +342,47 @@
     .action-buttons {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--space-4);
+        gap: 1rem;
     }
 
     .action-btn {
-        border-radius: var(--radius-lg);
-        padding: var(--space-4) var(--space-6);
+        border-radius: 0.5rem;
+        padding: 1rem 1.5rem;
         font-weight: 600;
-        font-size: var(--text-base);
-        transition: all var(--transition-base);
+        font-size: 1rem;
+        transition: all 0.3s ease;
         text-decoration: none;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--space-2);
+        gap: 0.5rem;
         border: 1px solid transparent;
     }
 
     .action-btn-primary {
-        background: var(--color-primary);
-        color: var(--color-background);
-        box-shadow: var(--shadow-sm);
+        background: #2563eb;
+        color: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     }
 
     .action-btn-primary:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-        color: var(--color-background);
-        background: var(--color-primary-dark);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: #ffffff;
+        background: #1e40af;
     }
 
     .action-btn-outline {
-        background: var(--color-background);
-        color: var(--color-primary);
-        border-color: var(--color-primary);
+        background: #ffffff;
+        color: #2563eb;
+        border-color: #2563eb;
     }
 
     .action-btn-outline:hover {
-        background: var(--color-primary);
-        color: var(--color-background);
+        background: #2563eb;
+        color: #ffffff;
         transform: translateY(-2px);
-        border-color: var(--color-primary);
+        border-color: #2563eb;
     }
 
     /* ============================================
@@ -383,8 +391,8 @@
 
     @media (max-width: 768px) {
         .contact-hero {
-            padding: var(--space-16) 0 var(--space-12);
-            margin: calc(-2rem - 76px) -0.75rem var(--space-12);
+            padding: 4rem 0 3rem;
+            margin: calc(-2rem - 76px) -15px 3rem -15px;
         }
 
         .contact-methods {
@@ -392,11 +400,11 @@
         }
 
         .agent-profile-card {
-            padding: var(--space-8) var(--space-6);
+            padding: 2rem 1.5rem;
         }
 
         .location-card {
-            padding: var(--space-6);
+            padding: 1.5rem;
         }
 
         .map-container {
