@@ -183,33 +183,72 @@
        CATEGORY GRID - Enhanced Cards
        ============================================ */
 
-    .category-section {
-        margin-bottom: 5rem;
+    /* Investment Stats Section */
+    .investment-stats-section {
+        margin-bottom: 6rem;
+        padding: 4rem 0;
+        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        border-radius: 2rem;
+        position: relative;
+        overflow: hidden;
     }
 
-    .category-grid {
+    .investment-stats-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+    }
+
+    .investment-stats-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .investment-stats-title {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #0f172a;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .investment-stats-subtitle {
+        font-size: 1.125rem;
+        color: #64748b;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.7;
+    }
+
+    .investment-stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
         margin-top: 3rem;
     }
 
-    .category-card {
+    .investment-stat-card {
         background: #ffffff;
         border: 1px solid #e2e8f0;
-        border-radius: 1.25rem;
+        border-radius: 1.5rem;
         padding: 2.5rem 2rem;
         text-align: center;
-        text-decoration: none;
-        color: #0f172a;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         position: relative;
         overflow: hidden;
-        display: block;
     }
 
-    .category-card::before {
+    .investment-stat-card::before {
         content: '';
         position: absolute;
         top: 0;
@@ -222,66 +261,73 @@
         transition: transform 0.4s ease;
     }
 
-    .category-card:hover::before {
+    .investment-stat-card:hover::before {
         transform: scaleX(1);
     }
 
-    .category-card:hover {
+    .investment-stat-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.15);
         border-color: #2563eb;
-        text-decoration: none;
-        color: #0f172a;
     }
 
-    .category-icon-wrapper {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 2rem;
+    .investment-stat-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.5rem;
         background: linear-gradient(135deg, #2563eb, #3b82f6);
-        border-radius: 1.5rem;
+        border-radius: 1.25rem;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #ffffff;
-        font-size: 2rem;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 1.75rem;
+        transition: all 0.4s ease;
         box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        position: relative;
     }
 
-    .category-icon-wrapper::after {
-        content: '';
-        position: absolute;
-        inset: -4px;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        border-radius: 1.5rem;
-        opacity: 0;
-        transition: opacity 0.4s ease;
-        z-index: -1;
-        filter: blur(12px);
-    }
-
-    .category-card:hover .category-icon-wrapper {
+    .investment-stat-card:hover .investment-stat-icon {
         transform: scale(1.1) rotate(5deg);
     }
 
-    .category-card:hover .category-icon-wrapper::after {
-        opacity: 0.5;
+    .investment-stat-value {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 3rem;
+        font-weight: 900;
+        color: #2563eb;
+        margin-bottom: 0.5rem;
+        line-height: 1;
     }
 
-    .category-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+    .investment-stat-value span {
         font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 0.75rem;
-        color: #0f172a;
+        color: #3b82f6;
     }
 
-    .category-description {
+    .investment-stat-label {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 0.75rem;
+    }
+
+    .investment-stat-description {
         font-size: 0.9375rem;
         color: #64748b;
         line-height: 1.6;
+    }
+
+    .investment-stat-period {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        color: #1e40af;
+        border-radius: 0.5rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
     }
 
     /* ============================================
@@ -407,60 +453,141 @@
 
     .property-card-title {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.375rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
         color: #0f172a;
         line-height: 1.3;
         display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        letter-spacing: -0.01em;
     }
 
-    .property-card-meta {
+    .property-card-type {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        color: #1e40af;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.8125rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 1.25rem;
+        width: fit-content;
+    }
+
+    .property-card-type i {
+        font-size: 0.875rem;
+    }
+
+    .property-card-specs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+        padding: 1.25rem 0;
+        margin-bottom: 1.25rem;
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .property-card-spec {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .property-card-spec-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #2563eb, #3b82f6);
+        border-radius: 0.75rem;
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-        margin-bottom: 1.25rem;
-        font-size: 0.875rem;
-        color: #64748b;
-        flex-wrap: wrap;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1rem;
+        flex-shrink: 0;
     }
 
-    .property-card-meta i {
-        color: #2563eb;
-        width: 18px;
-        text-align: center;
+    .property-card-spec-value {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0f172a;
+        line-height: 1.2;
+    }
+
+    .property-card-spec-label {
+        font-size: 0.75rem;
+        color: #64748b;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
     }
 
     .property-card-description {
         color: #475569;
         font-size: 0.9375rem;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        margin-bottom: 1.75rem;
         flex-grow: 1;
         display: -webkit-box;
         -webkit-line-clamp: 3;
+        line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        position: relative;
+    }
+
+    .property-card-description::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(to bottom, transparent, #ffffff);
+        pointer-events: none;
+    }
+
+    .property-card-price-wrapper {
+        padding-top: 1.25rem;
+        border-top: 2px solid #e2e8f0;
     }
 
     .property-card-price {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 2rem;
-        font-weight: 800;
+        font-size: 2.25rem;
+        font-weight: 900;
         color: #2563eb;
-        margin-bottom: 1.5rem;
+        margin: 0;
         display: flex;
         align-items: baseline;
-        gap: 0.375rem;
+        gap: 0.5rem;
+        line-height: 1;
     }
 
     .property-card-price span {
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         font-weight: 500;
         color: #64748b;
+    }
+
+    .property-card-price-label {
+        font-size: 0.8125rem;
+        color: #94a3b8;
+        font-weight: 500;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .property-card-footer {
@@ -554,9 +681,17 @@
             margin-top: 3rem;
         }
 
-        .category-grid {
+        .investment-stats-grid {
             grid-template-columns: 1fr;
             gap: 1.5rem;
+        }
+
+        .investment-stats-title {
+            font-size: 2rem;
+        }
+
+        .investment-stat-value {
+            font-size: 2.5rem;
         }
 
         .property-image-wrapper {
@@ -565,6 +700,42 @@
 
         .section-header {
             margin-bottom: 3rem;
+        }
+
+        .property-card-specs {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            padding: 1rem 0;
+        }
+
+        .property-card-spec-icon {
+            width: 36px;
+            height: 36px;
+            font-size: 0.875rem;
+        }
+
+        .property-card-spec-value {
+            font-size: 0.9375rem;
+        }
+
+        .property-card-spec-label {
+            font-size: 0.6875rem;
+        }
+
+        .property-card-title {
+            font-size: 1.25rem;
+        }
+
+        .property-card-price {
+            font-size: 1.875rem;
+        }
+
+        .property-card-price span {
+            font-size: 1.125rem;
+        }
+
+        .property-card-body {
+            padding: 1.5rem;
         }
     }
 </style>
@@ -635,44 +806,64 @@
 </div>
 
 <div class="container" style="max-width: 1320px;">
-    <!-- Category Section -->
-    <div class="category-section fade-in">
-        <div class="section-header">
-            <h2 class="section-title">Emlak Kategorileri</h2>
-            <p class="section-subtitle">İhtiyacınıza uygun kategoriyi seçin</p>
+    <!-- Investment Stats Section -->
+    <div class="investment-stats-section fade-in">
+        <div class="investment-stats-header">
+            <h2 class="investment-stats-title">Neden Gayrimenkul Yatırımı?</h2>
+            <p class="investment-stats-subtitle">
+                Türkiye'de gayrimenkul yatırımı, uzun vadede en güvenilir ve karlı yatırım araçlarından biridir.
+                İşte rakamlarla gayrimenkul yatırımının avantajları:
+            </p>
         </div>
-        <div class="category-grid">
-            <a href="{% url 'properties:land_list' %}" class="category-card">
-                <div class="category-icon-wrapper">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-                <h3 class="category-title">Arsalar</h3>
-                <p class="category-description">İmarlı ve yatırımlık arsa seçeneklerimizi inceleyin</p>
-            </a>
 
-            <a href="{% url 'properties:residential_list' %}" class="category-card">
-                <div class="category-icon-wrapper">
-                    <i class="fas fa-home"></i>
+        <div class="investment-stats-grid">
+            <div class="investment-stat-card">
+                <div class="investment-stat-icon">
+                    <i class="fas fa-chart-line"></i>
                 </div>
-                <h3 class="category-title">Konutlar</h3>
-                <p class="category-description">Satılık ve kiralık konut fırsatlarını keşfedin</p>
-            </a>
+                <div class="investment-stat-value">20<span>x</span></div>
+                <div class="investment-stat-label">Değer Artışı</div>
+                <p class="investment-stat-description">
+                    2015-2025 arası konut fiyat endeksi 20 katına çıkarak en karlı yatırım aracı oldu.
+                </p>
+                <span class="investment-stat-period">10 Yıllık Dönem</span>
+            </div>
 
-            <a href="{% url 'properties:commercial_list' %}" class="category-card">
-                <div class="category-icon-wrapper">
-                    <i class="fas fa-store"></i>
+            <div class="investment-stat-card">
+                <div class="investment-stat-icon">
+                    <i class="fas fa-thumbs-up"></i>
                 </div>
-                <h3 class="category-title">İşyerleri</h3>
-                <p class="category-description">İşyeri ve dükkan seçeneklerini görüntüleyin</p>
-            </a>
+                <div class="investment-stat-value">%<span>81</span></div>
+                <div class="investment-stat-label">Memnuniyet Oranı</div>
+                <p class="investment-stat-description">
+                    Türk halkının %81'i gayrimenkul yatırımından memnun. En çok tercih edilen yatırım aracı.
+                </p>
+                <span class="investment-stat-period">Cumhurbaşkanlığı Finans Ofisi</span>
+            </div>
 
-            <a href="{% url 'properties:field_list' %}" class="category-card">
-                <div class="category-icon-wrapper">
-                    <i class="fas fa-tree"></i>
+            <div class="investment-stat-card">
+                <div class="investment-stat-icon">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3 class="category-title">Tarlalar</h3>
-                <p class="category-description">Verimli tarla ve arazi fırsatlarını inceleyin</p>
-            </a>
+                <div class="investment-stat-value"><span>%</span>15<span>+</span></div>
+                <div class="investment-stat-label">Yıllık Ortalama Getiri</div>
+                <p class="investment-stat-description">
+                    Uzun vadede istikrarlı getiri sağlayan, enflasyona karşı koruma sağlayan güvenli yatırım.
+                </p>
+                <span class="investment-stat-period">Uzun Vadeli</span>
+            </div>
+
+            <div class="investment-stat-card">
+                <div class="investment-stat-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="investment-stat-value"><span>2</span>.075</div>
+                <div class="investment-stat-label">Fiyat Endeksi</div>
+                <p class="investment-stat-description">
+                    2015 baz yılı (100) üzerinden 2025'te 2.075,7 seviyesine ulaşan konut fiyat endeksi.
+                </p>
+                <span class="investment-stat-period">OECD Verileri</span>
+            </div>
         </div>
     </div>
 
@@ -701,15 +892,87 @@
                 </div>
                 <div class="property-card-body">
                     <h3 class="property-card-title">{{ property.title }}</h3>
-                    <div class="property-card-meta">
-                        <span>
-                            <i class="fas fa-tag"></i>
-                            {{ property.get_property_type_display }}
-                        </span>
+
+                    <div class="property-card-type">
+                        <i class="fas fa-building"></i>
+                        <span>{{ property.get_property_type_display }}</span>
                     </div>
-                    <p class="property-card-description">{{ property.description|truncatewords:25 }}</p>
-                    <div class="property-card-price">
-                        {{ property.price|floatformat:0 }}<span>TL</span>
+
+                    <div class="property-card-specs">
+                        {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                            <div class="property-card-spec-label">m²</div>
+                        </div>
+                        {% if property.zoning_status %}
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.zoning_status|truncatewords:2 }}</div>
+                            <div class="property-card-spec-label">İmar</div>
+                        </div>
+                        {% endif %}
+                        {% elif property.property_type == 'KONUT' %}
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{
+                                property.gross_square_meters|default:property.net_square_meters|default:"-" }}</div>
+                            <div class="property-card-spec-label">m²</div>
+                        </div>
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-door-open"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.room_count|default:"-" }}</div>
+                            <div class="property-card-spec-label">Oda</div>
+                        </div>
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}</div>
+                            <div class="property-card-spec-label">Kat</div>
+                        </div>
+                        {% if property.bathroom_count %}
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.bathroom_count }}</div>
+                            <div class="property-card-spec-label">Banyo</div>
+                        </div>
+                        {% endif %}
+                        {% elif property.property_type == 'ISYERI' %}
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                            <div class="property-card-spec-label">m²</div>
+                        </div>
+                        <div class="property-card-spec">
+                            <div class="property-card-spec-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}</div>
+                            <div class="property-card-spec-label">Kat</div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <p class="property-card-description">{{ property.description|truncatewords:20|striptags }}</p>
+
+                    <div class="property-card-price-wrapper">
+                        <div class="property-card-price">
+                            {{ property.price|floatformat:0 }}<span>TL</span>
+                        </div>
+                        <div class="property-card-price-label">{{ property.get_listing_type_display }}</div>
                     </div>
                 </div>
                 <div class="property-card-footer">
