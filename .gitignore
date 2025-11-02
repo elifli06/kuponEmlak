@@ -2,9 +2,13 @@
 *~
 __pycache__
 .env
+.env.local
+.env.production
 venv
+.venv
 db.sqlite3
 /static
+/staticfiles
 .DS_Store
 media/
 *.pyo
@@ -25,3 +29,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
+*.log
+*.pot
+.pytest_cache/
+.hypothesis/

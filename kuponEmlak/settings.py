@@ -2,14 +2,18 @@
 
 import os
 from pathlib import Path
+from decouple import config, Csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-k9l2pc#j@6l3d8z$x4m7n!q5w&y*e2s9v@f0h1t8u3i4o6p7'
+# Güvenlik: SECRET_KEY artık environment variable'dan okunuyor
+SECRET_KEY = config('SECRET_KEY', default='django-insecure-k9l2pc#j@6l3d8z$x4m7n!q5w&y*e2s9v@f0h1t8u3i4o6p7')
 
-DEBUG = False
+# DEBUG production'da False olmalı
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['16.170.231.253', 'kupon10emlak.com.tr', 'www.kupon10emlak.com.tr']
+# ALLOWED_HOSTS environment variable'dan okunuyor (virgülle ayrılmış)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='16.170.231.253,kupon10emlak.com.tr,www.kupon10emlak.com.tr', cast=Csv())
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,14 +60,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kuponEmlak.wsgi.application'  # Bunu ekleyin
 
+# Database ayarları - Güvenlik için environment variables kullanılıyor
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kupondb',
-        'USER': 'kuponuser',
-        'PASSWORD': 'Zekiye_51.',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME', default='kupondb'),
+        'USER': config('DB_USER', default='kuponuser'),
+        'PASSWORD': config('DB_PASSWORD', default=''),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', default='5432'),
     }
 }
 
