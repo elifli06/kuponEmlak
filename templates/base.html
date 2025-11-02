@@ -360,10 +360,34 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
             background: rgba(255, 255, 255, 0.1);
             padding: 0.5rem 0.75rem;
+            display: none;
+            border-radius: 0.5rem;
         }
 
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            width: 1.5em;
+            height: 1.5em;
+        }
+
+        .navbar-toggler:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 991px) {
+            .navbar-toggler {
+                display: block;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .navbar-toggler {
+                display: none !important;
+            }
+
+            .navbar-collapse {
+                display: flex !important;
+            }
         }
 
         .search-form {
@@ -520,32 +544,85 @@
            ============================================ */
 
         .footer {
-            background: var(--color-background-dark);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: rgba(255, 255, 255, 0.9);
-            padding: var(--space-16) 0 var(--space-8);
-            margin-top: var(--space-20);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4rem 0 2rem;
+            margin-top: 6rem;
+            border-top: 4px solid #2563eb;
+        }
+
+        .footer .container {
+            max-width: 1320px;
+        }
+
+        .footer .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .footer .row>div {
+            padding: 0 15px;
         }
 
         .footer h5 {
-            font-family: var(--font-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
             font-weight: 700;
-            font-size: var(--text-lg);
-            color: var(--color-background);
-            margin-bottom: var(--space-6);
+            font-size: 1.25rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer h5 i {
+            color: #2563eb;
+            font-size: 1.125rem;
         }
 
         .footer p,
         .footer a {
             color: rgba(255, 255, 255, 0.8);
-            font-size: var(--text-sm);
-            margin-bottom: var(--space-2);
-            transition: color var(--transition-fast);
+            font-size: 0.9375rem;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
         }
 
         .footer a:hover {
-            color: var(--color-primary-light);
+            color: #3b82f6;
+            transform: translateX(5px);
             text-decoration: none;
+        }
+
+        .footer .list-unstyled {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer .list-unstyled li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer .list-unstyled a {
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .footer .list-unstyled a:hover {
+            color: #3b82f6;
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .social-icons a {
@@ -554,51 +631,67 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            border-radius: var(--radius-full);
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.9);
-            margin-right: var(--space-3);
-            transition: all var(--transition-base);
-            font-size: var(--text-lg);
+            border-radius: 0.5rem;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            color: #3b82f6;
+            transition: all 0.3s ease;
+            font-size: 1.125rem;
         }
 
         .social-icons a:hover {
-            background: var(--color-primary);
-            color: var(--color-background);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            background: #2563eb;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
         }
 
-        .developer-credit {
-            font-size: var(--text-xs);
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: var(--space-4);
+        .footer hr {
+            border-color: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0 1.5rem;
         }
 
-        .developer-link {
-            color: rgba(255, 255, 255, 0.8);
+        .footer-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-credit {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+
+        .footer-credit a {
+            color: #3b82f6;
+            font-weight: 600;
             text-decoration: none;
-            transition: color var(--transition-fast);
-            position: relative;
+            transition: all 0.3s ease;
         }
 
-        .developer-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--color-primary-light);
-            transition: width var(--transition-base);
+        .footer-credit a:hover {
+            color: #60a5fa;
+            text-decoration: underline;
         }
 
-        .developer-link:hover {
-            color: var(--color-primary-light);
-        }
+        @media (max-width: 768px) {
+            .footer {
+                padding: 3rem 0 1.5rem;
+            }
 
-        .developer-link:hover::after {
-            width: 100%;
+            .footer .row>div {
+                margin-bottom: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
         }
 
         /* ============================================
@@ -733,7 +826,7 @@
     </nav>
 
     <!-- Main Content -->
-    <div style="padding-top: 76px;">
+    <div>
         <main class="container-fluid px-3 px-md-4 py-4" style="max-width: 100%; overflow-x: hidden;">
             {% block content %}{% endblock %}
         </main>
@@ -789,23 +882,14 @@
                 </div>
             </div>
             <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.1);">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    <p class="mb-0 small">&copy; {% now "Y" %} Kup10 Gayrimenkul. Tüm hakları saklıdır.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="developer-credit mb-0">
-                        <small>
-                            <i class="fas fa-code me-1"></i>
-                            Yazılımcı:
-                            <a href="https://www.linkedin.com/in/elif-cerav/" target="_blank" rel="noopener noreferrer"
-                                class="developer-link">
-                                Elif CERAV
-                                <i class="fab fa-linkedin ms-1"></i>
-                            </a>
-                        </small>
-                    </p>
-                </div>
+            <div class="footer-bottom">
+                <p class="footer-credit mb-0">
+                    &copy; {% now "Y" %} Kup10 Gayrimenkul. Tüm hakları saklıdır.
+                </p>
+                <p class="footer-credit mb-0">
+                    Bu sitenin geliştirilmesi <a href="https://www.crvsoftware.com" target="_blank"
+                        rel="noopener noreferrer">CRV Software</a> tarafından yapılmıştır.
+                </p>
             </div>
         </div>
     </footer>
