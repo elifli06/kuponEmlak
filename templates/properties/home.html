@@ -186,11 +186,23 @@
     /* Investment Stats Section */
     .investment-stats-section {
         margin-bottom: 6rem;
-        padding: 4rem 0;
+        padding: 4rem 1rem;
         background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
         border-radius: 2rem;
         position: relative;
         overflow: hidden;
+        width: 100%;
+        max-width: 1320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 768px) {
+        .investment-stats-section {
+            padding: 3rem 1rem;
+            margin-bottom: 4rem;
+            border-radius: 1.5rem;
+        }
     }
 
     .investment-stats-section::before {
@@ -206,11 +218,18 @@
     .investment-stats-header {
         text-align: center;
         margin-bottom: 4rem;
+        padding: 0 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .investment-stats-header {
+            margin-bottom: 3rem;
+        }
     }
 
     .investment-stats-title {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 2.5rem;
+        font-size: clamp(1.875rem, 5vw, 2.5rem);
         font-weight: 900;
         color: #0f172a;
         margin-bottom: 1rem;
@@ -222,11 +241,12 @@
     }
 
     .investment-stats-subtitle {
-        font-size: 1.125rem;
+        font-size: clamp(1rem, 2.5vw, 1.125rem);
         color: #64748b;
         max-width: 700px;
         margin: 0 auto;
         line-height: 1.7;
+        padding: 0 1rem;
     }
 
     .investment-stats-grid {
@@ -234,6 +254,32 @@
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 2rem;
         margin-top: 3rem;
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    @media (max-width: 1200px) {
+        .investment-stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .investment-stats-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 0 0.5rem;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 992px) {
+        .investment-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
 
     .investment-stat-card {
@@ -372,6 +418,47 @@
        PROPERTY CARDS - Premium Design
        ============================================ */
 
+    /* Properties Grid Container */
+    .properties-grid-container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .properties-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        width: 100%;
+    }
+
+    @media (min-width: 1400px) {
+        .properties-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1399px) {
+        .properties-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .properties-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .properties-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
     .property-card-modern {
         border: 1px solid #e2e8f0;
         border-radius: 1.25rem;
@@ -385,14 +472,7 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-    }
-
-    .row .col-lg-4,
-    .row .col-md-6,
-    .row .col-sm-12 {
-        box-sizing: border-box;
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
+        margin: 0;
     }
 
     .property-card-modern:hover {
@@ -665,7 +745,100 @@
         }
     }
 
-    @media (max-width: 768px) {
+    /* Responsive Styles */
+    @media (max-width: 576px) {
+        .hero-section {
+            padding: 3rem 0 2rem;
+            margin: -2rem -15px 2rem -15px;
+        }
+
+        .hero-search-wrapper {
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        .hero-search-form {
+            gap: 0.75rem;
+        }
+
+        .stats-section {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .investment-stats-section {
+            padding: 2rem 0.75rem;
+            border-radius: 1rem;
+        }
+
+        .investment-stat-value {
+            font-size: 2rem;
+        }
+
+        .property-image-wrapper {
+            height: 200px;
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+        }
+
+        .property-card-specs {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            padding: 1rem 0;
+        }
+
+        .property-card-spec-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 0.75rem;
+        }
+
+        .property-card-spec-value {
+            font-size: 0.875rem;
+        }
+
+        .property-card-spec-label {
+            font-size: 0.625rem;
+        }
+
+        .property-card-title {
+            font-size: 1.125rem;
+        }
+
+        .property-card-price {
+            font-size: 1.625rem;
+        }
+
+        .property-card-price span {
+            font-size: 1rem;
+        }
+
+        .property-card-body {
+            padding: 1.25rem;
+        }
+
+        .property-card-footer {
+            padding: 1rem 1.25rem;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.75rem;
+        }
+
+        .property-card-footer .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+    @media (min-width: 577px) and (max-width: 768px) {
         .hero-section {
             padding: 4rem 0 3rem;
             margin: -2rem -15px 3rem -15px;
@@ -738,6 +911,22 @@
             padding: 1.5rem;
         }
     }
+
+    @media (min-width: 769px) and (max-width: 991px) {
+        .investment-stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .properties-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .properties-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 </style>
 {% endblock %}
 
@@ -805,77 +994,77 @@
     </div>
 </div>
 
-<div class="container" style="max-width: 1320px;">
-    <!-- Investment Stats Section -->
-    <div class="investment-stats-section fade-in">
-        <div class="investment-stats-header">
-            <h2 class="investment-stats-title">Neden Gayrimenkul Yatırımı?</h2>
-            <p class="investment-stats-subtitle">
-                Türkiye'de gayrimenkul yatırımı, uzun vadede en güvenilir ve karlı yatırım araçlarından biridir.
-                İşte rakamlarla gayrimenkul yatırımının avantajları:
-            </p>
-        </div>
-
-        <div class="investment-stats-grid">
-            <div class="investment-stat-card">
-                <div class="investment-stat-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="investment-stat-value">20<span>x</span></div>
-                <div class="investment-stat-label">Değer Artışı</div>
-                <p class="investment-stat-description">
-                    2015-2025 arası konut fiyat endeksi 20 katına çıkarak en karlı yatırım aracı oldu.
-                </p>
-                <span class="investment-stat-period">10 Yıllık Dönem</span>
-            </div>
-
-            <div class="investment-stat-card">
-                <div class="investment-stat-icon">
-                    <i class="fas fa-thumbs-up"></i>
-                </div>
-                <div class="investment-stat-value">%<span>81</span></div>
-                <div class="investment-stat-label">Memnuniyet Oranı</div>
-                <p class="investment-stat-description">
-                    Türk halkının %81'i gayrimenkul yatırımından memnun. En çok tercih edilen yatırım aracı.
-                </p>
-                <span class="investment-stat-period">Cumhurbaşkanlığı Finans Ofisi</span>
-            </div>
-
-            <div class="investment-stat-card">
-                <div class="investment-stat-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="investment-stat-value"><span>%</span>15<span>+</span></div>
-                <div class="investment-stat-label">Yıllık Ortalama Getiri</div>
-                <p class="investment-stat-description">
-                    Uzun vadede istikrarlı getiri sağlayan, enflasyona karşı koruma sağlayan güvenli yatırım.
-                </p>
-                <span class="investment-stat-period">Uzun Vadeli</span>
-            </div>
-
-            <div class="investment-stat-card">
-                <div class="investment-stat-icon">
-                    <i class="fas fa-hand-holding-usd"></i>
-                </div>
-                <div class="investment-stat-value"><span>2</span>.075</div>
-                <div class="investment-stat-label">Fiyat Endeksi</div>
-                <p class="investment-stat-description">
-                    2015 baz yılı (100) üzerinden 2025'te 2.075,7 seviyesine ulaşan konut fiyat endeksi.
-                </p>
-                <span class="investment-stat-period">OECD Verileri</span>
-            </div>
-        </div>
+<!-- Investment Stats Section -->
+<div class="investment-stats-section fade-in">
+    <div class="investment-stats-header">
+        <h2 class="investment-stats-title">Neden Gayrimenkul Yatırımı?</h2>
+        <p class="investment-stats-subtitle">
+            Türkiye'de gayrimenkul yatırımı, uzun vadede en güvenilir ve karlı yatırım araçlarından biridir.
+            İşte rakamlarla gayrimenkul yatırımının avantajları:
+        </p>
     </div>
 
-    <!-- Latest Properties Section -->
+    <div class="investment-stats-grid">
+        <div class="investment-stat-card">
+            <div class="investment-stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="investment-stat-value">20<span>x</span></div>
+            <div class="investment-stat-label">Değer Artışı</div>
+            <p class="investment-stat-description">
+                2015-2025 arası konut fiyat endeksi 20 katına çıkarak en karlı yatırım aracı oldu.
+            </p>
+            <span class="investment-stat-period">10 Yıllık Dönem</span>
+        </div>
+
+        <div class="investment-stat-card">
+            <div class="investment-stat-icon">
+                <i class="fas fa-thumbs-up"></i>
+            </div>
+            <div class="investment-stat-value">%<span>81</span></div>
+            <div class="investment-stat-label">Memnuniyet Oranı</div>
+            <p class="investment-stat-description">
+                Türk halkının %81'i gayrimenkul yatırımından memnun. En çok tercih edilen yatırım aracı.
+            </p>
+            <span class="investment-stat-period">Cumhurbaşkanlığı Finans Ofisi</span>
+        </div>
+
+        <div class="investment-stat-card">
+            <div class="investment-stat-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="investment-stat-value"><span>%</span>15<span>+</span></div>
+            <div class="investment-stat-label">Yıllık Ortalama Getiri</div>
+            <p class="investment-stat-description">
+                Uzun vadede istikrarlı getiri sağlayan, enflasyona karşı koruma sağlayan güvenli yatırım.
+            </p>
+            <span class="investment-stat-period">Uzun Vadeli</span>
+        </div>
+
+        <div class="investment-stat-card">
+            <div class="investment-stat-icon">
+                <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <div class="investment-stat-value"><span>2</span>.075</div>
+            <div class="investment-stat-label">Fiyat Endeksi</div>
+            <p class="investment-stat-description">
+                2015 baz yılı (100) üzerinden 2025'te 2.075,7 seviyesine ulaşan konut fiyat endeksi.
+            </p>
+            <span class="investment-stat-period">OECD Verileri</span>
+        </div>
+    </div>
+</div>
+
+<!-- Latest Properties Section -->
+<div class="properties-grid-container">
     <div class="section-header fade-in">
         <h2 class="section-title">Son Eklenen İlanlar</h2>
         <p class="section-subtitle">Yeni emlak fırsatlarını kaçırmayın</p>
     </div>
 
-    <div class="row g-4 justify-content-center">
+    <div class="properties-grid">
         {% for property in properties %}
-        <div class="col-lg-4 col-md-6 col-sm-12 fade-in">
+        <div class="fade-in">
             <div class="property-card-modern">
                 <div class="property-image-wrapper">
                     {% if property.images.exists %}
@@ -988,7 +1177,7 @@
             </div>
         </div>
         {% empty %}
-        <div class="col-12">
+        <div class="fade-in" style="grid-column: 1 / -1;">
             <div class="empty-state">
                 <div class="empty-state-icon">
                     <i class="fas fa-search"></i>
