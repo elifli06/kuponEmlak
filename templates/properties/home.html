@@ -1175,13 +1175,16 @@
 
                             <div class="property-card-specs">
                                 {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
+                                {% if property.square_meters %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-ruler-combined"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                                    <div class="property-card-spec-value">{{ property.square_meters|floatformat:0 }}
+                                    </div>
                                     <div class="property-card-spec-label">m²</div>
                                 </div>
+                                {% endif %}
                                 {% if property.zoning_status %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
@@ -1193,30 +1196,39 @@
                                 </div>
                                 {% endif %}
                                 {% elif property.property_type == 'KONUT' %}
+                                {% if property.gross_square_meters or property.net_square_meters %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-ruler-combined"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{
-                                        property.gross_square_meters|default:property.net_square_meters|default:"-" }}
+                                    <div class="property-card-spec-value">
+                                        {% if property.gross_square_meters %}
+                                        {{ property.gross_square_meters|floatformat:0 }}
+                                        {% else %}
+                                        {{ property.net_square_meters|floatformat:0 }}
+                                        {% endif %}
                                     </div>
                                     <div class="property-card-spec-label">m²</div>
                                 </div>
+                                {% endif %}
+                                {% if property.room_count %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-door-open"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{ property.room_count|default:"-" }}</div>
+                                    <div class="property-card-spec-value">{{ property.room_count }}</div>
                                     <div class="property-card-spec-label">Oda</div>
                                 </div>
+                                {% endif %}
+                                {% if property.floor_location %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-layer-group"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}
-                                    </div>
+                                    <div class="property-card-spec-value">{{ property.floor_location }}</div>
                                     <div class="property-card-spec-label">Kat</div>
                                 </div>
+                                {% endif %}
                                 {% if property.bathroom_count %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
@@ -1227,21 +1239,25 @@
                                 </div>
                                 {% endif %}
                                 {% elif property.property_type == 'ISYERI' %}
+                                {% if property.square_meters %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-ruler-combined"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                                    <div class="property-card-spec-value">{{ property.square_meters|floatformat:0 }}
+                                    </div>
                                     <div class="property-card-spec-label">m²</div>
                                 </div>
+                                {% endif %}
+                                {% if property.floor_location %}
                                 <div class="property-card-spec">
                                     <div class="property-card-spec-icon">
                                         <i class="fas fa-layer-group"></i>
                                     </div>
-                                    <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}
-                                    </div>
+                                    <div class="property-card-spec-value">{{ property.floor_location }}</div>
                                     <div class="property-card-spec-label">Kat</div>
                                 </div>
+                                {% endif %}
                                 {% endif %}
                             </div>
 
