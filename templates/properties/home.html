@@ -418,45 +418,113 @@
        PROPERTY CARDS - Premium Design
        ============================================ */
 
-    /* Properties Grid Container */
-    .properties-grid-container {
+    /* Properties Slider Container */
+    .properties-slider-container {
         width: 100%;
         max-width: 1320px;
         margin: 0 auto;
         padding: 0 1rem;
+        position: relative;
     }
 
-    .properties-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 2rem;
+    .properties-slider-wrapper {
+        position: relative;
+        padding: 0 3rem;
+    }
+
+    @media (max-width: 768px) {
+        .properties-slider-wrapper {
+            padding: 0 2.5rem;
+        }
+    }
+
+    .properties-slider {
+        overflow: hidden;
         width: 100%;
     }
 
-    @media (min-width: 1400px) {
-        .properties-grid {
-            grid-template-columns: repeat(3, 1fr);
+    #propertiesRow {
+        display: flex;
+        width: 100%;
+        gap: 0;
+        margin: 0;
+    }
+
+    .properties-slide {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 0 0.75rem;
+        box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+        .properties-slide {
+            width: 50%;
         }
     }
 
-    @media (min-width: 992px) and (max-width: 1399px) {
-        .properties-grid {
-            grid-template-columns: repeat(2, 1fr);
+    @media (min-width: 992px) {
+        .properties-slide {
+            width: 33.333333%;
         }
     }
 
-    @media (min-width: 768px) and (max-width: 991px) {
-        .properties-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+    .slider-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        width: 50px;
+        height: 50px;
+        background: #ffffff;
+        border: 2px solid #e2e8f0;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        color: #2563eb;
+        font-size: 1.25rem;
+    }
+
+    .slider-nav-btn:hover {
+        background: #2563eb;
+        color: #ffffff;
+        border-color: #2563eb;
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+    }
+
+    .slider-nav-btn.prev {
+        left: 0;
+    }
+
+    .slider-nav-btn.next {
+        right: 0;
+    }
+
+    @media (max-width: 768px) {
+        .slider-nav-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .slider-nav-btn.prev {
+            left: -0.5rem;
+        }
+
+        .slider-nav-btn.next {
+            right: -0.5rem;
         }
     }
 
-    @media (max-width: 767px) {
-        .properties-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
+    .slider-nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 
     .property-card-modern {
@@ -1056,138 +1124,164 @@
 </div>
 
 <!-- Latest Properties Section -->
-<div class="properties-grid-container">
+<div class="properties-slider-container">
     <div class="section-header fade-in">
         <h2 class="section-title">Son Eklenen İlanlar</h2>
         <p class="section-subtitle">Yeni emlak fırsatlarını kaçırmayın</p>
     </div>
 
-    <div class="properties-grid">
-        {% for property in properties %}
-        <div class="fade-in">
-            <div class="property-card-modern">
-                <div class="property-image-wrapper">
-                    {% if property.images.exists %}
-                    <img src="{{ property.images.first.image.url }}" alt="{{ property.title }}" loading="lazy">
-                    {% else %}
-                    <div class="d-flex align-items-center justify-content-center h-100">
-                        <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
-                    </div>
-                    {% endif %}
-                    <div
-                        class="property-badge {% if property.listing_type == 'SATILIK' %}satilik{% else %}kiralik{% endif %}">
-                        {{ property.get_listing_type_display }}
+    {% if properties %}
+    <div class="properties-slider-wrapper fade-in">
+        <button class="slider-nav-btn prev" onclick="slideProperties('prev')" aria-label="Önceki">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-nav-btn next" onclick="slideProperties('next')" aria-label="Sonraki">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="properties-slider" id="propertiesSlider">
+            <div class="d-flex" id="propertiesRow" style="transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
+                {% for property in properties %}
+                <div class="properties-slide">
+                    <div class="property-card-modern">
+                        <div class="property-image-wrapper">
+                            {% if property.images.all %}
+                            {% with first_image=property.images.first %}
+                            {% if first_image %}
+                            <img src="{{ first_image.image.url }}" alt="{{ property.title }}" loading="lazy">
+                            {% else %}
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
+                            </div>
+                            {% endif %}
+                            {% endwith %}
+                            {% else %}
+                            <div class="d-flex align-items-center justify-content-center h-100">
+                                <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
+                            </div>
+                            {% endif %}
+                            <div
+                                class="property-badge {% if property.listing_type == 'SATILIK' %}satilik{% else %}kiralik{% endif %}">
+                                {{ property.get_listing_type_display }}
+                            </div>
+                        </div>
+                        <div class="property-card-body">
+                            <h3 class="property-card-title">{{ property.title }}</h3>
+
+                            <div class="property-card-type">
+                                <i class="fas fa-building"></i>
+                                <span>{{ property.get_property_type_display }}</span>
+                            </div>
+
+                            <div class="property-card-specs">
+                                {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                                    <div class="property-card-spec-label">m²</div>
+                                </div>
+                                {% if property.zoning_status %}
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.zoning_status|truncatewords:2 }}
+                                    </div>
+                                    <div class="property-card-spec-label">İmar</div>
+                                </div>
+                                {% endif %}
+                                {% elif property.property_type == 'KONUT' %}
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{
+                                        property.gross_square_meters|default:property.net_square_meters|default:"-" }}
+                                    </div>
+                                    <div class="property-card-spec-label">m²</div>
+                                </div>
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-door-open"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.room_count|default:"-" }}</div>
+                                    <div class="property-card-spec-label">Oda</div>
+                                </div>
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}
+                                    </div>
+                                    <div class="property-card-spec-label">Kat</div>
+                                </div>
+                                {% if property.bathroom_count %}
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-bath"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.bathroom_count }}</div>
+                                    <div class="property-card-spec-label">Banyo</div>
+                                </div>
+                                {% endif %}
+                                {% elif property.property_type == 'ISYERI' %}
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-ruler-combined"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.square_meters }}</div>
+                                    <div class="property-card-spec-label">m²</div>
+                                </div>
+                                <div class="property-card-spec">
+                                    <div class="property-card-spec-icon">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
+                                    <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}
+                                    </div>
+                                    <div class="property-card-spec-label">Kat</div>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <p class="property-card-description">{{ property.description|truncatewords:20|striptags }}
+                            </p>
+
+                            <div class="property-card-price-wrapper">
+                                <div class="property-card-price">
+                                    {{ property.price|floatformat:0 }}<span>TL</span>
+                                </div>
+                                <div class="property-card-price-label">{{ property.get_listing_type_display }}</div>
+                            </div>
+                        </div>
+                        <div class="property-card-footer">
+                            <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-primary">
+                                Detayları Gör
+                                <i class="fas fa-arrow-right ms-2"></i>
+                            </a>
+                            <div class="property-time">
+                                <i class="far fa-clock"></i>
+                                <span>{{ property.created_at|timesince }} önce</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="property-card-body">
-                    <h3 class="property-card-title">{{ property.title }}</h3>
-
-                    <div class="property-card-type">
-                        <i class="fas fa-building"></i>
-                        <span>{{ property.get_property_type_display }}</span>
-                    </div>
-
-                    <div class="property-card-specs">
-                        {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-ruler-combined"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.square_meters }}</div>
-                            <div class="property-card-spec-label">m²</div>
-                        </div>
-                        {% if property.zoning_status %}
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-file-contract"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.zoning_status|truncatewords:2 }}</div>
-                            <div class="property-card-spec-label">İmar</div>
-                        </div>
-                        {% endif %}
-                        {% elif property.property_type == 'KONUT' %}
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-ruler-combined"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{
-                                property.gross_square_meters|default:property.net_square_meters|default:"-" }}</div>
-                            <div class="property-card-spec-label">m²</div>
-                        </div>
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-door-open"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.room_count|default:"-" }}</div>
-                            <div class="property-card-spec-label">Oda</div>
-                        </div>
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}</div>
-                            <div class="property-card-spec-label">Kat</div>
-                        </div>
-                        {% if property.bathroom_count %}
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-bath"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.bathroom_count }}</div>
-                            <div class="property-card-spec-label">Banyo</div>
-                        </div>
-                        {% endif %}
-                        {% elif property.property_type == 'ISYERI' %}
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-ruler-combined"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.square_meters }}</div>
-                            <div class="property-card-spec-label">m²</div>
-                        </div>
-                        <div class="property-card-spec">
-                            <div class="property-card-spec-icon">
-                                <i class="fas fa-layer-group"></i>
-                            </div>
-                            <div class="property-card-spec-value">{{ property.floor_location|default:"-" }}</div>
-                            <div class="property-card-spec-label">Kat</div>
-                        </div>
-                        {% endif %}
-                    </div>
-
-                    <p class="property-card-description">{{ property.description|truncatewords:20|striptags }}</p>
-
-                    <div class="property-card-price-wrapper">
-                        <div class="property-card-price">
-                            {{ property.price|floatformat:0 }}<span>TL</span>
-                        </div>
-                        <div class="property-card-price-label">{{ property.get_listing_type_display }}</div>
-                    </div>
-                </div>
-                <div class="property-card-footer">
-                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-primary">
-                        Detayları Gör
-                        <i class="fas fa-arrow-right ms-2"></i>
-                    </a>
-                    <div class="property-time">
-                        <i class="far fa-clock"></i>
-                        <span>{{ property.created_at|timesince }} önce</span>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
-        {% empty %}
-        <div class="fade-in" style="grid-column: 1 / -1;">
-            <div class="empty-state">
-                <div class="empty-state-icon">
-                    <i class="fas fa-search"></i>
-                </div>
-                <h3 class="empty-state-title">Henüz İlan Bulunmamaktadır</h3>
-                <p class="empty-state-text">Yakında yeni ilanlar eklenecektir.</p>
-            </div>
-        </div>
-        {% endfor %}
     </div>
+    {% else %}
+    <div class="fade-in">
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h3 class="empty-state-title">Henüz İlan Bulunmamaktadır</h3>
+            <p class="empty-state-text">Yakında yeni ilanlar eklenecektir.</p>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 
@@ -1214,6 +1308,86 @@
             el.style.transform = 'translateY(20px)';
             el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
             observer.observe(el);
+        });
+    })();
+
+    // Properties Slider Functionality
+    (function () {
+        let currentSlide = 0;
+        const itemsPerSlide = window.innerWidth >= 992 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+
+        function updateItemsPerSlide() {
+            if (window.innerWidth >= 992) return 3;
+            if (window.innerWidth >= 768) return 2;
+            return 1;
+        }
+
+        window.slideProperties = function (direction) {
+            const row = document.getElementById('propertiesRow');
+            if (!row) return;
+
+            const slides = row.querySelectorAll('.properties-slide');
+            const totalSlides = slides.length;
+            if (totalSlides === 0) return;
+
+            const itemsPerView = updateItemsPerSlide();
+            const maxSlide = Math.max(0, totalSlides - itemsPerView);
+
+            if (direction === 'next') {
+                currentSlide = Math.min(currentSlide + 1, maxSlide);
+            } else {
+                currentSlide = Math.max(currentSlide - 1, 0);
+            }
+
+            // Calculate translateX based on slide width in pixels
+            const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
+            const translateX = -(currentSlide * slideWidth);
+            row.style.transform = `translateX(${translateX}px)`;
+
+            // Update button states
+            const prevBtn = document.querySelector('.slider-nav-btn.prev');
+            const nextBtn = document.querySelector('.slider-nav-btn.next');
+
+            if (prevBtn) prevBtn.disabled = currentSlide === 0;
+            if (nextBtn) nextBtn.disabled = currentSlide >= maxSlide;
+        };
+
+        // Initialize slider on load
+        window.addEventListener('load', function () {
+            const row = document.getElementById('propertiesRow');
+            if (row) {
+                const itemsPerView = updateItemsPerSlide();
+                const prevBtn = document.querySelector('.slider-nav-btn.prev');
+                const nextBtn = document.querySelector('.slider-nav-btn.next');
+
+                if (prevBtn) prevBtn.disabled = true;
+                if (nextBtn) {
+                    const slides = row.querySelectorAll('.properties-slide');
+                    const totalSlides = slides.length;
+                    nextBtn.disabled = totalSlides <= itemsPerView;
+                }
+            }
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                currentSlide = 0;
+                const row = document.getElementById('propertiesRow');
+                if (row) {
+                    row.style.transform = 'translateX(0px)';
+                    const prevBtn = document.querySelector('.slider-nav-btn.prev');
+                    const nextBtn = document.querySelector('.slider-nav-btn.next');
+                    if (prevBtn) prevBtn.disabled = true;
+                    if (nextBtn) {
+                        const slides = row.querySelectorAll('.properties-slide');
+                        const itemsPerView = updateItemsPerSlide();
+                        nextBtn.disabled = slides.length <= itemsPerView;
+                    }
+                }
+            }, 250);
         });
     })();
 </script>

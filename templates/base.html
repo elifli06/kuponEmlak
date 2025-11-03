@@ -652,24 +652,28 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
         }
 
         .footer .list-unstyled li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0;
         }
 
         .footer .list-unstyled a {
             color: rgba(255, 255, 255, 0.7);
-            padding: 0.375rem 0;
+            padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             transition: all 0.3s ease;
-            display: block;
+            display: inline-block;
+            white-space: nowrap;
         }
 
         .footer .list-unstyled a:hover {
             color: #60a5fa;
-            background: rgba(37, 99, 235, 0.1);
-            padding-left: 1rem;
+            background: rgba(37, 99, 235, 0.15);
+            transform: translateY(-2px);
         }
 
         .social-icons {
@@ -777,6 +781,15 @@
 
             .social-icons {
                 margin-top: 0.75rem;
+            }
+
+            .footer .list-unstyled {
+                gap: 0.5rem 0.75rem;
+            }
+
+            .footer .list-unstyled a {
+                font-size: 0.8125rem;
+                padding: 0.375rem 0.75rem;
             }
         }
 

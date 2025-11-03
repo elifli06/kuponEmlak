@@ -468,13 +468,21 @@
         <div class="row g-4">
             <div class="col-lg-8">
                 <div class="main-image-container">
-                    {% if property.images.exists %}
-                    <img id="mainImage" src="{{ property.images.first.image.url }}" alt="{{ property.title }}"
+                    {% if property.images.all %}
+                    {% with first_image=property.images.first %}
+                    {% if first_image %}
+                    <img id="mainImage" src="{{ first_image.image.url }}" alt="{{ property.title }}"
                         data-lightbox="property-gallery" data-title="{{ property.title }}">
                     <div class="image-counter">
                         <i class="fas fa-images"></i>
                         <span id="currentImage">1</span> / <span id="totalImages">{{ property.images.count }}</span>
                     </div>
+                    {% else %}
+                    <div class="d-flex align-items-center justify-content-center bg-dark" style="height: 560px;">
+                        <i class="fas fa-home fa-5x" style="color: #94a3b8; opacity: 0.3;"></i>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
                     {% else %}
                     <div class="d-flex align-items-center justify-content-center bg-dark" style="height: 560px;">
                         <i class="fas fa-home fa-5x" style="color: #94a3b8; opacity: 0.3;"></i>

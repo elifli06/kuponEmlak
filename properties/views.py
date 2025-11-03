@@ -11,7 +11,7 @@ def normalize_text(text):
     return ''.join(c for c in text if not unicodedata.combining(c))
 
 def home(request):
-    properties = Property.objects.all().order_by('-created_at')[:25]
+    properties = Property.objects.prefetch_related('images').order_by('-created_at')[:25]
     return render(request, 'properties/home.html', {
         'properties': properties
     })
@@ -25,15 +25,15 @@ def property_list(request, type_filter=None):
 
     # Ana sorguyu oluştur
     if property_type == 'ARSA':
-        properties = LandProperty.objects.all()
+        properties = LandProperty.objects.prefetch_related('images')
     elif property_type == 'KONUT':
-        properties = ResidentialProperty.objects.all()
+        properties = ResidentialProperty.objects.prefetch_related('images')
     elif property_type == 'ISYERI':
-        properties = CommercialProperty.objects.all()
+        properties = CommercialProperty.objects.prefetch_related('images')
     elif property_type == 'TARLA':
-        properties = LandProperty.objects.filter(property_type='TARLA')
+        properties = LandProperty.objects.filter(property_type='TARLA').prefetch_related('images')
     else:
-        properties = Property.objects.select_subclasses()
+        properties = Property.objects.select_subclasses().prefetch_related('images')
 
     # Filtreleri uygula
     if listing_type:
@@ -103,7 +103,7 @@ def property_list(request, type_filter=None):
 
 def property_detail(request, pk):
     try:
-        property = Property.objects.select_subclasses().get(pk=pk)
+        property = Property.objects.select_subclasses().prefetch_related('images').get(pk=pk)
     except Property.DoesNotExist:
         raise Http404("Emlak bulunamadı")
 
