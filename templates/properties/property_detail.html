@@ -669,8 +669,9 @@
                                     %}</div>
                             </div>
                         </div>
+                        {% endif %}
 
-                        {% elif property.property_type == 'KONUT' %}
+                        {% if property.property_type == 'KONUT' %}
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-ruler-combined"></i>
@@ -765,8 +766,9 @@
                             </div>
                         </div>
                         {% endif %}
+                        {% endif %}
 
-                        {% elif property.property_type == 'ISYERI' %}
+                        {% if property.property_type == 'ISYERI' %}
                         <div class="feature-item">
                             <div class="feature-icon">
                                 <i class="fas fa-ruler-combined"></i>
