@@ -2,86 +2,86 @@
 
 {% block content %}
 <div class="container">
-    <div class="row mb-4">
+    <div class="row mb-5">
         <div class="col-12">
-            <div class="bg-light p-4 rounded shadow-sm">
-                <h1 class="text-center mb-4">Kup10 Gayrimenkul'e Hoş Geldiniz</h1>
-                <div class="row">
-                    <div class="col-md-3 mb-3">
-                        <a href="{% url 'properties:land_list' %}" class="card text-center h-100 text-decoration-none property-card">
-                            <div class="card-body">
-                                <i class="fas fa-map-marked-alt fa-3x text-primary mb-3"></i>
-                                <h5 class="card-title">Arsalar</h5>
-                                <p class="card-text">Yatırımlık ve imarlı arsalarımızı inceleyin</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{% url 'properties:residential_list' %}" class="card text-center h-100 text-decoration-none property-card">
-                            <div class="card-body">
-                                <i class="fas fa-home fa-3x text-success mb-3"></i>
-                                <h5 class="card-title">Konutlar</h5>
-                                <p class="card-text">Satılık ve kiralık konutlarımızı keşfedin</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{% url 'properties:commercial_list' %}" class="card text-center h-100 text-decoration-none property-card">
-                            <div class="card-body">
-                                <i class="fas fa-store fa-3x text-warning mb-3"></i>
-                                <h5 class="card-title">İşyerleri</h5>
-                                <p class="card-text">İşyeri ve dükkanlarımızı görüntüleyin</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <a href="{% url 'properties:field_list' %}" class="card text-center h-100 text-decoration-none property-card">
-                            <div class="card-body">
-                                <i class="fas fa-tree fa-3x text-success mb-3"></i>
-                                <h5 class="card-title">Tarlalar</h5>
-                                <p class="card-text">Verimli tarlalarımızı inceleyin</p>
-                            </div>
-                        </a>
+            <div class="card border-0 shadow-sm" style="background: var(--color-bg-alt); border-radius: var(--radius-lg);">
+                <div class="card-body p-4 p-lg-5">
+                    <h1 class="text-center mb-4 fw-semibold" style="color: var(--color-navy); font-size: 1.75rem;">Kup10 Gayrimenkul'e Hoş Geldiniz</h1>
+                    <div class="row g-3">
+                        <div class="col-md-3 col-6">
+                            <a href="{% url 'properties:land_list' %}" class="card text-center h-100 text-decoration-none property-card border-0 bg-white">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-map-marked-alt fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="card-title mb-2" style="color: var(--color-text);">Arsalar</h5>
+                                    <p class="card-text small mb-0" style="color: var(--color-text-muted);">Yatırımlık ve imarlı arsalarımızı inceleyin</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{% url 'properties:residential_list' %}" class="card text-center h-100 text-decoration-none property-card border-0 bg-white">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-home fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="card-title mb-2" style="color: var(--color-text);">Konutlar</h5>
+                                    <p class="card-text small mb-0" style="color: var(--color-text-muted);">Satılık ve kiralık konutlarımızı keşfedin</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{% url 'properties:commercial_list' %}" class="card text-center h-100 text-decoration-none property-card border-0 bg-white">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-store fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="card-title mb-2" style="color: var(--color-text);">İşyerleri</h5>
+                                    <p class="card-text small mb-0" style="color: var(--color-text-muted);">İşyeri ve dükkanlarımızı görüntüleyin</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-6">
+                            <a href="{% url 'properties:field_list' %}" class="card text-center h-100 text-decoration-none property-card border-0 bg-white">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-tree fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="card-title mb-2" style="color: var(--color-text);">Tarlalar</h5>
+                                    <p class="card-text small mb-0" style="color: var(--color-text-muted);">Verimli tarlalarımızı inceleyin</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <h2 class="mb-4">Son Eklenen İlanlar</h2>
+    <h2 class="mb-4 fw-semibold" style="color: var(--color-navy); font-size: 1.35rem;">Son Eklenen İlanlar</h2>
     <div class="row">
         {% for property in properties %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100 property-card">
+            <div class="card h-100 property-card border-0 bg-white overflow-hidden">
                 {% if property.images.exists %}
                 <img src="{{ property.images.first.image.url }}" class="card-img-top" alt="{{ property.title }}" style="height: 200px; object-fit: cover;">
                 {% else %}
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <i class="fas fa-home fa-3x text-secondary"></i>
+                <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background: var(--color-bg-alt);">
+                    <i class="fas fa-image fa-3x" style="color: var(--color-border);"></i>
                 </div>
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ property.title }}</h5>
-                    <p class="card-text text-muted">
-                        <small>
-                            <i class="fas fa-map-marker-alt"></i> {{ property.get_property_type_display }}
-                            <span class="mx-2">|</span>
-                            <i class="fas fa-tag"></i> {{ property.get_listing_type_display }}
-                        </small>
+                    <h5 class="card-title fw-semibold" style="color: var(--color-text);">{{ property.title }}</h5>
+                    <p class="card-text mb-2" style="color: var(--color-text-muted); font-size: 0.875rem;">
+                        <i class="fas fa-map-marker-alt me-1" style="color: var(--color-accent); width: 1rem;"></i> {{ property.get_property_type_display }}
+                        <span class="mx-2">|</span>
+                        <i class="fas fa-tag me-1" style="color: var(--color-accent); width: 1rem;"></i> {{ property.get_listing_type_display }}
                     </p>
-                    <p class="card-text">{{ property.description|truncatewords:20 }}</p>
-                    <h6 class="card-subtitle mb-2 text-primary">{{ property.price|floatformat:0 }} TL</h6>
-                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary stretched-link">Detayları Gör</a>
+                    <p class="card-text small" style="color: var(--color-text-muted);">{{ property.description|truncatewords:20 }}</p>
+                    <p class="mb-3 fw-semibold" style="color: var(--color-accent); font-size: 1.1rem;">{{ property.price|floatformat:0 }} TL</p>
+                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary btn-sm">Detayları Gör</a>
                 </div>
-                <div class="card-footer text-muted">
-                    <small>{{ property.created_at|timesince }} önce eklendi</small>
+                <div class="card-footer border-top bg-white pt-2 pb-2" style="color: var(--color-text-muted); font-size: 0.8rem;">
+                    <i class="fas fa-clock me-1"></i> {{ property.created_at|timesince }} önce eklendi
                 </div>
             </div>
         </div>
         {% empty %}
         <div class="col-12">
-            <div class="alert alert-info">
-                Henüz ilan bulunmamaktadır.
+            <div class="alert border-0 mb-0" style="background: var(--color-bg-alt); color: var(--color-text-muted);">
+                <i class="fas fa-info-circle me-2" style="color: var(--color-accent);"></i> Henüz ilan bulunmamaktadır.
             </div>
         </div>
         {% endfor %}

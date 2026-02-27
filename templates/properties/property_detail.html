@@ -4,15 +4,21 @@
 <style>
     .thumbnail {
         cursor: pointer;
-        transition: opacity 0.3s;
+        transition: opacity 0.2s ease;
+        border-radius: var(--radius);
     }
     .thumbnail:hover {
-        opacity: 0.7;
+        opacity: 0.8;
     }
     .property-features i {
-        width: 25px;
+        width: 1.5rem;
         text-align: center;
-        color: #2c3e50;
+        color: var(--color-accent);
+    }
+    .property-detail-card {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
     }
 </style>
 {% endblock %}
@@ -21,24 +27,24 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <div class="card mb-4">
-                <div class="card-body">
+            <div class="card mb-4 border-0 shadow-sm property-detail-card">
+                <div class="card-body p-4">
                     {% if property.images.exists %}
                     <div class="row mb-3">
                         <div class="col-12">
                             <img id="mainImage" src="{{ property.images.first.image.url }}" class="img-fluid rounded" alt="{{ property.title }}" style="width: 100%; height: 400px; object-fit: cover;">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row g-2">
                         {% for image in property.images.all %}
-                        <div class="col-3 mb-3">
-                            <img src="{{ image.image.url }}" class="img-fluid rounded thumbnail" alt="{{ property.title }}" style="width: 100%; height: 100px; object-fit: cover;" onclick="changeMainImage(this.src)">
+                        <div class="col-3">
+                            <img src="{{ image.image.url }}" class="img-fluid thumbnail" alt="{{ property.title }}" style="width: 100%; height: 100px; object-fit: cover;" onclick="changeMainImage(this.src)">
                         </div>
                         {% endfor %}
                     </div>
                     {% else %}
-                    <div class="bg-light d-flex align-items-center justify-content-center rounded" style="height: 400px;">
-                        <i class="fas fa-home fa-5x text-secondary"></i>
+                    <div class="d-flex align-items-center justify-content-center rounded" style="height: 400px; background: var(--color-bg-alt);">
+                        <i class="fas fa-image fa-5x" style="color: var(--color-border);"></i>
                     </div>
                     {% endif %}
                 </div>
@@ -46,17 +52,17 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h2 class="card-title">{{ property.title }}</h2>
-                    <h3 class="text-primary mb-3">{{ property.price|floatformat:0 }} TL</h3>
-                    <p class="text-muted">
-                        <i class="fas fa-map-marker-alt"></i> {{ property.get_property_type_display }}
+            <div class="card mb-4 border-0 shadow-sm property-detail-card">
+                <div class="card-body p-4">
+                    <h2 class="card-title fw-semibold mb-2" style="color: var(--color-text); font-size: 1.35rem;">{{ property.title }}</h2>
+                    <p class="fw-semibold mb-3" style="color: var(--color-accent); font-size: 1.25rem;">{{ property.price|floatformat:0 }} TL</p>
+                    <p class="small mb-3" style="color: var(--color-text-muted);">
+                        <i class="fas fa-map-marker-alt me-1"></i> {{ property.get_property_type_display }}
                         <br>
-                        <i class="fas fa-tag"></i> {{ property.get_listing_type_display }}
+                        <i class="fas fa-tag me-1"></i> {{ property.get_listing_type_display }}
                     </p>
-                    <hr>
-                    <div class="property-features">
+                    <hr style="border-color: var(--color-border);">
+                    <div class="property-features small" style="color: var(--color-text);">
                         {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
                         <p><i class="fas fa-ruler-combined"></i> {{ property.square_meters }} m²</p>
                         <p><i class="fas fa-file-contract"></i> {{ property.zoning_status }}</p>
@@ -88,13 +94,13 @@
                         <p><i class="fas fa-level-up-alt"></i> {{ property.floor_location }}. Kat</p>
                         {% endif %}
                     </div>
-                    <hr>
+                    <hr style="border-color: var(--color-border);">
                     <div class="d-grid gap-2">
                         <a href="https://wa.me/905384023280?text=Merhaba, {{ property.title }} ilanı hakkında bilgi almak istiyorum." class="btn btn-success" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp ile İletişim
+                            <i class="fab fa-whatsapp me-2"></i> WhatsApp ile İletişim
                         </a>
                         <a href="tel:05384023280" class="btn btn-primary">
-                            <i class="fas fa-phone"></i> Ara
+                            <i class="fas fa-phone me-2"></i> Ara
                         </a>
                     </div>
                 </div>
@@ -104,10 +110,10 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h4>Açıklama</h4>
-                    <p>{{ property.description|linebreaks }}</p>
+            <div class="card border-0 shadow-sm property-detail-card">
+                <div class="card-body p-4">
+                    <h4 class="fw-semibold mb-3" style="color: var(--color-navy);">Açıklama</h4>
+                    <p class="mb-0" style="color: var(--color-text);">{{ property.description|linebreaks }}</p>
                 </div>
             </div>
         </div>

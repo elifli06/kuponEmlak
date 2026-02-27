@@ -4,31 +4,31 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-body text-center">
+            <div class="card border-0 shadow-sm" style="border-radius: var(--radius-lg); overflow: hidden;">
+                <div class="card-body text-center p-4 p-lg-5">
                     <img src="/static/images/agent.jpg" alt="Zekiye GÖKTÜRK" class="agent-image mb-4">
-                    <h2 class="mb-4">Emlak Danışmanı</h2>
-                    <h3 class="text-primary mb-4">{{ agent_name }}</h3>
+                    <p class="small text-uppercase fw-semibold mb-2" style="color: var(--color-accent); letter-spacing: 0.05em;">Emlak Danışmanı</p>
+                    <h2 class="fw-semibold mb-4" style="color: var(--color-navy); font-size: 1.5rem;">{{ agent_name }}</h2>
                     
-                    <div class="row mb-4">
+                    <div class="row mb-4 g-3">
                         <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <i class="fas fa-phone fa-3x text-primary mb-3"></i>
-                                    <h4>Telefon</h4>
+                            <div class="card h-100 border-0 shadow-sm" style="background: var(--color-bg-alt); border-radius: var(--radius);">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-phone fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="fw-semibold mb-2" style="color: var(--color-text);">Telefon</h5>
                                     <p class="mb-0">
-                                        <a href="tel:{{ phone }}" class="text-decoration-none">{{ phone }}</a>
+                                        <a href="tel:{{ phone }}" class="text-decoration-none fw-medium" style="color: var(--color-accent);">{{ phone }}</a>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="card h-100">
-                                <div class="card-body">
-                                    <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
-                                    <h4>E-posta</h4>
+                            <div class="card h-100 border-0 shadow-sm" style="background: var(--color-bg-alt); border-radius: var(--radius);">
+                                <div class="card-body py-4">
+                                    <i class="fas fa-envelope fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="fw-semibold mb-2" style="color: var(--color-text);">E-posta</h5>
                                     <p class="mb-0">
-                                        <a href="mailto:{{ email }}" class="text-decoration-none">{{ email }}</a>
+                                        <a href="mailto:{{ email }}" class="text-decoration-none fw-medium" style="color: var(--color-accent);">{{ email }}</a>
                                     </p>
                                 </div>
                             </div>
@@ -37,12 +37,12 @@
 
                     <div class="row mb-4">
                         <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <i class="fas fa-map-marker-alt fa-3x text-primary mb-3"></i>
-                                    <h4>Ofis Konumu</h4>
-                                    <p class="mb-3">Kale Mahallesi Kavak Sokak Ata Plaza Kat:10 No:114, Niğde</p>
-                                    <div class="ratio ratio-16x9">
+                            <div class="card border-0 shadow-sm" style="border-radius: var(--radius);">
+                                <div class="card-body p-4">
+                                    <i class="fas fa-map-marker-alt fa-2x mb-3" style="color: var(--color-accent);"></i>
+                                    <h5 class="fw-semibold mb-2" style="color: var(--color-text);">Ofis Konumu</h5>
+                                    <p class="small mb-3" style="color: var(--color-text-muted);">Kale Mahallesi Kavak Sokak Ata Plaza Kat:10 No:114, Niğde</p>
+                                    <div class="ratio ratio-16x9 rounded overflow-hidden">
                                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d200!2d34.683056!3d37.970278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU4JzEzIk4gMzTCsDQwJzU5IkU!5e0!3m2!1str!2str!4v1709914500000!5m2!1str!2str"
                                                 width="600" height="450" 
                                                 style="border:0;" 
@@ -60,12 +60,12 @@
                         <div class="row g-2">
                             <div class="col-md-6">
                                 <a href="https://wa.me/905384023280" class="btn btn-success btn-lg w-100" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> WhatsApp ile İletişime Geç
+                                    <i class="fab fa-whatsapp me-2"></i> WhatsApp ile İletişime Geç
                                 </a>
                             </div>
                             <div class="col-md-6">
                                 <a href="https://www.google.com/maps/dir/?api=1&destination=37.970278,34.683056" class="btn btn-primary btn-lg w-100" target="_blank">
-                                    <i class="fas fa-directions"></i> Yol Tarifi Al
+                                    <i class="fas fa-directions me-2"></i> Yol Tarifi Al
                                 </a>
                             </div>
                         </div>

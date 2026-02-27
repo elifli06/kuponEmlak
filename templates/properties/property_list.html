@@ -4,28 +4,29 @@
 <div class="container">
     <div class="row mb-4">
         <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <form method="get" class="row g-3">
+            <div class="card border-0 shadow-sm bg-white">
+                <div class="card-body p-4">
+                    <form method="get" class="row g-3 align-items-end">
                         <div class="col-md-3">
-                            <label class="form-label">İlan Tipi</label>
-                            <select name="listing_type" class="form-select">
+                            <label class="form-label small fw-medium" style="color: var(--color-text-muted);">İlan Tipi</label>
+                            <select name="listing_type" class="form-select" style="border-color: var(--color-border);">
                                 <option value="">Tümü</option>
                                 <option value="SATILIK" {% if listing_type == 'SATILIK' %}selected{% endif %}>Satılık</option>
                                 <option value="KIRALIK" {% if listing_type == 'KIRALIK' %}selected{% endif %}>Kiralık</option>
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Min. Fiyat</label>
-                            <input type="number" name="min_price" class="form-control" value="{{ min_price|default:'' }}">
+                            <label class="form-label small fw-medium" style="color: var(--color-text-muted);">Min. Fiyat</label>
+                            <input type="number" name="min_price" class="form-control" value="{{ min_price|default:'' }}" style="border-color: var(--color-border);">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">Max. Fiyat</label>
-                            <input type="number" name="max_price" class="form-control" value="{{ max_price|default:'' }}">
+                            <label class="form-label small fw-medium" style="color: var(--color-text-muted);">Max. Fiyat</label>
+                            <input type="number" name="max_price" class="form-control" value="{{ max_price|default:'' }}" style="border-color: var(--color-border);">
                         </div>
                         <div class="col-md-3">
-                            <label class="form-label">&nbsp;</label>
-                            <button type="submit" class="btn btn-primary w-100">Filtrele</button>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-filter me-2"></i> Filtrele
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -36,63 +37,55 @@
     <div class="row">
         {% for property in properties %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100 property-card">
+            <div class="card h-100 property-card border-0 bg-white overflow-hidden">
                 {% if property.images.exists %}
                 <img src="{{ property.images.first.image.url }}" class="card-img-top" alt="{{ property.title }}" style="height: 200px; object-fit: cover;">
                 {% else %}
-                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <i class="fas fa-home fa-3x text-secondary"></i>
+                <div class="card-img-top d-flex align-items-center justify-content-center" style="height: 200px; background: var(--color-bg-alt);">
+                    <i class="fas fa-image fa-3x" style="color: var(--color-border);"></i>
                 </div>
                 {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ property.title }}</h5>
-                    <p class="card-text text-muted">
-                        <small>
-                            <i class="fas fa-map-marker-alt"></i> {{ property.get_property_type_display }}
-                            <span class="mx-2">|</span>
-                            <i class="fas fa-tag"></i> {{ property.get_listing_type_display }}
-                        </small>
+                    <h5 class="card-title fw-semibold" style="color: var(--color-text);">{{ property.title }}</h5>
+                    <p class="card-text mb-2" style="color: var(--color-text-muted); font-size: 0.875rem;">
+                        <i class="fas fa-map-marker-alt me-1" style="color: var(--color-accent);"></i> {{ property.get_property_type_display }}
+                        <span class="mx-2">|</span>
+                        <i class="fas fa-tag me-1" style="color: var(--color-accent);"></i> {{ property.get_listing_type_display }}
                     </p>
-                    <p class="card-text">{{ property.description|truncatewords:20 }}</p>
-                    <h6 class="card-subtitle mb-2 text-primary">{{ property.price|floatformat:0 }} TL</h6>
+                    <p class="card-text small" style="color: var(--color-text-muted);">{{ property.description|truncatewords:20 }}</p>
+                    <p class="mb-2 fw-semibold" style="color: var(--color-accent); font-size: 1.1rem;">{{ property.price|floatformat:0 }} TL</p>
 
                     {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                    <p class="card-text">
-                        <small class="text-muted">
-                            <i class="fas fa-ruler-combined"></i> {{ property.square_meters }} m²
-                            <br>
-                            <i class="fas fa-file-contract"></i> {{ property.zoning_status }}
-                        </small>
+                    <p class="card-text small mb-2" style="color: var(--color-text-muted);">
+                        <i class="fas fa-ruler-combined me-1" style="color: var(--color-accent);"></i> {{ property.square_meters }} m²
+                        <br>
+                        <i class="fas fa-file-contract me-1" style="color: var(--color-accent);"></i> {{ property.zoning_status }}
                     </p>
                     {% elif property.property_type == 'KONUT' %}
-                    <p class="card-text">
-                        <small class="text-muted">
-                            <i class="fas fa-ruler-combined"></i> {{ property.gross_square_meters }} m² (Brüt)
-                            <br>
-                            <i class="fas fa-door-open"></i> {{ property.room_count }} Oda
-                        </small>
+                    <p class="card-text small mb-2" style="color: var(--color-text-muted);">
+                        <i class="fas fa-ruler-combined me-1" style="color: var(--color-accent);"></i> {{ property.gross_square_meters }} m² (Brüt)
+                        <br>
+                        <i class="fas fa-door-open me-1" style="color: var(--color-accent);"></i> {{ property.room_count }} Oda
                     </p>
                     {% elif property.property_type == 'ISYERI' %}
-                    <p class="card-text">
-                        <small class="text-muted">
-                            <i class="fas fa-ruler-combined"></i> {{ property.square_meters }} m²
-                            <br>
-                            <i class="fas fa-building"></i> {{ property.floor_location }}. Kat
-                        </small>
+                    <p class="card-text small mb-2" style="color: var(--color-text-muted);">
+                        <i class="fas fa-ruler-combined me-1" style="color: var(--color-accent);"></i> {{ property.square_meters }} m²
+                        <br>
+                        <i class="fas fa-building me-1" style="color: var(--color-accent);"></i> {{ property.floor_location }}. Kat
                     </p>
                     {% endif %}
 
-                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary stretched-link">Detayları Gör</a>
+                    <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-outline-primary btn-sm">Detayları Gör</a>
                 </div>
-                <div class="card-footer text-muted">
-                    <small>{{ property.created_at|timesince }} önce eklendi</small>
+                <div class="card-footer border-top bg-white pt-2 pb-2" style="color: var(--color-text-muted); font-size: 0.8rem;">
+                    <i class="fas fa-clock me-1"></i> {{ property.created_at|timesince }} önce eklendi
                 </div>
             </div>
         </div>
         {% empty %}
         <div class="col-12">
-            <div class="alert alert-info">
-                Aradığınız kriterlere uygun ilan bulunamadı.
+            <div class="alert border-0 mb-0" style="background: var(--color-bg-alt); color: var(--color-text-muted);">
+                <i class="fas fa-search me-2" style="color: var(--color-accent);"></i> Aradığınız kriterlere uygun ilan bulunamadı.
             </div>
         </div>
         {% endfor %}
