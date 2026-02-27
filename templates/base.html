@@ -33,43 +33,43 @@
            ============================================ */
 
         :root {
-            /* Color System - Professional Palette */
-            --color-primary: #2563eb;
-            --color-primary-dark: #1e40af;
-            --color-primary-light: #3b82f6;
-            --color-primary-50: #eff6ff;
-            --color-primary-100: #dbeafe;
+            /* Professional Pastel Palette */
+            --color-primary: #7a9bb8;
+            --color-primary-dark: #6a8aa5;
+            --color-primary-light: #9bb5ce;
+            --color-primary-50: #eef3f8;
+            --color-primary-100: #dce6f0;
 
-            --color-secondary: #64748b;
-            --color-secondary-light: #94a3b8;
-            --color-secondary-dark: #475569;
+            --color-secondary: #8a9bab;
+            --color-secondary-light: #a8b8c5;
+            --color-secondary-dark: #6b7b8a;
 
-            --color-success: #10b981;
-            --color-success-light: #34d399;
-            --color-success-dark: #059669;
+            --color-success: #85b09a;
+            --color-success-light: #a3c4b0;
+            --color-success-dark: #6b9a82;
 
-            --color-neutral-50: #f8fafc;
-            --color-neutral-100: #f1f5f9;
+            --color-neutral-50: #f5f7fa;
+            --color-neutral-100: #eef1f5;
             --color-neutral-200: #e2e8f0;
-            --color-neutral-300: #cbd5e1;
-            --color-neutral-400: #94a3b8;
-            --color-neutral-500: #64748b;
-            --color-neutral-600: #475569;
-            --color-neutral-700: #334155;
-            --color-neutral-800: #1e293b;
-            --color-neutral-900: #0f172a;
+            --color-neutral-300: #d1d9e2;
+            --color-neutral-400: #a8b4c2;
+            --color-neutral-500: #7b8a9a;
+            --color-neutral-600: #5c6b7a;
+            --color-neutral-700: #4a5c6b;
+            --color-neutral-800: #3d4d5c;
+            --color-neutral-900: #2d3a47;
 
-            --color-text-primary: #0f172a;
-            --color-text-secondary: #475569;
-            --color-text-tertiary: #64748b;
+            --color-text-primary: #4a5c6b;
+            --color-text-secondary: #6b7b8a;
+            --color-text-tertiary: #8a9aa8;
 
             --color-border: #e2e8f0;
-            --color-border-light: #f1f5f9;
-            --color-border-dark: #cbd5e1;
+            --color-border-light: #eef1f5;
+            --color-border-dark: #d1d9e2;
 
             --color-background: #ffffff;
-            --color-background-alt: #f8fafc;
-            --color-background-dark: #0f172a;
+            --color-background-alt: #f5f7fa;
+            --color-background-dark: #6b7c8d;
 
             /* Typography */
             --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -219,10 +219,10 @@
            ============================================ */
 
         .navbar {
-            background: #0f172a;
+            background: linear-gradient(135deg, #6b7c8d 0%, #7b8c9d 100%);
             padding: 1rem 0;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             position: sticky;
             top: 0;
             z-index: 1020;
@@ -291,7 +291,7 @@
         }
 
         .navbar-brand:hover {
-            color: #60a5fa !important;
+            color: #c5d8e8 !important;
             transform: translateY(-1px);
         }
 
@@ -341,7 +341,7 @@
             transform: translateX(-50%) scaleX(0);
             width: calc(100% - 24px);
             height: 2px;
-            background: #60a5fa;
+            background: #b8cfdf;
             transition: transform 0.3s ease;
         }
 
@@ -415,9 +415,9 @@
         }
 
         .search-form .form-control:focus {
-            border-color: #60a5fa;
+            border-color: #b8cfdf;
             background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            box-shadow: 0 0 0 3px rgba(184, 207, 223, 0.25);
             outline: none;
             color: #ffffff;
         }
@@ -544,8 +544,8 @@
            ============================================ */
 
         .footer {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: rgba(255, 255, 255, 0.9);
+            background: linear-gradient(135deg, #6b7c8d 0%, #7b8c9d 50%, #6b7c8d 100%);
+            color: rgba(255, 255, 255, 0.92);
             padding: 3rem 0 1.5rem;
             margin-top: 4rem;
             position: relative;
@@ -559,7 +559,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa, #3b82f6, #2563eb);
+            background: linear-gradient(90deg, #9bb5ce, #b8cfdf, #c5d8e8, #b8cfdf, #9bb5ce);
             background-size: 200% 100%;
             animation: shimmer 3s linear infinite;
         }
@@ -602,15 +602,15 @@
             align-items: center;
             gap: 0.5rem;
             padding-bottom: 0.75rem;
-            border-bottom: 2px solid rgba(37, 99, 235, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.25);
         }
 
         .footer h5 i {
-            color: #2563eb;
+            color: #c5d8e8;
             font-size: 1.125rem;
             width: 36px;
             height: 36px;
-            background: rgba(37, 99, 235, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             border-radius: 0.5rem;
             display: flex;
             align-items: center;
@@ -628,7 +628,7 @@
         }
 
         .footer p i {
-            color: #3b82f6;
+            color: #b8cfdf;
             width: 20px;
             text-align: center;
         }
@@ -644,7 +644,7 @@
         }
 
         .footer a:hover {
-            color: #60a5fa;
+            color: #e8f0f5;
             transform: translateX(5px);
         }
 
@@ -671,8 +671,8 @@
         }
 
         .footer .list-unstyled a:hover {
-            color: #60a5fa;
-            background: rgba(37, 99, 235, 0.15);
+            color: #e8f0f5;
+            background: rgba(255, 255, 255, 0.12);
             transform: translateY(-2px);
         }
 
@@ -689,18 +689,18 @@
             width: 40px;
             height: 40px;
             border-radius: 0.5rem;
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.3);
-            color: #3b82f6;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #e8f0f5;
             transition: all 0.3s ease;
             font-size: 1.125rem;
         }
 
         .social-icons a:hover {
-            background: #2563eb;
+            background: rgba(255, 255, 255, 0.25);
             color: #ffffff;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
 
         .footer hr {
@@ -727,7 +727,7 @@
         }
 
         .footer-credit a {
-            color: #60a5fa;
+            color: #c5d8e8;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -735,8 +735,8 @@
         }
 
         .footer-credit a:hover {
-            color: #93c5fd;
-            border-bottom-color: #93c5fd;
+            color: #e8f0f5;
+            border-bottom-color: #e8f0f5;
         }
 
         .footer-copyright {
