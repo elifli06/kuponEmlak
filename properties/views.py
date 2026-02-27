@@ -40,9 +40,17 @@ def property_list(request, type_filter=None):
         properties = properties.filter(listing_type=listing_type)
 
     if min_price:
-        properties = properties.filter(price__gte=min_price)
+        try:
+            min_price_float = float(min_price)
+            properties = properties.filter(price__gte=min_price_float)
+        except (ValueError, TypeError):
+            pass
     if max_price:
-        properties = properties.filter(price__lte=max_price)
+        try:
+            max_price_float = float(max_price)
+            properties = properties.filter(price__lte=max_price_float)
+        except (ValueError, TypeError):
+            pass
 
     # Arama sorgusunu işle
     if search_query:
@@ -82,12 +90,15 @@ def property_list(request, type_filter=None):
         # Başlık ve içerik aramalarını birleştir
         properties = properties.filter(title_filter | content_filter).distinct()
         
-        # Başlıkta geçenleri üste çıkar
-        properties = properties.extra(
-            select={'title_match': "CASE WHEN LOWER(title) LIKE %s THEN 1 ELSE 0 END"},
-            select_params=['%' + normalized_query.lower() + '%'],
-            order_by=['-title_match', '-created_at']
-        )
+        # Başlıkta geçenleri üste çıkar - extra() yerine annotate kullan
+        from django.db.models import Case, When, Value, IntegerField
+        properties = properties.annotate(
+            title_match=Case(
+                When(title__icontains=normalized_query, then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField()
+            )
+        ).order_by('-title_match', '-created_at')
 
     else:
         properties = properties.order_by('-created_at')
