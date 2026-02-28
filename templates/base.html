@@ -30,6 +30,10 @@
         .nav-link-custom { position: relative; }
         .nav-link-custom::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: #c5a059; transition: width 0.3s ease; }
         .nav-link-custom:hover::after { width: 100%; }
+        .footer-dev-link { transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease; }
+        .footer-dev-link:hover { opacity: 1; transform: translateY(-1px); color: #c5a059; }
+        @keyframes footer-dev-pulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
+        .footer-dev-badge { animation: footer-dev-pulse 3s ease-in-out infinite; }
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -127,8 +131,13 @@
                 </a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-xs text-slate-400 font-medium">© {% now "Y" %} Kup10 Gayrimenkul. Tüm hakları saklıdır.</p>
+            <a href="https://www.crvsoftware.com" target="_blank" rel="noopener noreferrer" class="footer-dev-link footer-dev-badge inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-[#c5a059] opacity-90">
+                <i class="fas fa-code text-[10px]"></i>
+                <span>CRV Software tarafından geliştirilmiştir</span>
+                <i class="fas fa-external-link-alt text-[10px] opacity-70"></i>
+            </a>
         </div>
     </footer>
 
