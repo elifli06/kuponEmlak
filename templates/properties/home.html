@@ -20,7 +20,7 @@
         <div class="space-y-6 md:space-y-8">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
                 Hayalinizdeki Mülkü <br>
-                <span class="text-transparent bg-clip-text gold-gradient">Burada Keşfedilim</span>
+                <span class="text-transparent bg-clip-text gold-gradient">Burada Keşfedelim</span>
             </h1>
             <p class="text-base md:text-lg text-slate-500 max-w-lg leading-relaxed">
                 Arsa, konut, işyeri ve tarla ilanları. Profesyonel danışmanlık ile güvenle alın, satın veya kiralayın.
@@ -162,11 +162,15 @@
                             class="fas fa-image text-5xl"></i></div>
                     {% endif %}
                     <div class="absolute top-4 left-4 flex gap-2">
-                        <span class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{ property.get_listing_type_display }}</span>
+                        <span
+                            class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{
+                            property.get_listing_type_display }}</span>
                     </div>
-                    <div class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
+                    <div
+                        class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
                         <span class="text-lg font-extrabold text-slate-900">{{ property.price|price_tr }} TL</span>
-                        <span class="text-[10px] font-bold text-slate-500 uppercase">{{ property.get_property_type_display }}</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">{{
+                            property.get_property_type_display }}</span>
                     </div>
                 </div>
                 <div class="px-1">
@@ -175,17 +179,24 @@
                     <div class="flex items-center justify-between py-3 border-t border-slate-100">
                         <div class="flex items-center gap-4 text-sm text-slate-500">
                             {% if property.property_type == 'KONUT' %}
-                            <span><strong class="text-slate-900">{% if property.room_count is not None %}{{ property.room_count }}{% else %}—{% endif %}</strong> Oda</span>
-                            <span><strong class="text-slate-900">{% if property.gross_square_meters is not None %}{{ property.gross_square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.room_count is not None %}{{
+                                    property.room_count }}{% else %}—{% endif %}</strong> Oda</span>
+                            <span><strong class="text-slate-900">{% if property.gross_square_meters is not None %}{{
+                                    property.gross_square_meters|floatformat:0 }}{% else %}—{% endif %}</strong>
+                                m²</span>
                             {% elif property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{
+                                    property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% elif property.property_type == 'ISYERI' %}
-                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{
+                                    property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% else %}
-                            <span><strong class="text-slate-900">{{ property.get_property_type_display }}</strong></span>
+                            <span><strong class="text-slate-900">{{ property.get_property_type_display
+                                    }}</strong></span>
                             {% endif %}
                         </div>
-                        <span class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
+                        <span
+                            class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
                             <i class="fas fa-arrow-right text-sm"></i>
                         </span>
                     </div>
