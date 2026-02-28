@@ -1,14 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Kup10 Gayrimenkul | Emlak Danışmanlığı{% endblock %}</title>
-    <meta name="description" content="{% block description %}Kup10 Gayrimenkul - Niğde satılık ve kiralık arsa, konut, işyeri, tarla. Profesyonel emlak danışmanlığı.{% endblock %}">
+    <meta name="description"
+        content="{% block description %}Kup10 Gayrimenkul - Niğde satılık ve kiralık arsa, konut, işyeri, tarla. Profesyonel emlak danışmanlığı.{% endblock %}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer">
     <script>
         tailwind.config = {
             theme: {
@@ -22,58 +26,145 @@
         }
     </script>
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f8fafc; color: #0f172a; scroll-behavior: smooth; }
-        .glass { background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.4); }
-        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(15,23,42,0.08); }
-        .gold-gradient { background: linear-gradient(135deg, #c5a059 0%, #9a7b41 100%); }
-        .nav-link-custom { position: relative; }
-        .nav-link-custom::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -4px; left: 0; background: #c5a059; transition: width 0.3s ease; }
-        .nav-link-custom:hover::after { width: 100%; }
-        .footer-dev-link { transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease; }
-        .footer-dev-link:hover { opacity: 1; transform: translateY(-1px); color: #c5a059; }
-        @keyframes footer-dev-pulse { 0%, 100% { opacity: 0.85; } 50% { opacity: 1; } }
-        .footer-dev-badge { animation: footer-dev-pulse 3s ease-in-out infinite; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #c5a059 0%, #9a7b41 100%);
+        }
+
+        .nav-link-custom {
+            position: relative;
+        }
+
+        .nav-link-custom::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #c5a059;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link-custom:hover::after {
+            width: 100%;
+        }
+
+        .footer-dev-link {
+            transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+        }
+
+        .footer-dev-link:hover {
+            opacity: 1;
+            transform: translateY(-1px);
+            color: #c5a059;
+        }
+
+        @keyframes footer-dev-pulse {
+
+            0%,
+            100% {
+                opacity: 0.85;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .footer-dev-badge {
+            animation: footer-dev-pulse 3s ease-in-out infinite;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
     </style>
     {% block extra_css %}{% endblock %}
 </head>
+
 <body class="antialiased">
 
     <!-- NAV -->
     <nav class="fixed top-0 w-full z-50 px-4 py-3 md:px-6 md:py-4">
-        <div class="max-w-7xl mx-auto glass rounded-2xl px-4 md:px-8 py-3 md:py-4 flex items-center justify-between shadow-sm relative">
-            <a href="{% url 'properties:home' %}" class="flex items-center gap-2">
-                <img src="{% static 'images/logo/logo.jpg' %}?v=2" alt="Kup10" class="h-10 w-10 object-contain rounded-xl">
-                <span class="text-lg md:text-xl font-extrabold tracking-tight text-slate-900">Kup10 <span class="text-[#c5a059]">Gayrimenkul</span></span>
+        <div
+            class="max-w-7xl mx-auto glass rounded-2xl px-4 md:px-8 py-3 md:py-4 flex items-center justify-between shadow-sm relative">
+            <a href="{% url 'properties:home' %}" class="flex items-center gap-2 group">
+                <img src="{% static 'images/logo/logo.jpg' %}?v=3" alt="Kup10"
+                    class="h-10 w-10 object-contain rounded-xl transition-transform duration-300 ease-out group-hover:scale-110 group-hover:shadow-lg">
+                <span class="text-lg md:text-xl font-extrabold tracking-tight text-slate-900">Kup10 <span
+                        class="text-[#c5a059]">Gayrimenkul</span></span>
             </a>
 
             <div id="navMenu" class="hidden md:flex items-center gap-8">
-                <a href="{% url 'properties:home' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Anasayfa</a>
-                <a href="{% url 'properties:land_list' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Arsa</a>
-                <a href="{% url 'properties:residential_list' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Konut</a>
-                <a href="{% url 'properties:commercial_list' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">İşyeri</a>
-                <a href="{% url 'properties:field_list' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Tarla</a>
-                <a href="{% url 'properties:contact' %}" class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">İletişim</a>
+                <a href="{% url 'properties:home' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Anasayfa</a>
+                <a href="{% url 'properties:land_list' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Arsa</a>
+                <a href="{% url 'properties:residential_list' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Konut</a>
+                <a href="{% url 'properties:commercial_list' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">İşyeri</a>
+                <a href="{% url 'properties:field_list' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">Tarla</a>
+                <a href="{% url 'properties:contact' %}"
+                    class="nav-link-custom text-sm font-semibold text-slate-600 hover:text-slate-900">İletişim</a>
             </div>
-            <button type="button" id="navToggle" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menü">
+            <button type="button" id="navToggle" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100"
+                aria-label="Menü">
                 <i class="fas fa-bars text-xl"></i>
             </button>
 
-            <div id="mobileMenu" class="absolute top-full left-4 right-4 mt-2 py-4 px-4 glass rounded-2xl shadow-xl hidden flex-col gap-2 md:hidden">
-                <a href="{% url 'properties:home' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Anasayfa</a>
-                <a href="{% url 'properties:land_list' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Arsa</a>
-                <a href="{% url 'properties:residential_list' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Konut</a>
-                <a href="{% url 'properties:commercial_list' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">İşyeri</a>
-                <a href="{% url 'properties:field_list' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Tarla</a>
-                <a href="{% url 'properties:contact' %}" class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">İletişim</a>
+            <div id="mobileMenu"
+                class="absolute top-full left-4 right-4 mt-2 py-4 px-4 glass rounded-2xl shadow-xl hidden flex-col gap-2 md:hidden">
+                <a href="{% url 'properties:home' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Anasayfa</a>
+                <a href="{% url 'properties:land_list' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Arsa</a>
+                <a href="{% url 'properties:residential_list' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Konut</a>
+                <a href="{% url 'properties:commercial_list' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">İşyeri</a>
+                <a href="{% url 'properties:field_list' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">Tarla</a>
+                <a href="{% url 'properties:contact' %}"
+                    class="px-4 py-2 font-semibold text-slate-600 hover:text-[#c5a059] rounded-lg">İletişim</a>
             </div>
         </div>
     </nav>
     <script>
-        document.getElementById('navToggle')?.addEventListener('click', function() {
+        document.getElementById('navToggle')?.addEventListener('click', function () {
             var m = document.getElementById('mobileMenu');
             m.classList.toggle('hidden'); m.classList.toggle('flex');
         });
@@ -91,13 +182,20 @@
                     <div class="w-8 h-8 gold-gradient rounded-lg flex items-center justify-center">
                         <i class="fas fa-home text-white text-sm"></i>
                     </div>
-                    <span class="text-lg font-extrabold tracking-tight text-slate-900">Kup10 <span class="text-[#c5a059]">Gayrimenkul</span></span>
+                    <span class="text-lg font-extrabold tracking-tight text-slate-900">Kup10 <span
+                            class="text-[#c5a059]">Gayrimenkul</span></span>
                 </div>
-                <p class="text-slate-500 text-sm leading-relaxed">Niğde ve çevresinde profesyonel emlak danışmanlığı. Arsa, konut, işyeri ve tarla ilanları.</p>
+                <p class="text-slate-500 text-sm leading-relaxed">Niğde ve çevresinde profesyonel emlak danışmanlığı.
+                    Arsa, konut, işyeri ve tarla ilanları.</p>
                 <div class="flex gap-3">
-                    <a href="tel:05384023280" class="text-slate-600 hover:text-[#c5a059] transition-colors"><i class="fas fa-phone-alt"></i></a>
-                    <a href="https://wa.me/905384023280" target="_blank" class="text-slate-600 hover:text-[#c5a059] transition-colors"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:kuponemlaknigde@gmail.com" class="text-slate-600 hover:text-[#c5a059] transition-colors"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:05384023280" class="text-slate-600 hover:text-[#c5a059] transition-colors"><i
+                            class="fas fa-phone-alt"></i></a>
+                    <a href="https://wa.me/905384023280" target="_blank"
+                        class="text-slate-600 hover:text-[#c5a059] transition-colors"><i
+                            class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:kuponemlaknigde@gmail.com"
+                        class="text-slate-600 hover:text-[#c5a059] transition-colors"><i
+                            class="fas fa-envelope"></i></a>
                 </div>
             </div>
             <div>
@@ -110,25 +208,34 @@
             <div>
                 <h4 class="font-bold text-slate-900 mb-4">Hızlı Linkler</h4>
                 <ul class="space-y-3 text-sm text-slate-500 font-medium">
-                    <li><a href="{% url 'properties:home' %}" class="hover:text-[#c5a059] transition-colors">Anasayfa</a></li>
-                    <li><a href="{% url 'properties:land_list' %}" class="hover:text-[#c5a059] transition-colors">Arsa</a></li>
-                    <li><a href="{% url 'properties:residential_list' %}" class="hover:text-[#c5a059] transition-colors">Konut</a></li>
-                    <li><a href="{% url 'properties:commercial_list' %}" class="hover:text-[#c5a059] transition-colors">İşyeri</a></li>
-                    <li><a href="{% url 'properties:field_list' %}" class="hover:text-[#c5a059] transition-colors">Tarla</a></li>
-                    <li><a href="{% url 'properties:contact' %}" class="hover:text-[#c5a059] transition-colors">İletişim</a></li>
+                    <li><a href="{% url 'properties:home' %}"
+                            class="hover:text-[#c5a059] transition-colors">Anasayfa</a></li>
+                    <li><a href="{% url 'properties:land_list' %}"
+                            class="hover:text-[#c5a059] transition-colors">Arsa</a></li>
+                    <li><a href="{% url 'properties:residential_list' %}"
+                            class="hover:text-[#c5a059] transition-colors">Konut</a></li>
+                    <li><a href="{% url 'properties:commercial_list' %}"
+                            class="hover:text-[#c5a059] transition-colors">İşyeri</a></li>
+                    <li><a href="{% url 'properties:field_list' %}"
+                            class="hover:text-[#c5a059] transition-colors">Tarla</a></li>
+                    <li><a href="{% url 'properties:contact' %}"
+                            class="hover:text-[#c5a059] transition-colors">İletişim</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold text-slate-900 mb-4">Adres</h4>
                 <p class="text-sm text-slate-500">Kale Mah. Kavak Sok. Ata Plaza Kat:10 No:114, Niğde</p>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=37.970278,34.683056" target="_blank" class="inline-flex items-center gap-2 mt-2 text-sm font-semibold text-[#c5a059] hover:underline">
+                <a href="https://www.google.com/maps/dir/?api=1&destination=37.970278,34.683056" target="_blank"
+                    class="inline-flex items-center gap-2 mt-2 text-sm font-semibold text-[#c5a059] hover:underline">
                     <i class="fas fa-directions"></i> Yol tarifi
                 </a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div
+            class="max-w-7xl mx-auto pt-6 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-xs text-slate-400 font-medium">© {% now "Y" %} Kup10 Gayrimenkul. Tüm hakları saklıdır.</p>
-            <a href="https://www.crvsoftware.com" target="_blank" rel="noopener noreferrer" class="footer-dev-link footer-dev-badge inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-[#c5a059] opacity-90">
+            <a href="https://www.crvsoftware.com" target="_blank" rel="noopener noreferrer"
+                class="footer-dev-link footer-dev-badge inline-flex items-center gap-2 text-xs font-medium text-slate-500 hover:text-[#c5a059] opacity-90">
                 <i class="fas fa-code text-[10px]"></i>
                 <span>CRV Software tarafından geliştirilmiştir</span>
                 <i class="fas fa-external-link-alt text-[10px] opacity-70"></i>
@@ -138,4 +245,5 @@
 
     {% block extra_js %}{% endblock %}
 </body>
+
 </html>
