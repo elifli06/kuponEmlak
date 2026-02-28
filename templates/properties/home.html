@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static property_filters %}
 
 {% block extra_css %}
 <style>
@@ -138,7 +138,7 @@
                         <span class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{ property.get_listing_type_display }}</span>
                     </div>
                     <div class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
-                        <span class="text-lg font-extrabold text-slate-900">{{ property.price|floatformat:0 }} TL</span>
+                        <span class="text-lg font-extrabold text-slate-900">{{ property.price|price_tr }} TL</span>
                         <span class="text-[10px] font-bold text-slate-500 uppercase">{{ property.get_property_type_display }}</span>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load static property_filters %}
 
 {% block title %}{{ property.title }} | Kup10 Gayrimenkul{% endblock %}
 
@@ -48,7 +48,7 @@
             <div class="lg:col-span-1">
                 <div class="lg:sticky lg:top-28 bg-white rounded-2xl border border-slate-100 p-6 md:p-8 shadow-lg space-y-6">
                     <div>
-                        <p class="text-3xl md:text-4xl font-extrabold text-slate-900">{{ property.price|floatformat:0 }} TL</p>
+                        <p class="text-3xl md:text-4xl font-extrabold text-slate-900">{{ property.price|price_tr }} TL</p>
                         <p class="text-sm text-slate-500 mt-1">{{ property.get_listing_type_display }}</p>
                     </div>
 
