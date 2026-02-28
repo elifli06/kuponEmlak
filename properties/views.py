@@ -11,14 +11,12 @@ def normalize_text(text):
     return ''.join(c for c in text if not unicodedata.combining(c))
 
 def home(request):
-    # Son 12 ilan - her birini gercek alt model (Konut/Isyeri/Arsa/Tarla) olarak yukle; oda/m2 icin gerekli
+    # Son 12 ilan - select_subclasses() ile alt model (Konut/Isyeri/Arsa/Tarla) ve oda/m2 alanlari yuklenir
     ids = list(Property.objects.order_by('-created_at').values_list('pk', flat=True)[:12])
-    properties = []
-    for pk in ids:
-        p = Property.objects.get(pk=pk)
-        if hasattr(p, 'get_real_instance'):
-            p = p.get_real_instance()
-        properties.append(p)
+    properties = [
+        Property.objects.select_subclasses().get(pk=pk)
+        for pk in ids
+    ]
     # Kategori sayilari (bento / slider icin)
     from django.db.models import Count
     counts = Property.objects.values('property_type').annotate(count=Count('pk'))
