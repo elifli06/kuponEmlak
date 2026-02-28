@@ -3,8 +3,13 @@
 
 {% block extra_css %}
 <style>
-    .hero-gradient { background: radial-gradient(circle at top right, #f1f5f9 0%, #e2e8f0 100%); }
-    .gold-gradient { background: linear-gradient(135deg, #c5a059 0%, #9a7b41 100%); }
+    .hero-gradient {
+        background: radial-gradient(circle at top right, #f1f5f9 0%, #e2e8f0 100%);
+    }
+
+    .gold-gradient {
+        background: linear-gradient(135deg, #c5a059 0%, #9a7b41 100%);
+    }
 </style>
 {% endblock %}
 
@@ -13,27 +18,27 @@
 <section class="pt-6 pb-16 md:pt-8 md:pb-24 px-4 md:px-6 hero-gradient min-h-[85vh] flex items-center">
     <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         <div class="space-y-6 md:space-y-8">
-            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Niğde Emlak Portföyü</span>
-            </div>
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
-                Hayalinizdeki Emlağı <br>
-                <span class="text-transparent bg-clip-text gold-gradient">Burada Keşfedin</span>
+                Hayalinizdeki Mülkü <br>
+                <span class="text-transparent bg-clip-text gold-gradient">Burada Keşfedilim</span>
             </h1>
             <p class="text-base md:text-lg text-slate-500 max-w-lg leading-relaxed">
                 Arsa, konut, işyeri ve tarla ilanları. Profesyonel danışmanlık ile güvenle alın, satın veya kiralayın.
             </p>
 
             <!-- ARAMA -->
-            <form action="{% url 'properties:property_list' %}" method="get" class="bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 flex flex-col md:flex-row gap-3">
+            <form action="{% url 'properties:property_list' %}" method="get"
+                class="bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 flex flex-col md:flex-row gap-3">
                 <div class="flex-1">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Arama</span>
-                    <input type="text" name="q" placeholder="Anahtar kelime..." class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full" value="{{ request.GET.q }}">
+                    <input type="text" name="q" placeholder="Anahtar kelime..."
+                        class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full"
+                        value="{{ request.GET.q }}">
                 </div>
                 <div class="flex-1">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Tip</span>
-                    <select name="type" class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full border-0 p-0">
+                    <select name="type"
+                        class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full border-0 p-0">
                         <option value="">Tümü</option>
                         <option value="ARSA">Arsa</option>
                         <option value="KONUT">Konut</option>
@@ -41,7 +46,8 @@
                         <option value="TARLA">Tarla</option>
                     </select>
                 </div>
-                <button type="submit" class="gold-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-shadow">
+                <button type="submit"
+                    class="gold-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-shadow">
                     <i class="fas fa-search"></i>
                     Ara
                 </button>
@@ -50,12 +56,14 @@
 
         <div class="relative hidden lg:block">
             <div class="aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl relative z-10 bg-slate-200">
-                <img src="{% static 'properties/images/photo.jpg' %}" class="w-full h-full object-cover" alt="Kup10 Gayrimenkul">
+                <img src="{% static 'properties/images/photo.jpg' %}" class="w-full h-full object-cover"
+                    alt="Kup10 Gayrimenkul">
             </div>
             <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl shadow-xl z-20 max-w-xs">
                 <div class="flex items-center gap-3 mb-3">
                     <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                        <img src="{% static 'properties/images/agent.JPG' %}" alt="Zekiye GÖKTÜRK" class="w-full h-full object-cover">
+                        <img src="{% static 'properties/images/agent.JPG' %}" alt="Zekiye GÖKTÜRK"
+                            class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h4 class="text-sm font-bold text-slate-900">Zekiye GÖKTÜRK</h4>
@@ -63,7 +71,9 @@
                     </div>
                 </div>
                 <p class="text-xs text-slate-600">Size en uygun mülkü bulmak için buradayım. Hemen arayın.</p>
-                <a href="tel:05384023280" class="inline-flex items-center gap-2 mt-2 text-xs font-bold text-[#c5a059]"><i class="fas fa-phone"></i> 0538 402 32 80</a>
+                <a href="tel:05384023280"
+                    class="inline-flex items-center gap-2 mt-2 text-xs font-bold text-[#c5a059]"><i
+                        class="fas fa-phone"></i> 0538 402 32 80</a>
             </div>
         </div>
     </div>
@@ -78,8 +88,11 @@
 
     <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-6 min-h-[320px] md:min-h-[420px]">
         <!-- Arsa: geniş kart - görsel üzerinde "Arsa" yazısı -->
-        <a href="{% url 'properties:land_list' %}" class="md:col-span-2 md:row-span-2 rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0 bg-slate-800">
-            <img src="https://images.unsplash.com/photo-1500387467464-4a377b2d6c68?w=800&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+        <a href="{% url 'properties:land_list' %}"
+            class="md:col-span-2 md:row-span-2 rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0 bg-slate-800">
+            <img src="https://images.unsplash.com/photo-1500387467464-4a377b2d6c68?w=800&q=80"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="">
             <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
             <div class="absolute inset-0 flex flex-col justify-end p-6">
                 <h3 class="text-2xl font-bold text-white mb-1">Arsa</h3>
@@ -87,8 +100,11 @@
             </div>
         </a>
         <!-- Konut -->
-        <a href="{% url 'properties:residential_list' %}" class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
-            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Konut ilanları">
+        <a href="{% url 'properties:residential_list' %}"
+            class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Konut ilanları">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
             <div class="absolute bottom-5 left-5">
                 <h3 class="text-xl font-bold text-white mb-1">Konut</h3>
@@ -96,8 +112,11 @@
             </div>
         </a>
         <!-- Tarla -->
-        <a href="{% url 'properties:field_list' %}" class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
-            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Tarla ilanları">
+        <a href="{% url 'properties:field_list' %}"
+            class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
+            <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=600&q=80"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="Tarla ilanları">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
             <div class="absolute bottom-5 left-5">
                 <h3 class="text-xl font-bold text-white mb-1">Tarla</h3>
@@ -105,8 +124,11 @@
             </div>
         </a>
         <!-- İşyeri -->
-        <a href="{% url 'properties:commercial_list' %}" class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="İşyeri ilanları">
+        <a href="{% url 'properties:commercial_list' %}"
+            class="rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                alt="İşyeri ilanları">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/30 to-transparent"></div>
             <div class="absolute bottom-5 left-5">
                 <h3 class="text-xl font-bold text-white mb-1">İşyeri</h3>
@@ -121,7 +143,8 @@
     <div class="max-w-7xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
             <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Son Eklenen İlanlar</h2>
-            <a href="{% url 'properties:property_list' %}" class="gold-gradient text-white px-6 py-3 rounded-xl font-bold text-sm hover:shadow-lg transition-shadow">
+            <a href="{% url 'properties:property_list' %}"
+                class="gold-gradient text-white px-6 py-3 rounded-xl font-bold text-sm hover:shadow-lg transition-shadow">
                 Tümünü Gör
             </a>
         </div>
@@ -131,16 +154,23 @@
             <a href="{% url 'properties:property_detail' property.pk %}" class="card-hover group block">
                 <div class="relative aspect-[4/3] rounded-3xl overflow-hidden mb-4">
                     {% if property.images.exists %}
-                    <img src="{{ property.images.first.image.url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ property.title }}">
+                    <img src="{{ property.images.first.image.url }}"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        alt="{{ property.title }}">
                     {% else %}
-                    <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400"><i class="fas fa-image text-5xl"></i></div>
+                    <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400"><i
+                            class="fas fa-image text-5xl"></i></div>
                     {% endif %}
                     <div class="absolute top-4 left-4 flex gap-2">
-                        <span class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{ property.get_listing_type_display }}</span>
+                        <span
+                            class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{
+                            property.get_listing_type_display }}</span>
                     </div>
-                    <div class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
+                    <div
+                        class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
                         <span class="text-lg font-extrabold text-slate-900">{{ property.price|price_tr }} TL</span>
-                        <span class="text-[10px] font-bold text-slate-500 uppercase">{{ property.get_property_type_display }}</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">{{
+                            property.get_property_type_display }}</span>
                     </div>
                 </div>
                 <div class="px-1">
@@ -149,17 +179,24 @@
                     <div class="flex items-center justify-between py-3 border-t border-slate-100">
                         <div class="flex items-center gap-4 text-sm text-slate-500">
                             {% if property.property_type == 'KONUT' %}
-                            <span><strong class="text-slate-900">{% if property.room_count is not None %}{{ property.room_count }}{% else %}—{% endif %}</strong> Oda</span>
-                            <span><strong class="text-slate-900">{% if property.gross_square_meters is not None %}{{ property.gross_square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.room_count is not None %}{{
+                                    property.room_count }}{% else %}—{% endif %}</strong> Oda</span>
+                            <span><strong class="text-slate-900">{% if property.gross_square_meters is not None %}{{
+                                    property.gross_square_meters|floatformat:0 }}{% else %}—{% endif %}</strong>
+                                m²</span>
                             {% elif property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{
+                                    property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% elif property.property_type == 'ISYERI' %}
-                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters is not None %}{{
+                                    property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% else %}
-                            <span><strong class="text-slate-900">{{ property.get_property_type_display }}</strong></span>
+                            <span><strong class="text-slate-900">{{ property.get_property_type_display
+                                    }}</strong></span>
                             {% endif %}
                         </div>
-                        <span class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
+                        <span
+                            class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
                             <i class="fas fa-arrow-right text-sm"></i>
                         </span>
                     </div>
@@ -180,13 +217,18 @@
     <div class="max-w-7xl mx-auto bg-slate-900 rounded-[48px] p-10 md:p-20 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full gold-gradient opacity-10 blur-3xl"></div>
         <div class="relative z-10 max-w-2xl">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Hayalinizdeki mülk için <br><span class="text-[#c5a059]">hemen iletişime geçin</span></h2>
-            <p class="text-slate-400 text-lg mb-10">Profesyonel danışmanlık ile alım, satım veya kiralama sürecinizi birlikte yönetelim.</p>
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Hayalinizdeki mülk için
+                <br><span class="text-[#c5a059]">hemen iletişime geçin</span>
+            </h2>
+            <p class="text-slate-400 text-lg mb-10">Profesyonel danışmanlık ile alım, satım veya kiralama sürecinizi
+                birlikte yönetelim.</p>
             <div class="flex flex-col sm:flex-row gap-4">
-                <a href="tel:05384023280" class="gold-gradient text-white px-10 py-5 rounded-2xl font-bold shadow-xl text-center inline-flex items-center justify-center gap-2">
+                <a href="tel:05384023280"
+                    class="gold-gradient text-white px-10 py-5 rounded-2xl font-bold shadow-xl text-center inline-flex items-center justify-center gap-2">
                     <i class="fas fa-phone"></i> 0538 402 32 80
                 </a>
-                <a href="https://wa.me/905384023280" target="_blank" class="bg-white/10 text-white px-10 py-5 rounded-2xl font-bold backdrop-blur border border-white/20 hover:bg-white/20 transition-colors text-center inline-flex items-center justify-center gap-2">
+                <a href="https://wa.me/905384023280" target="_blank"
+                    class="bg-white/10 text-white px-10 py-5 rounded-2xl font-bold backdrop-blur border border-white/20 hover:bg-white/20 transition-colors text-center inline-flex items-center justify-center gap-2">
                     <i class="fab fa-whatsapp"></i> WhatsApp
                 </a>
             </div>
