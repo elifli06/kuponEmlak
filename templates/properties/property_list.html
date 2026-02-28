@@ -51,12 +51,14 @@
                     <div class="flex items-center justify-between py-3 border-t border-slate-100">
                         <div class="flex items-center gap-4 text-sm text-slate-500">
                             {% if property.property_type == 'KONUT' %}
-                            <span><strong class="text-slate-900">{{ property.room_count }}</strong> Oda</span>
-                            <span><strong class="text-slate-900">{{ property.gross_square_meters }}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.room_count != None %}{{ property.room_count }}{% else %}—{% endif %}</strong> Oda</span>
+                            <span><strong class="text-slate-900">{% if property.gross_square_meters != None %}{{ property.gross_square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% elif property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                            <span><strong class="text-slate-900">{{ property.square_meters }}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters != None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
                             {% elif property.property_type == 'ISYERI' %}
-                            <span><strong class="text-slate-900">{{ property.square_meters }}</strong> m²</span>
+                            <span><strong class="text-slate-900">{% if property.square_meters != None %}{{ property.square_meters|floatformat:0 }}{% else %}—{% endif %}</strong> m²</span>
+                            {% else %}
+                            <span><strong class="text-slate-900">{{ property.get_property_type_display }}</strong></span>
                             {% endif %}
                         </div>
                         <span class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
