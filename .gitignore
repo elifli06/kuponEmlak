@@ -7,7 +7,8 @@ __pycache__
 venv
 .venv
 db.sqlite3
-/static
+/static/*
+!/static/images/
 /staticfiles
 .DS_Store
 media/
