@@ -3,1408 +3,195 @@
 
 {% block extra_css %}
 <style>
-    /* ============================================
-       HERO SECTION - Modern Real Estate Design
-       ============================================ */
-
-    .hero-section {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-        padding: 6rem 0 5rem;
-        margin: -2rem -15px 5rem -15px;
-        border-radius: 0 0 2rem 2rem;
-        position: relative;
-        overflow: hidden;
-    }
-
-    @media (min-width: 768px) {
-        .hero-section {
-            margin: -2rem -2rem 5rem -2rem;
-            padding: 8rem 0 6rem;
-        }
-    }
-
-    .hero-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background:
-            radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
-        pointer-events: none;
-    }
-
-    .hero-section::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 1;
-        color: #ffffff;
-        text-align: center;
-    }
-
-    .hero-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: clamp(2.5rem, 6vw, 4.5rem);
-        font-weight: 900;
-        line-height: 1.1;
-        margin-bottom: 1.5rem;
-        letter-spacing: -0.03em;
-        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-        color: #ffffff;
-        background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .hero-subtitle {
-        font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-        font-weight: 400;
-        line-height: 1.7;
-        margin-bottom: 3rem;
-        opacity: 0.9;
-        max-width: 700px;
-        margin-left: auto;
-        margin-right: auto;
-        color: rgba(255, 255, 255, 0.85);
-    }
-
-    /* Hero Search Bar */
-    .hero-search-wrapper {
-        max-width: 900px;
-        margin: 0 auto;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 1.5rem;
-        padding: 1.5rem;
-        box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .hero-search-form {
-        display: grid;
-        grid-template-columns: 2fr 1fr 1fr auto;
-        gap: 1rem;
-        align-items: end;
-    }
-
-    .search-input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .search-input-group label {
-        font-size: 0.75rem;
-        font-weight: 600;
-        color: #475569;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .search-input {
-        border: 1px solid #e2e8f0;
-        border-radius: 0.75rem;
-        padding: 0.875rem 1.25rem;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        background: #ffffff;
-        color: #0f172a;
-    }
-
-    .search-input:focus {
-        outline: none;
-        border-color: #2563eb;
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
-
-    .search-btn {
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        color: #ffffff;
-        border: none;
-        border-radius: 0.75rem;
-        padding: 0.875rem 2rem;
-        font-weight: 600;
-        font-size: 0.95rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-    }
-
-    .search-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
-    }
-
-    /* Stats Section */
-    .stats-section {
-        margin-top: 4rem;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .stat-item {
-        text-align: center;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .stat-number {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #ffffff;
-        margin-bottom: 0.5rem;
-        display: block;
-    }
-
-    .stat-label {
-        font-size: 0.875rem;
-        opacity: 0.8;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* ============================================
-       CATEGORY GRID - Enhanced Cards
-       ============================================ */
-
-    /* Investment Stats Section */
-    .investment-stats-section {
-        margin-bottom: 6rem;
-        padding: 4rem 1rem;
-        background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-        border-radius: 2rem;
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        max-width: 1320px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    @media (max-width: 768px) {
-        .investment-stats-section {
-            padding: 3rem 1rem;
-            margin-bottom: 4rem;
-            border-radius: 1.5rem;
-        }
-    }
-
-    .investment-stats-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
-    }
-
-    .investment-stats-header {
-        text-align: center;
-        margin-bottom: 4rem;
-        padding: 0 1rem;
-    }
-
-    @media (max-width: 768px) {
-        .investment-stats-header {
-            margin-bottom: 3rem;
-        }
-    }
-
-    .investment-stats-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: clamp(1.875rem, 5vw, 2.5rem);
-        font-weight: 900;
-        color: #0f172a;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .investment-stats-subtitle {
-        font-size: clamp(1rem, 2.5vw, 1.125rem);
-        color: #64748b;
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.7;
-        padding: 0 1rem;
-    }
-
-    .investment-stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-        padding: 0 1rem;
-        width: 100%;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    @media (max-width: 1200px) {
-        .investment-stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .investment-stats-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            padding: 0 0.5rem;
-        }
-    }
-
-    @media (min-width: 769px) and (max-width: 992px) {
-        .investment-stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    .investment-stat-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 1.5rem;
-        padding: 2.5rem 2rem;
-        text-align: center;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .investment-stat-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #2563eb, #3b82f6);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.4s ease;
-    }
-
-    .investment-stat-card:hover::before {
-        transform: scaleX(1);
-    }
-
-    .investment-stat-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.15);
-        border-color: #2563eb;
-    }
-
-    .investment-stat-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 1.5rem;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        border-radius: 1.25rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-size: 1.75rem;
-        transition: all 0.4s ease;
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-    }
-
-    .investment-stat-card:hover .investment-stat-icon {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .investment-stat-value {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 3rem;
-        font-weight: 900;
-        color: #2563eb;
-        margin-bottom: 0.5rem;
-        line-height: 1;
-    }
-
-    .investment-stat-value span {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #3b82f6;
-    }
-
-    .investment-stat-label {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 0.75rem;
-    }
-
-    .investment-stat-description {
-        font-size: 0.9375rem;
-        color: #64748b;
-        line-height: 1.6;
-    }
-
-    .investment-stat-period {
-        display: inline-block;
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        background: linear-gradient(135deg, #eff6ff, #dbeafe);
-        color: #1e40af;
-        border-radius: 0.5rem;
-        font-size: 0.8125rem;
-        font-weight: 600;
-    }
-
-    /* ============================================
-       SECTION HEADER
-       ============================================ */
-
-    .section-header {
-        text-align: center;
-        margin-bottom: 4rem;
-    }
-
-    .section-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: clamp(2rem, 4vw, 3rem);
-        font-weight: 800;
-        color: #0f172a;
-        margin-bottom: 1rem;
-        position: relative;
-        display: inline-block;
-    }
-
-    .section-title::after {
-        content: '';
-        position: absolute;
-        bottom: -16px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 5px;
-        background: linear-gradient(90deg, #2563eb, #3b82f6);
-        border-radius: 9999px;
-    }
-
-    .section-subtitle {
-        font-size: 1.25rem;
-        color: #64748b;
-        margin-top: 2.5rem;
-        font-weight: 400;
-    }
-
-    /* ============================================
-       PROPERTY CARDS - Premium Design
-       ============================================ */
-
-    /* Properties Slider Container */
-    .properties-slider-container {
-        width: 100%;
-        max-width: 1320px;
-        margin: 0 auto;
-        padding: 0 1rem;
-        position: relative;
-    }
-
-    .properties-slider-wrapper {
-        position: relative;
-        padding: 0 3rem;
-    }
-
-    @media (max-width: 768px) {
-        .properties-slider-wrapper {
-            padding: 0 2.5rem;
-        }
-    }
-
-    .properties-slider {
-        overflow: hidden;
-        width: 100%;
-    }
-
-    #propertiesRow {
-        display: flex;
-        width: 100%;
-        gap: 0;
-        margin: 0;
-    }
-
-    .properties-slide {
-        flex: 0 0 auto;
-        width: 100%;
-        padding: 0 0.75rem;
-        box-sizing: border-box;
-    }
-
-    @media (min-width: 768px) {
-        .properties-slide {
-            width: 50%;
-        }
-    }
-
-    @media (min-width: 992px) {
-        .properties-slide {
-            width: 33.333333%;
-        }
-    }
-
-    .slider-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 10;
-        width: 50px;
-        height: 50px;
-        background: #ffffff;
-        border: 2px solid #e2e8f0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        color: #2563eb;
-        font-size: 1.25rem;
-    }
-
-    .slider-nav-btn:hover {
-        background: #2563eb;
-        color: #ffffff;
-        border-color: #2563eb;
-        transform: translateY(-50%) scale(1.1);
-        box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-    }
-
-    .slider-nav-btn.prev {
-        left: 0;
-    }
-
-    .slider-nav-btn.next {
-        right: 0;
-    }
-
-    @media (max-width: 768px) {
-        .slider-nav-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
-        }
-
-        .slider-nav-btn.prev {
-            left: -0.5rem;
-        }
-
-        .slider-nav-btn.next {
-            right: -0.5rem;
-        }
-    }
-
-    .slider-nav-btn:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    .property-card-modern {
-        border: 1px solid #e2e8f0;
-        border-radius: 1.25rem;
-        overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: #ffffff;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        margin: 0;
-    }
-
-    .property-card-modern:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-        border-color: #cbd5e1;
-    }
-
-    .property-image-wrapper {
-        position: relative;
-        overflow: hidden;
-        height: 280px;
-        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-    }
-
-    .property-image-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        display: block;
-    }
-
-    .property-card-modern:hover .property-image-wrapper img {
-        transform: scale(1.12);
-    }
-
-    .property-badge {
-        position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(12px);
-        padding: 0.625rem 1.25rem;
-        border-radius: 9999px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
-        z-index: 2;
-    }
-
-    .property-badge.satilik {
-        color: #059669;
-    }
-
-    .property-badge.kiralik {
-        color: #1e40af;
-    }
-
-    .property-card-body {
-        padding: 2rem;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .property-card-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 800;
-        margin-bottom: 0.75rem;
-        color: #0f172a;
-        line-height: 1.3;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        letter-spacing: -0.01em;
-    }
-
-    .property-card-type {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        background: linear-gradient(135deg, #eff6ff, #dbeafe);
-        color: #1e40af;
-        padding: 0.5rem 1rem;
-        border-radius: 0.5rem;
-        font-size: 0.8125rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 1.25rem;
-        width: fit-content;
-    }
-
-    .property-card-type i {
-        font-size: 0.875rem;
-    }
-
-    .property-card-specs {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 1rem;
-        padding: 1.25rem 0;
-        margin-bottom: 1.25rem;
-        border-top: 1px solid #e2e8f0;
-        border-bottom: 1px solid #e2e8f0;
-    }
-
-    .property-card-spec {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.5rem;
-    }
-
-    .property-card-spec-icon {
-        width: 40px;
-        height: 40px;
-        background: linear-gradient(135deg, #2563eb, #3b82f6);
-        border-radius: 0.75rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #ffffff;
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-
-    .property-card-spec-value {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        color: #0f172a;
-        line-height: 1.2;
-    }
-
-    .property-card-spec-label {
-        font-size: 0.75rem;
-        color: #64748b;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-    }
-
-    .property-card-description {
-        color: #475569;
-        font-size: 0.9375rem;
-        line-height: 1.8;
-        margin-bottom: 1.75rem;
-        flex-grow: 1;
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .property-card-description::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 40px;
-        background: linear-gradient(to bottom, transparent, #ffffff);
-        pointer-events: none;
-    }
-
-    .property-card-price-wrapper {
-        padding-top: 1.25rem;
-        border-top: 2px solid #e2e8f0;
-    }
-
-    .property-card-price {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 2.25rem;
-        font-weight: 900;
-        color: #2563eb;
-        margin: 0;
-        display: flex;
-        align-items: baseline;
-        gap: 0.5rem;
-        line-height: 1;
-    }
-
-    .property-card-price span {
-        font-size: 1.25rem;
-        font-weight: 500;
-        color: #64748b;
-    }
-
-    .property-card-price-label {
-        font-size: 0.8125rem;
-        color: #94a3b8;
-        font-weight: 500;
-        margin-top: 0.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .property-card-footer {
-        padding: 1.5rem 2rem;
-        background: linear-gradient(to bottom, #f8fafc, #ffffff);
-        border-top: 1px solid #e2e8f0;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .property-card-footer .btn {
-        font-size: 0.9375rem;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.75rem;
-        font-weight: 600;
-    }
-
-    .property-time {
-        font-size: 0.8125rem;
-        color: #94a3b8;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .property-time i {
-        color: #94a3b8;
-        font-size: 0.875rem;
-    }
-
-    /* ============================================
-       EMPTY STATE
-       ============================================ */
-
-    .empty-state {
-        text-align: center;
-        padding: 6rem 2rem;
-        background: #ffffff;
-        border-radius: 1.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e2e8f0;
-    }
-
-    .empty-state-icon {
-        font-size: 5rem;
-        color: #94a3b8;
-        margin-bottom: 2rem;
-        opacity: 0.4;
-    }
-
-    .empty-state-title {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.75rem;
-        font-weight: 700;
-        color: #0f172a;
-        margin-bottom: 1rem;
-    }
-
-    .empty-state-text {
-        color: #64748b;
-        font-size: 1.0625rem;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    /* ============================================
-       RESPONSIVE
-       ============================================ */
-
-    @media (max-width: 992px) {
-        .hero-search-form {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 576px) {
-        .hero-section {
-            padding: 3rem 0 2rem;
-            margin: -2rem -15px 2rem -15px;
-        }
-
-        .hero-search-wrapper {
-            padding: 1rem;
-            border-radius: 1rem;
-        }
-
-        .hero-search-form {
-            gap: 0.75rem;
-        }
-
-        .stats-section {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .investment-stats-section {
-            padding: 2rem 0.75rem;
-            border-radius: 1rem;
-        }
-
-        .investment-stat-value {
-            font-size: 2rem;
-        }
-
-        .property-image-wrapper {
-            height: 200px;
-        }
-
-        .section-header {
-            margin-bottom: 2rem;
-            padding: 0 1rem;
-        }
-
-        .section-title {
-            font-size: 1.75rem;
-        }
-
-        .property-card-specs {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            padding: 1rem 0;
-        }
-
-        .property-card-spec-icon {
-            width: 32px;
-            height: 32px;
-            font-size: 0.75rem;
-        }
-
-        .property-card-spec-value {
-            font-size: 0.875rem;
-        }
-
-        .property-card-spec-label {
-            font-size: 0.625rem;
-        }
-
-        .property-card-title {
-            font-size: 1.125rem;
-        }
-
-        .property-card-price {
-            font-size: 1.625rem;
-        }
-
-        .property-card-price span {
-            font-size: 1rem;
-        }
-
-        .property-card-body {
-            padding: 1.25rem;
-        }
-
-        .property-card-footer {
-            padding: 1rem 1.25rem;
-            flex-direction: column;
-            align-items: stretch;
-            gap: 0.75rem;
-        }
-
-        .property-card-footer .btn {
-            width: 100%;
-            text-align: center;
-        }
-    }
-
-    @media (min-width: 577px) and (max-width: 768px) {
-        .hero-section {
-            padding: 4rem 0 3rem;
-            margin: -2rem -15px 3rem -15px;
-        }
-
-        .hero-search-wrapper {
-            padding: 1.25rem;
-        }
-
-        .stats-section {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .investment-stats-grid {
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        .investment-stats-title {
-            font-size: 2rem;
-        }
-
-        .investment-stat-value {
-            font-size: 2.5rem;
-        }
-
-        .property-image-wrapper {
-            height: 220px;
-        }
-
-        .section-header {
-            margin-bottom: 3rem;
-        }
-
-        .property-card-specs {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            padding: 1rem 0;
-        }
-
-        .property-card-spec-icon {
-            width: 36px;
-            height: 36px;
-            font-size: 0.875rem;
-        }
-
-        .property-card-spec-value {
-            font-size: 0.9375rem;
-        }
-
-        .property-card-spec-label {
-            font-size: 0.6875rem;
-        }
-
-        .property-card-title {
-            font-size: 1.25rem;
-        }
-
-        .property-card-price {
-            font-size: 1.875rem;
-        }
-
-        .property-card-price span {
-            font-size: 1.125rem;
-        }
-
-        .property-card-body {
-            padding: 1.5rem;
-        }
-    }
-
-    @media (min-width: 769px) and (max-width: 991px) {
-        .investment-stats-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .properties-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (min-width: 992px) and (max-width: 1199px) {
-        .properties-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
+    .hero-gradient { background: radial-gradient(circle at top right, #f1f5f9 0%, #e2e8f0 100%); }
+    .gold-gradient { background: linear-gradient(135deg, #c5a059 0%, #9a7b41 100%); }
 </style>
 {% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="hero-section">
-    <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title fade-in">Hayalinizdeki Emlağı Bulun</h1>
-            <p class="hero-subtitle fade-in">
-                Geniş emlak portföyümüzde arsa, konut, işyeri ve tarla seçeneklerini keşfedin.<br
-                    class="d-none d-md-block">
-                Profesyonel danışmanlık hizmeti ile hayalinizdeki gayrimenkulü bulun.
+<!-- HERO -->
+<section class="pt-6 pb-16 md:pt-8 md:pb-24 px-4 md:px-6 hero-gradient min-h-[85vh] flex items-center">
+    <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div class="space-y-6 md:space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm border border-slate-100">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Niğde Emlak Portföyü</span>
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight">
+                Hayalinizdeki Emlağı <br>
+                <span class="text-transparent bg-clip-text gold-gradient">Burada Keşfedin</span>
+            </h1>
+            <p class="text-base md:text-lg text-slate-500 max-w-lg leading-relaxed">
+                Arsa, konut, işyeri ve tarla ilanları. Profesyonel danışmanlık ile güvenle alın, satın veya kiralayın.
             </p>
 
-            <!-- Hero Search Bar -->
-            <div class="hero-search-wrapper fade-in">
-                <form method="get" action="{% url 'properties:property_list' %}" class="hero-search-form">
-                    <div class="search-input-group">
-                        <label for="search_location"><i class="fas fa-map-marker-alt me-1"></i>Lokasyon</label>
-                        <input type="text" id="search_location" name="q" class="search-input"
-                            placeholder="Şehir, İlçe veya Mahalle">
-                    </div>
-                    <div class="search-input-group">
-                        <label for="search_type"><i class="fas fa-tag me-1"></i>Tip</label>
-                        <select id="search_type" name="listing_type" class="search-input">
-                            <option value="">Tümü</option>
-                            <option value="SATILIK">Satılık</option>
-                            <option value="KIRALIK">Kiralık</option>
-                        </select>
-                    </div>
-                    <div class="search-input-group">
-                        <label for="search_category"><i class="fas fa-building me-1"></i>Kategori</label>
-                        <select id="search_category" name="type" class="search-input">
-                            <option value="">Tümü</option>
-                            <option value="KONUT">Konut</option>
-                            <option value="ARSA">Arsa</option>
-                            <option value="ISYERI">İşyeri</option>
-                            <option value="TARLA">Tarla</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="search-btn">
-                        <i class="fas fa-search"></i>
-                        <span class="d-none d-md-inline">Ara</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Stats Section -->
-            <div class="stats-section fade-in">
-                <div class="stat-item">
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Aktif İlan</span>
+            <!-- ARAMA -->
+            <form action="{% url 'properties:property_list' %}" method="get" class="bg-white p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 flex flex-col md:flex-row gap-3">
+                <div class="flex-1">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Arama</span>
+                    <input type="text" name="q" placeholder="Anahtar kelime..." class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full" value="{{ request.GET.q }}">
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">10+</span>
-                    <span class="stat-label">Yıllık Deneyim</span>
+                <div class="flex-1">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Tip</span>
+                    <select name="type" class="text-sm font-semibold text-slate-900 outline-none bg-transparent w-full border-0 p-0">
+                        <option value="">Tümü</option>
+                        <option value="ARSA">Arsa</option>
+                        <option value="KONUT">Konut</option>
+                        <option value="ISYERI">İşyeri</option>
+                        <option value="TARLA">Tarla</option>
+                    </select>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number">1000+</span>
-                    <span class="stat-label">Mutlu Müşteri</span>
+                <button type="submit" class="gold-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-lg transition-shadow">
+                    <i class="fas fa-search"></i>
+                    Ara
+                </button>
+            </form>
+        </div>
+
+        <div class="relative hidden lg:block">
+            <div class="aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl relative z-10 bg-slate-200">
+                {% if properties and properties.0.images.exists %}
+                <img src="{{ properties.0.images.first.image.url }}" class="w-full h-full object-cover" alt="Öne çıkan ilan">
+                {% else %}
+                <div class="w-full h-full flex items-center justify-center text-slate-400"><i class="fas fa-image text-6xl"></i></div>
+                {% endif %}
+            </div>
+            <div class="absolute -bottom-6 -left-6 glass p-6 rounded-2xl shadow-xl z-20 max-w-xs">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden flex items-center justify-center">
+                        <i class="fas fa-user-tie text-slate-500 text-xl"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-slate-900">Zekiye GÖKTÜRK</h4>
+                        <p class="text-[10px] text-slate-500 font-semibold uppercase">Emlak Danışmanı</p>
+                    </div>
                 </div>
+                <p class="text-xs text-slate-600">Size en uygun mülkü bulmak için buradayım. Hemen arayın.</p>
+                <a href="tel:05384023280" class="inline-flex items-center gap-2 mt-2 text-xs font-bold text-[#c5a059]"><i class="fas fa-phone"></i> 0538 402 32 80</a>
             </div>
         </div>
     </div>
-</div>
+</section>
 
-<!-- Investment Stats Section -->
-<div class="investment-stats-section fade-in">
-    <div class="investment-stats-header">
-        <h2 class="investment-stats-title">Neden Gayrimenkul Yatırımı?</h2>
-        <p class="investment-stats-subtitle">
-            Türkiye'de gayrimenkul yatırımı, uzun vadede en güvenilir ve karlı yatırım araçlarından biridir.
-            İşte rakamlarla gayrimenkul yatırımının avantajları:
-        </p>
+<!-- KATEGORİLER BENTO -->
+<section class="py-16 md:py-24 px-4 md:px-6 max-w-7xl mx-auto">
+    <div class="mb-10 md:mb-12">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Kategorileri Keşfedin</h2>
+        <p class="text-slate-500 font-medium mt-1">İhtiyacınıza uygun ilan tipini seçin.</p>
     </div>
 
-    <div class="investment-stats-grid">
-        <div class="investment-stat-card">
-            <div class="investment-stat-icon">
-                <i class="fas fa-chart-line"></i>
+    <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 md:gap-6 min-h-[320px] md:min-h-[420px]">
+        <a href="{% url 'properties:land_list' %}" class="md:col-span-2 md:row-span-2 bg-slate-900 rounded-3xl relative overflow-hidden group cursor-pointer block min-h-[200px] md:min-h-0">
+            <img src="https://placehold.co/800x500/1e293b/94a3b8?text=Arsa" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500" alt="Arsa">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
+            <div class="absolute bottom-6 left-6">
+                <h3 class="text-2xl font-bold text-white mb-1">Arsa</h3>
+                <p class="text-slate-300 text-sm">{{ count_arsa }} İlan</p>
             </div>
-            <div class="investment-stat-value">20<span>x</span></div>
-            <div class="investment-stat-label">Değer Artışı</div>
-            <p class="investment-stat-description">
-                2015-2025 arası konut fiyat endeksi 20 katına çıkarak en karlı yatırım aracı oldu.
-            </p>
-            <span class="investment-stat-period">10 Yıllık Dönem</span>
-        </div>
-
-        <div class="investment-stat-card">
-            <div class="investment-stat-icon">
-                <i class="fas fa-thumbs-up"></i>
+        </a>
+        <a href="{% url 'properties:residential_list' %}" class="bg-white rounded-3xl border border-slate-100 p-6 md:p-8 flex flex-col justify-between hover:border-[#c5a059] transition-colors cursor-pointer block">
+            <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center">
+                <i class="fas fa-home text-2xl text-[#c5a059]"></i>
             </div>
-            <div class="investment-stat-value">%<span>81</span></div>
-            <div class="investment-stat-label">Memnuniyet Oranı</div>
-            <p class="investment-stat-description">
-                Türk halkının %81'i gayrimenkul yatırımından memnun. En çok tercih edilen yatırım aracı.
-            </p>
-            <span class="investment-stat-period">Cumhurbaşkanlığı Finans Ofisi</span>
-        </div>
-
-        <div class="investment-stat-card">
-            <div class="investment-stat-icon">
-                <i class="fas fa-shield-alt"></i>
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-1">Konut</h3>
+                <p class="text-slate-500 text-sm">{{ count_konut }} İlan</p>
             </div>
-            <div class="investment-stat-value"><span>%</span>15<span>+</span></div>
-            <div class="investment-stat-label">Yıllık Ortalama Getiri</div>
-            <p class="investment-stat-description">
-                Uzun vadede istikrarlı getiri sağlayan, enflasyona karşı koruma sağlayan güvenli yatırım.
-            </p>
-            <span class="investment-stat-period">Uzun Vadeli</span>
-        </div>
-
-        <div class="investment-stat-card">
-            <div class="investment-stat-icon">
-                <i class="fas fa-hand-holding-usd"></i>
+        </a>
+        <a href="{% url 'properties:field_list' %}" class="bg-[#c5a059] rounded-3xl p-6 md:p-8 flex flex-col justify-between cursor-pointer block hover:opacity-95 transition-opacity">
+            <div class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center">
+                <i class="fas fa-tree text-2xl text-white"></i>
             </div>
-            <div class="investment-stat-value"><span>2</span>.075</div>
-            <div class="investment-stat-label">Fiyat Endeksi</div>
-            <p class="investment-stat-description">
-                2015 baz yılı (100) üzerinden 2025'te 2.075,7 seviyesine ulaşan konut fiyat endeksi.
-            </p>
-            <span class="investment-stat-period">OECD Verileri</span>
-        </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-1">Tarla</h3>
+                <p class="text-white/80 text-sm">{{ count_tarla }} İlan</p>
+            </div>
+        </a>
+        <a href="{% url 'properties:commercial_list' %}" class="bg-white rounded-3xl border border-slate-100 p-6 md:p-8 flex flex-col justify-between hover:border-[#c5a059] transition-colors cursor-pointer block">
+            <div class="w-12 h-12 rounded-2xl bg-slate-50 flex items-center justify-center">
+                <i class="fas fa-store text-2xl text-[#c5a059]"></i>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-slate-900 mb-1">İşyeri</h3>
+                <p class="text-slate-500 text-sm">{{ count_isyeri }} İlan</p>
+            </div>
+        </a>
     </div>
-</div>
+</section>
 
-<!-- Latest Properties Section -->
-<div class="properties-slider-container">
-    <div class="section-header fade-in">
-        <h2 class="section-title">Son Eklenen İlanlar</h2>
-        <p class="section-subtitle">Yeni emlak fırsatlarını kaçırmayın</p>
-    </div>
+<!-- SON İLANLAR -->
+<section class="py-16 md:py-24 bg-white px-4 md:px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-12">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900">Son Eklenen İlanlar</h2>
+            <a href="{% url 'properties:property_list' %}" class="gold-gradient text-white px-6 py-3 rounded-xl font-bold text-sm hover:shadow-lg transition-shadow">
+                Tümünü Gör
+            </a>
+        </div>
 
-    {% if properties %}
-    <div class="properties-slider-wrapper fade-in">
-        <button class="slider-nav-btn prev" onclick="slideProperties('prev')" aria-label="Önceki">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="slider-nav-btn next" onclick="slideProperties('next')" aria-label="Sonraki">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <div class="properties-slider" id="propertiesSlider">
-            <div class="d-flex" id="propertiesRow" style="transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                {% for property in properties %}
-                <div class="properties-slide">
-                    <div class="property-card-modern">
-                        <div class="property-image-wrapper">
-                            {% if property.images.all %}
-                            {% with first_image=property.images.first %}
-                            {% if first_image %}
-                            <img src="{{ first_image.image.url }}" alt="{{ property.title }}" loading="lazy">
-                            {% else %}
-                            <div class="d-flex align-items-center justify-content-center h-100">
-                                <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
-                            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+            {% for property in properties %}
+            <a href="{% url 'properties:property_detail' property.pk %}" class="card-hover group block">
+                <div class="relative aspect-[4/3] rounded-3xl overflow-hidden mb-4">
+                    {% if property.images.exists %}
+                    <img src="{{ property.images.first.image.url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="{{ property.title }}">
+                    {% else %}
+                    <div class="w-full h-full bg-slate-100 flex items-center justify-center text-slate-400"><i class="fas fa-image text-5xl"></i></div>
+                    {% endif %}
+                    <div class="absolute top-4 left-4 flex gap-2">
+                        <span class="px-3 py-1.5 glass rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-900">{{ property.get_listing_type_display }}</span>
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 glass p-4 rounded-2xl flex justify-between items-center">
+                        <span class="text-lg font-extrabold text-slate-900">{{ property.price|floatformat:0 }} TL</span>
+                        <span class="text-[10px] font-bold text-slate-500 uppercase">{{ property.get_property_type_display }}</span>
+                    </div>
+                </div>
+                <div class="px-1">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 line-clamp-2">{{ property.title }}</h3>
+                    <p class="text-slate-500 text-sm line-clamp-2 mb-4">{{ property.description|truncatewords:15 }}</p>
+                    <div class="flex items-center justify-between py-3 border-t border-slate-100">
+                        <div class="flex items-center gap-4 text-sm text-slate-500">
+                            {% if property.property_type == 'KONUT' %}
+                            <span><strong class="text-slate-900">{{ property.room_count }}</strong> Oda</span>
+                            <span><strong class="text-slate-900">{{ property.gross_square_meters }}</strong> m²</span>
+                            {% elif property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
+                            <span><strong class="text-slate-900">{{ property.square_meters }}</strong> m²</span>
+                            {% elif property.property_type == 'ISYERI' %}
+                            <span><strong class="text-slate-900">{{ property.square_meters }}</strong> m²</span>
                             {% endif %}
-                            {% endwith %}
-                            {% else %}
-                            <div class="d-flex align-items-center justify-content-center h-100">
-                                <i class="fas fa-home fa-4x" style="color: #94a3b8; opacity: 0.3;"></i>
-                            </div>
-                            {% endif %}
-                            <div
-                                class="property-badge {% if property.listing_type == 'SATILIK' %}satilik{% else %}kiralik{% endif %}">
-                                {{ property.get_listing_type_display }}
-                            </div>
                         </div>
-                        <div class="property-card-body">
-                            <h3 class="property-card-title">{{ property.title }}</h3>
-
-                            <div class="property-card-type">
-                                <i class="fas fa-building"></i>
-                                <span>{{ property.get_property_type_display }}</span>
-                            </div>
-
-                            <div class="property-card-specs">
-                                {% if property.property_type == 'ARSA' or property.property_type == 'TARLA' %}
-                                {% if property.square_meters %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-ruler-combined"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.square_meters|floatformat:0 }}
-                                    </div>
-                                    <div class="property-card-spec-label">m²</div>
-                                </div>
-                                {% endif %}
-                                {% if property.zoning_status %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-file-contract"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.zoning_status|truncatewords:2 }}
-                                    </div>
-                                    <div class="property-card-spec-label">İmar</div>
-                                </div>
-                                {% endif %}
-                                {% elif property.property_type == 'KONUT' %}
-                                {% if property.gross_square_meters or property.net_square_meters %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-ruler-combined"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">
-                                        {% if property.gross_square_meters %}
-                                        {{ property.gross_square_meters|floatformat:0 }}
-                                        {% else %}
-                                        {{ property.net_square_meters|floatformat:0 }}
-                                        {% endif %}
-                                    </div>
-                                    <div class="property-card-spec-label">m²</div>
-                                </div>
-                                {% endif %}
-                                {% if property.room_count %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-door-open"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.room_count }}</div>
-                                    <div class="property-card-spec-label">Oda</div>
-                                </div>
-                                {% endif %}
-                                {% if property.floor_location %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-layer-group"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.floor_location }}</div>
-                                    <div class="property-card-spec-label">Kat</div>
-                                </div>
-                                {% endif %}
-                                {% if property.bathroom_count %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-bath"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.bathroom_count }}</div>
-                                    <div class="property-card-spec-label">Banyo</div>
-                                </div>
-                                {% endif %}
-                                {% elif property.property_type == 'ISYERI' %}
-                                {% if property.square_meters %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-ruler-combined"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.square_meters|floatformat:0 }}
-                                    </div>
-                                    <div class="property-card-spec-label">m²</div>
-                                </div>
-                                {% endif %}
-                                {% if property.floor_location %}
-                                <div class="property-card-spec">
-                                    <div class="property-card-spec-icon">
-                                        <i class="fas fa-layer-group"></i>
-                                    </div>
-                                    <div class="property-card-spec-value">{{ property.floor_location }}</div>
-                                    <div class="property-card-spec-label">Kat</div>
-                                </div>
-                                {% endif %}
-                                {% endif %}
-                            </div>
-
-                            <p class="property-card-description">{{ property.description|truncatewords:20|striptags }}
-                            </p>
-
-                            <div class="property-card-price-wrapper">
-                                <div class="property-card-price">
-                                    {{ property.price|floatformat:0 }}<span>TL</span>
-                                </div>
-                                <div class="property-card-price-label">{{ property.get_listing_type_display }}</div>
-                            </div>
-                        </div>
-                        <div class="property-card-footer">
-                            <a href="{% url 'properties:property_detail' property.pk %}" class="btn btn-primary">
-                                Detayları Gör
-                                <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                            <div class="property-time">
-                                <i class="far fa-clock"></i>
-                                <span>{{ property.created_at|timesince }} önce</span>
-                            </div>
-                        </div>
+                        <span class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center group-hover:bg-[#c5a059] transition-colors">
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </span>
                     </div>
                 </div>
-                {% endfor %}
+            </a>
+            {% empty %}
+            <div class="col-span-full text-center py-12 text-slate-500">
+                <i class="fas fa-inbox text-4xl mb-4"></i>
+                <p>Henüz ilan bulunmuyor.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 md:py-24 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto bg-slate-900 rounded-[48px] p-10 md:p-20 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full gold-gradient opacity-10 blur-3xl"></div>
+        <div class="relative z-10 max-w-2xl">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Hayalinizdeki mülk için <br><span class="text-[#c5a059]">hemen iletişime geçin</span></h2>
+            <p class="text-slate-400 text-lg mb-10">Profesyonel danışmanlık ile alım, satım veya kiralama sürecinizi birlikte yönetelim.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="tel:05384023280" class="gold-gradient text-white px-10 py-5 rounded-2xl font-bold shadow-xl text-center inline-flex items-center justify-center gap-2">
+                    <i class="fas fa-phone"></i> 0538 402 32 80
+                </a>
+                <a href="https://wa.me/905384023280" target="_blank" class="bg-white/10 text-white px-10 py-5 rounded-2xl font-bold backdrop-blur border border-white/20 hover:bg-white/20 transition-colors text-center inline-flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
             </div>
         </div>
     </div>
-    {% else %}
-    <div class="fade-in">
-        <div class="empty-state">
-            <div class="empty-state-icon">
-                <i class="fas fa-search"></i>
-            </div>
-            <h3 class="empty-state-title">Henüz İlan Bulunmamaktadır</h3>
-            <p class="empty-state-text">Yakında yeni ilanlar eklenecektir.</p>
-        </div>
-    </div>
-    {% endif %}
-</div>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Intersection Observer for fade-in animations
-    (function () {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-            observer.observe(el);
-        });
-    })();
-
-    // Properties Slider Functionality
-    (function () {
-        let currentSlide = 0;
-        const itemsPerSlide = window.innerWidth >= 992 ? 3 : window.innerWidth >= 768 ? 2 : 1;
-
-        function updateItemsPerSlide() {
-            if (window.innerWidth >= 992) return 3;
-            if (window.innerWidth >= 768) return 2;
-            return 1;
-        }
-
-        window.slideProperties = function (direction) {
-            const row = document.getElementById('propertiesRow');
-            if (!row) return;
-
-            const slides = row.querySelectorAll('.properties-slide');
-            const totalSlides = slides.length;
-            if (totalSlides === 0) return;
-
-            const itemsPerView = updateItemsPerSlide();
-            const maxSlide = Math.max(0, totalSlides - itemsPerView);
-
-            if (direction === 'next') {
-                currentSlide = Math.min(currentSlide + 1, maxSlide);
-            } else {
-                currentSlide = Math.max(currentSlide - 1, 0);
-            }
-
-            // Calculate translateX based on slide width in pixels
-            const slideWidth = slides[0] ? slides[0].offsetWidth : 0;
-            const translateX = -(currentSlide * slideWidth);
-            row.style.transform = `translateX(${translateX}px)`;
-
-            // Update button states
-            const prevBtn = document.querySelector('.slider-nav-btn.prev');
-            const nextBtn = document.querySelector('.slider-nav-btn.next');
-
-            if (prevBtn) prevBtn.disabled = currentSlide === 0;
-            if (nextBtn) nextBtn.disabled = currentSlide >= maxSlide;
-        };
-
-        // Initialize slider on load
-        window.addEventListener('load', function () {
-            const row = document.getElementById('propertiesRow');
-            if (row) {
-                const itemsPerView = updateItemsPerSlide();
-                const prevBtn = document.querySelector('.slider-nav-btn.prev');
-                const nextBtn = document.querySelector('.slider-nav-btn.next');
-
-                if (prevBtn) prevBtn.disabled = true;
-                if (nextBtn) {
-                    const slides = row.querySelectorAll('.properties-slide');
-                    const totalSlides = slides.length;
-                    nextBtn.disabled = totalSlides <= itemsPerView;
-                }
-            }
-        });
-
-        // Handle window resize
-        let resizeTimer;
-        window.addEventListener('resize', function () {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(function () {
-                currentSlide = 0;
-                const row = document.getElementById('propertiesRow');
-                if (row) {
-                    row.style.transform = 'translateX(0px)';
-                    const prevBtn = document.querySelector('.slider-nav-btn.prev');
-                    const nextBtn = document.querySelector('.slider-nav-btn.next');
-                    if (prevBtn) prevBtn.disabled = true;
-                    if (nextBtn) {
-                        const slides = row.querySelectorAll('.properties-slide');
-                        const itemsPerView = updateItemsPerSlide();
-                        nextBtn.disabled = slides.length <= itemsPerView;
-                    }
-                }
-            }, 250);
-        });
-    })();
-</script>
+</section>
 {% endblock %}

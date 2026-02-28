@@ -11,9 +11,17 @@ def normalize_text(text):
     return ''.join(c for c in text if not unicodedata.combining(c))
 
 def home(request):
-    properties = Property.objects.all().order_by('-created_at')[:25]
+    properties = Property.objects.all().order_by('-created_at')[:12]
+    # Kategori sayilari (bento / slider icin)
+    from django.db.models import Count
+    counts = Property.objects.values('property_type').annotate(count=Count('pk'))
+    count_map = {c['property_type']: c['count'] for c in counts}
     return render(request, 'properties/home.html', {
-        'properties': properties
+        'properties': properties,
+        'count_arsa': count_map.get('ARSA', 0),
+        'count_konut': count_map.get('KONUT', 0),
+        'count_isyeri': count_map.get('ISYERI', 0),
+        'count_tarla': count_map.get('TARLA', 0),
     })
 
 def property_list(request, type_filter=None):
