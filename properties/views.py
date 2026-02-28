@@ -11,7 +11,7 @@ def normalize_text(text):
     return ''.join(c for c in text if not unicodedata.combining(c))
 
 def home(request):
-    properties = Property.objects.all().order_by('-created_at')[:12]
+    properties = Property.objects.select_subclasses().order_by('-created_at')[:12]
     # Kategori sayilari (bento / slider icin)
     from django.db.models import Count
     counts = Property.objects.values('property_type').annotate(count=Count('pk'))
